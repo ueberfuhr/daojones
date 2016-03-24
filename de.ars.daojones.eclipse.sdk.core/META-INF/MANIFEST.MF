@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: DaoJones Eclipse SDK Basic Plug-in
-Bundle-SymbolicName: de.ars.daojones.eclipse.sdk.core
-Bundle-Version: 0.9.0.qualifier
-Bundle-Vendor: Ralf Zahn (ARS Computer & Consulting GmbH)
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: de.ars.daojones.eclipse;bundle-version="0.9.0"

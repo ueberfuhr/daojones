@@ -1,5 +1,0 @@
-#set($params = $util.join($constructor.ParameterTypes, "param", "$$counter","", ", ", ""))
-{
-  super( $params );
-  this.init();
-}
