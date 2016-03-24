@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ClassPath: .
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: ARS Computer und Consulting GmbH
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Name: DaoJones Runtime
+Bundle-SymbolicName: de.ars.daojones.runtime
+Bundle-Activator: de.ars.daojones.internal.runtime.Activator
+Export-Package: de.ars.daojones.runtime.beans.annotations;version="2.0
+ .0",de.ars.daojones.runtime.beans.configuration;version="2.0.0",de.ar
+ s.daojones.runtime.beans.configuration.provider;version="2.0.0",de.ar
+ s.daojones.runtime.beans.fields;version="2.0.0",de.ars.daojones.runti
+ me.configuration.provider;version="2.0.0",de.ars.daojones.runtime.con
+ nections;version="2.0.0",de.ars.daojones.runtime.connections.configur
+ ation;version="2.0.0",de.ars.daojones.runtime.connections.configurati
+ on.provider;version="2.0.0",de.ars.daojones.runtime.connections.event
+ s;version="2.0.0",de.ars.daojones.runtime.context;version="2.0.0",de.
+ ars.daojones.runtime.context.configuration;version="2.0.0",de.ars.dao
+ jones.runtime.query;version="2.0.0",de.ars.daojones.runtime.spi;versi
+ on="2.0.0",de.ars.daojones.runtime.spi.cache;version="2.0.0",de.ars.d
+ aojones.runtime.spi.database;version="2.0.0"
+Bundle-Version: 2.0.0.201303131345
+Import-Package: com.google.common.collect;version="0.8.0",javassist.by
+ tecode;version="3.12.1",org.osgi.framework;version="1.5.0",org.reflec
+ tions;version="[0.9.5,0.9.8)",org.reflections.adapters;version="[0.9.
+ 5,0.9.8)",org.reflections.scanners;version="[0.9.5,0.9.8)",org.reflec
+ tions.util;version="[0.9.5,0.9.8)"
+Bundle-ManifestVersion: 2
+

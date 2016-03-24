@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>DaoJones 2.0</title><link xmlns="" href="css/simple/base.css" rel="stylesheet" type="text/css"/><link xmlns="" href="css/simple/style.css" rel="stylesheet" type="text/css"/><link xmlns="" href="css/simple/guide.css" rel="stylesheet" type="text/css"/><link xmlns="" href="css/simple/print.css" rel="stylesheet" type="text/css" media="print"/><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><bookmarks xmlns=""/></head><body><div class="book" title="DaoJones 2.0"><div xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="titlepage"><div class="title"><div xmlns="http://www.w3.org/1999/xhtml"><h1 class="title"><a id="UTF-8"/>DaoJones 2.0</h1></div><div xmlns="http://www.w3.org/1999/xhtml"><h2 class="subtitle">Accessing non-relational databases the easy way</h2></div></div><div xmlns="http://www.w3.org/1999/xhtml"><div class="author"><h3 class="author"><span class="firstname">Ralf</span> <span class="surname">Zahn</span></h3><div class="affiliation">
+        <span class="shortaffil">ARS Training &amp; Consulting<br/></span>
+      </div></div></div><div xmlns="http://www.w3.org/1999/xhtml"><p class="copyright">Copyright © 2013 ARS Computer und Consulting GmbH</p></div></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="preface"><a href="#d5e21">Acknowledgements</a></span></dt><dt><span class="preface"><a href="#d5e25">Preface</a></span></dt><dt><span class="chapter"><a href="#d5e28">1. Introduction</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e31">1.1. History</a></span></dt><dt><span class="section"><a href="#d5e44">1.2. Intention</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e47">2. Concepts</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e50">2.1. Bean Mapping</a></span></dt><dt><span class="section"><a href="#d5e75">2.2. Datatype Mapping</a></span></dt><dt><span class="section"><a href="#concepts_bean_model">2.3. Bean Model </a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e97">3. Database Access (Basics)</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e100">3.1. A simple example</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e114">4. Database Access (Advanced)</a></span></dt><dd><dl><dt><span class="section"><a href="#database_access_advanced_attachments">4.1. Attachments </a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e119">5. JUnit Test Support</a></span></dt><dt><span class="chapter"><a href="#d5e122">6. Integration into Java Environments</a></span></dt><dt><span class="chapter"><a href="#d5e125">7. Perspectives</a></span></dt></dl></div><div class="list-of-examples"><p><strong>List of Examples</strong></p><dl><dt>3.1. <a href="#d5e103">A first example code</a></dt></dl></div>
+  
+                 <div class="preface" title="Acknowledgements"><div class="titlepage"><div><div><h2 xmlns=""><a xmlns="http://www.w3.org/1999/xhtml" id="d5e21"/></h2><h1 xmlns="">Acknowledgements</h1></div></div></div>
+
+  
+
+  
+  <p>This book is produced by the <a class="ulink" href="http://wikbook.googlecode.com" target="_top">Wikbook</a> tool. Wikbook is an
+    open source project for converting wiki files into a set of docbook files.</p>
+
+</div>
+  <div class="preface" title="Preface"><div class="titlepage"><div><div><h2 xmlns=""><a xmlns="http://www.w3.org/1999/xhtml" id="d5e25"/></h2><h1 xmlns="">Preface</h1></div></div></div>
+    
+    <p>The preface is any content before a wiki section.</p>
+  </div>
+  <div class="chapter" title="Chapter 1. Introduction"><div class="titlepage"><div><div><h2 xmlns=""><a xmlns="http://www.w3.org/1999/xhtml" id="d5e28"/>1</h2><h1 xmlns="">Introduction</h1></div></div></div>
+    
+    <p>DaoJones is designed for accessing databases by mapping Java objects to database entities. Those databases must not be relational.</p>
+    <div class="section" title="1.1. History"><div class="titlepage"><div><div><h2 class="title"><a id="d5e31"/>1.1. History</h2></div></div></div>
+      
+      <p>The project was initially founded in 2007 as part of the <a class="ulink" href="http://www.ars.de/" target="_top">ARS Website</a> project. The main purpose at that time was to encapsulate accesses to the website database - which is a Notes database - in a separate layer to make the business entities independent from the Notes Java API. This allowed to implement thread safety at a central position and to make this available for the whole application.</p>
+      <p>By now, DaoJones is used by multiple ARS-internal projects (e.g. the  <span class="italic">Unterlagengenerierung</span> ) and by currently a single customer project too.</p>
+      <p>The name <span class="italic">DaoJones</span> is derived from the abbreviation <span class="italic">DAO</span>, which is used for <span class="italic">Data Access Objects</span>, a design pattern used for persistence implementations. The term is not used anymore, it was replaced by a simple POJO, briefly called <span class="italic">bean</span>.</p>
+      <div class="note" title="Note">
+        <p>Although it allows to use different database drivers, currently there is only one driver implementation to access Notes databases. Further drivers must yet be implemented.</p>
+      </div>
+    </div>
+    <div class="section" title="1.2. Intention"><div class="titlepage"><div><div><h2 class="title"><a id="d5e44"/>1.2. Intention</h2></div></div></div>
+      
+      <p>The framework is intented to be used by Java applications to map business entities to databases, no matter what kind of database (relational, document-based, object-based, file-based) is used at runtime. The database can be replaced without any changes within the application code. The developer can handle the concepts and terms of DaoJones and does not have to get familiar with database-specific concepts and terms.</p>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter 2. Concepts"><div class="titlepage"><div><div><h2 xmlns=""><a xmlns="http://www.w3.org/1999/xhtml" id="d5e47"/>2</h2><h1 xmlns="">Concepts</h1></div></div></div>
+    
+    <p>This chapter names and describes basic concepts and terms that should be known to understand the functionality of the framework.</p>
+    <div class="section" title="2.1. Bean Mapping"><div class="titlepage"><div><div><h2 class="title"><a id="d5e50"/>2.1. Bean Mapping</h2></div></div></div>
+      
+      <p>The most important concept is the mapping of beans to an artifact within the database. The following graphic shows the mapping between a Java bean and a Notes document. The Java bean has a class that is mapping to the <span class="italic">Form</span> field of the Notes document. The fields of the class are mapped to further fields of the Notes document. This mapping can be customized by annotations, an external XML file or programmatically at runtime using the <span class="italic">Bean Model API</span>. See chapter <a class="link" href="#concepts_bean_model" title="2.3. Bean Model">Bean Model</a> for detailed information.</p>
+      <p>
+        </p><div class="figure"><a id="d5e57"/><p class="title"><strong>Figure 2.1. The bean mapping to a Notes document</strong></p><div class="figure-contents">
+          
+          <div class="mediaobject" align="center"><img src="images/content/concepts/mapping.png" align="middle" alt="The bean mapping to a Notes document"/></div>
+        </div></div><p><br class="figure-break"/>
+      </p>
+      <p>It is also possible to map a bean to a view, i.e. a selection of entities based on a query and a provision of columns based on single fields or on calculated values. Views can provide sorting and categorizing entries.</p>
+      <p>
+        </p><div class="figure"><a id="d5e66"/><p class="title"><strong>Figure 2.2. The bean mapping to a Notes view</strong></p><div class="figure-contents">
+          
+          <div class="mediaobject" align="center"><img src="images/content/concepts/mappingView.png" align="middle" alt="The bean mapping to a Notes view"/></div>
+        </div></div><p><br class="figure-break"/>
+      </p>
+      <div class="caution" title="Caution">
+        <p>Please be aware that view columns with calculated values can only be mapped to read-only fields and are therefore cannot be used for updates.</p>
+      </div>
+    </div>
+    <div class="section" title="2.2. Datatype Mapping"><div class="titlepage"><div><div><h2 class="title"><a id="d5e75"/>2.2. Datatype Mapping</h2></div></div></div>
+      
+      <p>The mapping of Java and database fields or columns is not limited to strings. The following types can be used as Java field type:</p>
+      <div class="itemizedlist"><ul class="itemizedlist"><li class="listitem">
+          <p>Primitive types and their wrapper classes</p>
+        </li><li class="listitem">
+          <p>
+            <code class="code">java.lang.String</code>
+          </p>
+        </li><li class="listitem">
+          <p>
+            <code class="code">java.util.Date</code>
+          </p>
+        </li><li class="listitem">
+          <p>One-dimensional Arrays of these types</p>
+        </li><li class="listitem">
+          <p>
+            <code class="code">de.ars.daojones.runtime.beans.fields.Resource</code> (for BLOBs, CLOBs, Attachments...) - see Section <a class="link" href="#database_access_advanced_attachments" title="4.1. Attachments">Attachments</a>
+          </p>
+        </li></ul></div>
+      <p>  - "Bean", Mapping (Field and DataSource/TABLE/VIEW, Supported Types (inkl. Arrays, Resource, ...))   - Models (Connection-, Bean-, ConnectionFactory-, CacheFactory-, Application-)   - DaoJonesContext, -Factory und -Config</p>
+      <p>  </p>
+    </div>
+    <div class="section" title="2.3. Bean Model"><div class="titlepage"><div><div><h2 class="title"><a id="concepts_bean_model"/>2.3. Bean Model </h2></div></div></div>
+      
+    </div>
+  </div>
+  <div class="chapter" title="Chapter 3. Database Access (Basics)"><div class="titlepage"><div><div><h2 xmlns=""><a xmlns="http://www.w3.org/1999/xhtml" id="d5e97"/>3</h2><h1 xmlns="">Database Access (Basics)</h1></div></div></div>
+    
+    <p>TODO</p>
+    <div class="section" title="3.1. A simple example"><div class="titlepage"><div><div><h2 class="title"><a id="d5e100"/>3.1. A simple example</h2></div></div></div>
+      
+      <p>
+        </p><div class="example"><a id="d5e103"/><p class="title"><strong>Example 3.1. A first example code</strong></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="programlisting">  <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">public</span> <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">void</span> demo1() <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">throws</span> DataAccessException,
+
+  ConfigurationException {
+
+    <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">final</span> DaoJonesContextFactory dcf = <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">new</span> DaoJonesContextFactory();
+
+    dcf.setBeanConfigurations( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">new</span> ApplicationBeanConfigurationProvider(
+
+            DaoJonesDemo.APP,
+
+            <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">new</span> AnnotationBeanConfigurationProvider() ) );
+    <span xmlns="" class="co" id="callout-0__"><img src="images/callouts/1.png" alt="(1)"/></span>
+    dcf.setConnectionConfigurations( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">new</span> ApplicationConnectionConfigurationProvider(
+
+            DaoJonesDemo.APP,
+
+            <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">new</span> XmlConnectionConfigurationProvider(
+      <span xmlns="" class="co" id="callout-1__"><img src="images/callouts/1.png" alt="(1)"/></span>
+                    DaoJonesDemo.<span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">class</span>
+
+                    .getResource( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"daojones-connections.xml"</span> ) ) ) );
+
+     
+
+    <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">final</span> DaoJonesContext ctx = dcf.createContext();
+
+    <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">try</span> {
+
+      <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">final</span> ConnectionProvider cp = ctx
+
+              .getApplication( DaoJonesDemo.APP );
+
+      <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">final</span> Connection&lt;Memo&gt; con = cp.getConnection( Memo.<span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">class</span> );
+
+       
+
+      <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">try</span> {
+
+        <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-comment">// SearchCriteria etwas anders?</span>
+
+        <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">final</span> SearchResult&lt;Memo&gt; memos = con.findAll( Query.create()
+
+                .only( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-number">2</span> ) );
+
+        <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">for</span> ( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">final</span> Memo memo : memos ) {
+
+          <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-comment">// Iterate through the search results</span>
+
+          <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-comment">// (Streamed results)</span>
+
+
+
+        }
+
+      } <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">finally</span> {
+
+        con.close();
+
+      }
+
+    } <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">finally</span> {
+
+      ctx.close();
+
+    }
+
+
+
+    Query.create().only(
+
+            property( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"receiver"</span> ).isEmpty().or().property( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"sender"</span> )
+
+            .isEmpty() );
+
+    Query.create().only( not( TRUE() ).and().TRUE().or().FALSE() );
+
+    Query.create()
+
+    .only( property( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"title"</span> ).isEmpty().and().field( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"text"</span> )
+
+            .asString().startsWith( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"Hallo"</span> ) ).only( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-number">10</span> );
+
+    Query.create().only(
+
+            property( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"title"</span> ).isEmpty().or().asString()
+
+            .contains( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"Tagebuch"</span> ).and().startsWith( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"Mein"</span> )
+
+            .or().endsWith( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"Dein"</span> ) );
+
+    Query.create().only(
+
+            property( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"authors"</span> )
+
+            .asCollectionOf( String.<span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">class</span> )
+
+            .containsAllOf( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"Ralf Zahn"</span>, <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"Michael Mueller"</span> )
+
+            .or()
+
+            .containsOneOf( <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"Stefan Schaeffer"</span>,
+
+                    <span xmlns="" xmlns:xslthl="http://xslthl.sf.net" xmlns:d="http://docbook.org/ns/docbook" class="hl-string">"Domink Ebert"</span> ) );
+
+
+
+  }</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0"/></p></td><td valign="top" align="left">
+                <p>Compatible with try-with-resources (since Java 7)</p>
+              </td></tr></table></div></div>
+        </div></div><p><br class="example-break"/>
+      </p>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter 4. Database Access (Advanced)"><div class="titlepage"><div><div><h2 xmlns=""><a xmlns="http://www.w3.org/1999/xhtml" id="d5e114"/>4</h2><h1 xmlns="">Database Access (Advanced)</h1></div></div></div>
+    
+    <p>TODO</p>
+    <div class="section" title="4.1. Attachments"><div class="titlepage"><div><div><h2 class="title"><a id="database_access_advanced_attachments"/>4.1. Attachments </h2></div></div></div>
+      
+    </div>
+  </div>
+  <div class="chapter" title="Chapter 5. JUnit Test Support"><div class="titlepage"><div><div><h2 xmlns=""><a xmlns="http://www.w3.org/1999/xhtml" id="d5e119"/>5</h2><h1 xmlns="">JUnit Test Support</h1></div></div></div>
+    
+    <p>TODO</p>
+  </div>
+  <div class="chapter" title="Chapter 6. Integration into Java Environments"><div class="titlepage"><div><div><h2 xmlns=""><a xmlns="http://www.w3.org/1999/xhtml" id="d5e122"/>6</h2><h1 xmlns="">Integration into Java Environments</h1></div></div></div>
+    
+    <p>TODO</p>
+  </div>
+  <div class="chapter" title="Chapter 7. Perspectives"><div class="titlepage"><div><div><h2 xmlns=""><a xmlns="http://www.w3.org/1999/xhtml" id="d5e125"/>7</h2><h1 xmlns="">Perspectives</h1></div></div></div>
+    
+    <p>TODO</p>
+  </div>
+</div></body></html>

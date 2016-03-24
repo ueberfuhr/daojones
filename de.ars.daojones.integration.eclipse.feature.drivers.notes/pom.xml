@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>de.ars.daojones.integration.eclipse.feature.drivers.notes</artifactId>
+  <packaging>eclipse-feature</packaging>
+  <parent>
+    <groupId>de.ars.daojones</groupId>
+    <artifactId>daojones-eclipse-feature</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+  </parent>
+  <name>DaoJones Driver for Lotus Notes Feature</name>
+  <description>Provides DaoJones Driver for Lotus Notes as Eclipse Feature.</description>
+  <dependencies>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-notes</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-notes</artifactId>
+      <version>${project.version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.lotus.domino</groupId>
+      <artifactId>NotesAPIBundle</artifactId>
+      <version>8.5.2</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho.extras</groupId>
+        <artifactId>tycho-source-feature-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <plugin id="com.ibm.notes.java.api" />
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>daojones-ri-ear</artifactId>
+  <name>DaoJones Reference Enterprise Application</name>
+  <description>This project contains a sample application to test the DaoJones Integration into JEE environments.</description>
+  <parent>
+    <groupId>de.ars.daojones</groupId>
+    <artifactId>daojones-jee</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-ri-ejb</artifactId>
+      <version>${project.version}</version>
+      <type>ejb</type>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-ri</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-ri-war</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-ri</artifactId>
+      <version>${project.version}</version>
+      <classifier>sources</classifier>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-ri-ejb</artifactId>
+      <version>${project.version}</version>
+      <classifier>sources</classifier>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-ri-war</artifactId>
+      <version>${project.version}</version>
+      <classifier>sources</classifier>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-ear-plugin</artifactId>
+        <configuration>
+          <modules>
+            <webModule>
+              <groupId>de.ars.daojones</groupId>
+              <artifactId>daojones-ri-war</artifactId>
+              <contextRoot>/daojones-ri</contextRoot>
+            </webModule>
+          </modules>
+        </configuration>
+      </plugin>
+      <!-- Attach the Sources EAR -->
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>src/main/assembly/sources-ear.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <packaging>ear</packaging>
+</project>

@@ -1,0 +1,329 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="de.ars.daojones.integration.equinox" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="de.ars.daojones.integration.equinox" id="connections" name="Connections Configuration Point"/>
+      </appinfo>
+      <documentation>
+         Connections Configuration
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice minOccurs="0" maxOccurs="unbounded">
+            <element ref="application"/>
+            <element ref="credential"/>
+            <element ref="connection"/>
+            <element ref="connection-file"/>
+            <element ref="connection-event-listener"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connection">
+      <annotation>
+         <documentation>
+            A Connection to a database.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="cache" minOccurs="0" maxOccurs="1"/>
+            <element ref="limitation" minOccurs="0" maxOccurs="1"/>
+            <element ref="for-class" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="application" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Set the application id to assign this connection to an application.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="de.ars.daojones.integration.equinox.connections/application/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  Only a name for showing data in the UI.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  Just for showing information in the UI.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The factory that creates the connection implementation.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="de.ars.daojones.integration.equinox.factories/connection-factory/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="database" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The driver-specific path to the database.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="default" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Use this flag to indicate whether a connection is the default one or not. You should not mark more than one connection as default per applcation..
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="credential" type="string">
+            <annotation>
+               <documentation>
+                  A credential for the connection. If you do not specify a credential, you can only access to unsecured databases.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="de.ars.daojones.integration.equinox.connections/credential/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="credential">
+      <complexType>
+         <choice minOccurs="0" maxOccurs="unbounded">
+            <element ref="property"/>
+         </choice>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The ID of the credential used for authentication.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  An implementation of a ConnectionFactory that is able to create the connection instance.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="de.ars.daojones.runtime.factories/callback-handler-factory/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="limitation">
+      <annotation>
+         <documentation>
+            A limitation to the conneciton
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="maximum-results" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  The maximum number of elements that should be read from a query. Use this for testing purposes or for connections that should only give one result, e.g. a configuration connection.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="for-class">
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A bean class that can be handled by this connection.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connection-file">
+      <annotation>
+         <documentation>
+            Register an XML file containing a connection configuration.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="application" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Sets the application id.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="de.ars.daojones.integration.equinox.connections/application/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="file" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The XML file containing a connection configuration.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="application">
+      <annotation>
+         <documentation>
+            Defines an application description that bundles a couple of connections.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id that is used to identify the application context.
+You can get a reference to the application context by calling
+ApplicationContextFactory.getInstance().getApplicationContext(id)
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The human readable name of the context that is used within the UI. If you leave it empty, the id is used as the name.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  The description for the context.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connection-event-listener">
+      <annotation>
+         <documentation>
+            Registers a listener for connection events. Such a listener is invoked whenever any connection model is registered or removed from the model manager, and whenever the connection is created or closed.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Event Handler implementation class
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":de.ars.daojones.runtime.connections.events.ConnectionEventListener"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="cache">
+      <complexType>
+         <choice minOccurs="0" maxOccurs="unbounded">
+            <element ref="property"/>
+         </choice>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  An implementation of a ConnectionFactory that is able to create the connection instance.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="de.ars.daojones.runtime.factories/cache-factory/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="property">
+      <annotation>
+         <documentation>
+            A custom property that is cache driver dependent.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of the property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="value" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The value of the property.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         1.0
+      </documentation>
+   </annotation>
+
+
+
+
+
+</schema>

@@ -1,0 +1,8 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+    version="2.1">
+
+  <c:out value="${dj.title} ${dj.version}"/>
+  <c:out value="${dj.application.applicationId}"/>
+
+</jsp:root>

@@ -1,0 +1,163 @@
+@import url("../bootstrap/bootstrap.css");
+/*Overwrite bootstrap*/
+body {
+	font: 15px/1.6 "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+dl {
+	margin-bottom: 0em;
+}
+
+[class*="span"] {
+	margin-left: 10px;
+}
+
+.span3 {
+	width: 25%;
+}
+/*Custom properties*/
+#nav-left {
+	padding-top: 0px;
+	width: 20%;
+}
+
+pre {
+	font-size: 1em;
+	line-height: 1em;
+}
+
+.toc {
+	background-image: url("ars-logo.gif");
+	background-repeat: no-repeat;
+	background-position: 5pt 5pt;
+	margin-top: 0px;
+	padding-top: 80px;
+	background-color: white;
+}
+
+dt,dd {
+	line-height: 1.7em;
+}
+
+.toc dl dl dl {
+	display: none;
+}
+
+.toc dl dt {
+	margin-top: 0.5em;
+}
+
+.toc dl dl dt {
+	margin-top: 0em;
+	margin-left: 2em;
+	font-size: 0.9em;
+	line-height: 1.3em;
+	font-weight: normal;
+}
+
+.toc dl dl dt a {
+	color: black;
+}
+
+.toc .section {
+	line-height: 1.0em;
+	font-size: 0.9em;
+}
+
+.language-java {
+	font-family: Consolas, Monaco, Menlo, "Courier New", monospace
+}
+
+.language-java .kwd {
+	font-weight: bold;
+	font-style: normal;
+	color: #7f0055;
+}
+
+.language-java .com {
+	font-weight: normal;
+	font-style: normal;
+	color: #3f7f5f;
+}
+
+.language-java .str {
+	font-weight: normal;
+	font-style: normal;
+	color: #2a00ff;
+}
+
+.alert {
+	margin-left: 2px !important;
+	margin-right: 2px !important;
+}
+
+pre.prettyprint {
+	padding: 0.5em;
+	font-size: 0.8em;
+}
+/* XML */
+.tag {
+	color: #3f7f7f;
+}
+.atn {
+	color: #7f007f;
+}
+.atv {
+	color: #2a00ff;
+}
+/* Java */
+.typ {
+	color: #000; 
+}
+
+p code {
+	border: none;
+	background-color: transparent;
+}
+
+.container,.navbar-static-top .container,.navbar-fixed-top .container,.navbar-fixed-bottom .container
+	{
+	width: 100%;
+}
+
+[class*="span"] {
+	margin-left: 10px;
+}
+
+.book {
+	width: 90%;
+}
+/* Print */
+@media print {
+	* {
+		background: none;
+		background-color: transparent;
+	}
+	#nav-left {
+		display: none;
+	}
+	#nav-right {
+		margin: 0;
+		width: 100%;
+	}
+	.page-header {
+		page-break-before: always;
+	}
+	@page {
+		size: portrait;
+		margin-left: 2cm;
+		margin-right: 2cm;
+		margin-top: 2cm;
+		margin-bottom: 2cm;
+	}
+	img {
+		width: 80%;
+	}
+	.row {
+		margin-left: 0;
+	}
+	pre,pre.prettyprint,code {
+		border: none;
+		background-color: transparent;
+	}
+}

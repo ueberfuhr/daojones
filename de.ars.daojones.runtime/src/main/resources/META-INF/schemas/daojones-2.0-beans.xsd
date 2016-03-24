@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.ars.de/daojones/2.0/beans"
+  elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:dj="http://www.ars.de/daojones/2.0/beans">
+
+
+
+
+  <complexType name="Bean">
+    <annotation>
+      <documentation>
+        A mapping of a Java Bean type to a set of data
+        within the
+        database
+      </documentation>
+    </annotation>
+    <complexContent>
+      <extension base="dj:TypeMappedElement">
+        <sequence minOccurs="1" maxOccurs="1">
+          <element name="type-mapping" type="dj:DatabaseTypeMapping"
+            minOccurs="0" maxOccurs="1">
+          </element>
+          <element name="identificator" type="dj:LocalBeanIdentificator"
+            minOccurs="0" maxOccurs="1">
+            <annotation>
+              <documentation>The type that identifies the corresponding
+                entry within the database. The default identificator
+                reads the field declared by the &lt;id&gt; element, but
+                it is possible to use another implementation.
+              </documentation>
+            </annotation>
+          </element>
+          <element name="id-field" type="dj:IdField" minOccurs="0"
+            maxOccurs="1">
+            <annotation>
+              <documentation>The name of the field that contains the
+                identification information.
+              </documentation>
+            </annotation>
+          </element>
+          <element name="constructor" type="dj:Constructor"
+            minOccurs="0" maxOccurs="1">
+            <annotation>
+              <documentation>
+                Adds a constructor that has to be invoked.
+              </documentation>
+            </annotation>
+          </element>
+          <element name="field" type="dj:Field" minOccurs="0"
+            maxOccurs="unbounded">
+          </element>
+          <element name="method" type="dj:Method" minOccurs="0"
+            maxOccurs="unbounded">
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="DatabaseTypeMapping">
+    <attribute name="name" type="string" use="optional">
+      <annotation>
+        <documentation>
+          The name of the data source. If not specified,
+          the
+          unqualified type name of the bean is used.
+        </documentation>
+      </annotation>
+    </attribute>
+    <attribute name="type" use="optional" default="table">
+      <annotation>
+        <documentation>The type of the data source. Use "view", if there
+          is a selection of data specified with the given name within
+          the database. Use "table" if the name specifies a type of
+          data.
+        </documentation>
+      </annotation>
+      <simpleType>
+        <restriction base="string">
+          <enumeration value="table"></enumeration>
+          <enumeration value="view"></enumeration>
+        </restriction>
+      </simpleType>
+    </attribute>
+  </complexType>
+
+  <!-- This must be an anonymous type to get xjc to create the @XmlRootElement -->
+  <element name="beans-config">
+    <complexType>
+      <sequence minOccurs="1" maxOccurs="1">
+        <element name="converter" type="dj:GlobalConverter"
+          minOccurs="0" maxOccurs="unbounded">
+          <annotation>
+            <documentation>Declares an implementation class of the
+              Converter interface to be a global converter for all
+              fields
+              with a given type.
+            </documentation>
+          </annotation>
+        </element>
+        <element name="bean" type="dj:Bean" maxOccurs="unbounded"
+          minOccurs="0">
+        </element>
+      </sequence>
+    </complexType>
+  </element>
+
+  <complexType name="TypeMappedElement" abstract="true">
+    <attribute name="type" type="string" use="required"></attribute>
+  </complexType>
+
+  <complexType name="DatabaseFieldMapping">
+    <annotation>
+      <documentation>
+        The mapping to a field within the database.
+      </documentation>
+    </annotation>
+    <sequence minOccurs="1" maxOccurs="1">
+
+      <element name="converter" type="dj:LocalConverter"
+        minOccurs="0" maxOccurs="1">
+        <annotation>
+          <documentation>
+            A type that converts field values to Java
+            types.
+          </documentation>
+        </annotation>
+      </element>
+      <sequence>
+        <element name="meta" type="dj:Property" minOccurs="0"
+          maxOccurs="unbounded">
+        </element>
+      </sequence>
+    </sequence>
+    <attribute name="name" type="string" use="optional">
+      <annotation>
+        <documentation>
+          The name of the field within the database. If not
+          specified,
+          the name of the field within the database is
+          calculated by the
+          name of the corresponding element within the
+          type.
+        </documentation>
+      </annotation>
+    </attribute>
+    <attribute name="id" type="ID" use="optional">
+      <annotation>
+        <documentation>
+          The id of the field that is used for internal
+          references.
+        </documentation>
+      </annotation>
+    </attribute>
+    <attribute name="update-policy" use="optional" default="replace">
+      <annotation>
+        <documentation>
+          The kind of field update that has to be done when storing a
+          bean.
+          REPLACE: The field has to be fully replaced by the value
+          that is given by
+          the bean. This is the default type.
+          INSERT: The
+          value, that is given by the bean, is inserted into the field
+          at the top position.
+          <br />
+          <br />
+          <b>Please note:</b>
+          To avoid inserting or appending field values multiple
+          times,
+          the framework does not inject bean member values with this
+          policy.
+          After storing a bean, fields with this policy are
+          cleaned, if
+          possible.
+          APPEND: The value, that is given by the
+          bean, is appended at the field at
+          the bottom position.
+          <br />
+          <br />
+          <b>Please note:</b>
+          To avoid inserting or appending field values multiple
+          times,
+          the framework does not inject bean member values with this
+          policy.
+          After storing a bean, fields with this policy are
+          cleaned, if
+          possible.
+        </documentation>
+      </annotation>
+      <simpleType>
+        <restriction base="string">
+          <enumeration value="replace"></enumeration>
+          <enumeration value="insert"></enumeration>
+          <enumeration value="append"></enumeration>
+        </restriction>
+      </simpleType>
+    </attribute>
+  </complexType>
+
+  <complexType name="DatabaseFieldMappedElement" abstract="true">
+    <complexContent>
+      <extension base="dj:BeanMember">
+        <choice minOccurs="0" maxOccurs="1">
+          <element name="field-mapping" type="dj:DatabaseFieldMapping"
+            minOccurs="1" maxOccurs="1">
+          </element>
+          <element name="field-mapping-ref" type="dj:DatabaseFieldMappingReference"
+            minOccurs="1" maxOccurs="1">
+            <annotation>
+              <documentation>A reference to a field mapping that was
+                already defined.
+              </documentation>
+            </annotation>
+          </element>
+        </choice>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="Constructor">
+    <complexContent>
+      <extension base="dj:Invocable" />
+    </complexContent>
+  </complexType>
+
+  <complexType name="Invocable" abstract="true">
+    <complexContent>
+      <extension base="dj:BeanMember">
+        <sequence minOccurs="1" maxOccurs="1">
+          <element name="parameter" type="dj:MethodParameter"
+            minOccurs="0" maxOccurs="unbounded"></element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="Field">
+    <complexContent>
+      <extension base="dj:DatabaseFieldMappedElement">
+        <attribute name="name" use="required">
+          <annotation>
+            <documentation>
+              The name of the field within the type.
+            </documentation>
+          </annotation>
+          <simpleType>
+            <restriction base="string">
+              <minLength value="1"></minLength>
+            </restriction>
+          </simpleType>
+        </attribute>
+      </extension>
+    </complexContent>
+  </complexType>
+
+
+
+  <complexType name="Method">
+    <complexContent>
+      <extension base="dj:Invocable">
+        <sequence minOccurs="1" maxOccurs="1">
+          <element name="result" type="dj:MethodResult"
+            minOccurs="0" maxOccurs="1">
+          </element>
+        </sequence>
+
+        <attribute name="name" use="required">
+          <simpleType>
+            <restriction base="string">
+              <minLength value="1"></minLength>
+            </restriction>
+          </simpleType>
+        </attribute>
+
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="MethodParameter">
+    <complexContent>
+      <extension base="dj:InvocableElement">
+
+        <attribute name="type" type="string" use="required">
+          <annotation>
+            <documentation>The fully qualified class name of the
+              parameter type.
+            </documentation>
+          </annotation>
+        </attribute>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="MethodResult">
+    <complexContent>
+      <extension base="dj:InvocableElement"></extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="DatabaseFieldMappingReference">
+    <attribute name="mapping" type="IDREF" use="required"></attribute>
+  </complexType>
+
+
+  <complexType name="LocalBeanIdentificator">
+    <complexContent>
+      <extension base="dj:BeanIdentificatorProvidingElement"></extension>
+    </complexContent>
+  </complexType>
+
+
+  <complexType name="IdField">
+    <complexContent>
+      <extension base="dj:BeanMember">
+        <attribute name="name" use="required">
+          <annotation>
+            <documentation>
+              The name of the field within the type.
+            </documentation>
+          </annotation>
+          <simpleType>
+            <restriction base="string">
+              <minLength value="1"></minLength>
+            </restriction>
+          </simpleType>
+        </attribute>
+
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="BeanMember" abstract="true">
+    <annotation>
+      <documentation>A marker type for any element that is declared by a
+      </documentation>
+    </annotation>
+  </complexType>
+
+  <complexType name="InvocableElement" abstract="true">
+    <annotation>
+      <documentation>
+        Used within Java Model to refer to the method or
+        constructor.
+      </documentation>
+    </annotation>
+    <complexContent>
+      <extension base="dj:DatabaseFieldMappedElement"></extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="GlobalConverter">
+    <complexContent>
+      <extension base="dj:ConverterProvidingElement">
+        <attribute name="convertType" type="string" use="required">
+          <annotation>
+            <documentation>
+              The fully-qualified name of the type that is
+              converted to
+              a database value.
+            </documentation>
+          </annotation>
+        </attribute>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="LocalConverter">
+    <complexContent>
+      <extension base="dj:ConverterProvidingElement">
+
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="Property">
+    <attribute name="name" type="string" use="required"></attribute>
+    <attribute name="value" type="string" use="optional"></attribute>
+  </complexType>
+
+  <complexType name="ConverterProvidingElement">
+    <complexContent>
+      <extension base="dj:TypeMappedElement"></extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="BeanIdentificatorProvidingElement">
+    <complexContent>
+      <extension base="dj:TypeMappedElement"></extension>
+    </complexContent>
+  </complexType>
+
+</schema>

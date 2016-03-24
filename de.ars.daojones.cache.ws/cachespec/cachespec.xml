@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!DOCTYPE cache SYSTEM "cachespec.dtd">
+
+<cache>
+
+  <!-- cache-instance name="services/cache/de/ars/daojones" -->
+  <cache-entry>
+    <class>command</class>
+    <sharing-policy>not-shared</sharing-policy>
+    <name>de.ars.daojones.internal.cache.ws.QueryCommand</name>
+    <cache-id>
+      <component type="method" id="getCacheId">
+        <required>true</required>
+      </component>
+      <priority>1</priority>
+      <!-- Timeout in seconds (optional) -->
+      <timeout>3600</timeout>
+    </cache-id>
+  </cache-entry>
+  <!-- /cache-instance -->
+
+</cache>

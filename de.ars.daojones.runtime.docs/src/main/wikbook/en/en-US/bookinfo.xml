@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Comment DOCTYPE because it leads to network traffic during build!!! -->
+<!--  !DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+                   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" -->
+<bookinfo>
+  <title>DaoJones 2.0</title>
+  <subtitle>Accessing databases the easy way</subtitle>
+  <edition>1.0</edition>
+  <pubsnumber>1</pubsnumber>
+  <productname>DaoJones</productname>
+  <productnumber>2.0</productnumber>
+  <copyright>
+    <year>2015</year>
+    <holder>ARS Computer und Consulting GmbH</holder>
+  </copyright>
+  <authorgroup>
+    <author>
+      <firstname>Ralf</firstname>
+      <surname>Zahn</surname>
+      <affiliation>
+        <shortaffil>ARS Training &amp; Consulting</shortaffil>
+      </affiliation>
+    </author>
+    <author>
+      <firstname>Timo</firstname>
+      <surname>Weber</surname>
+      <affiliation>
+        <shortaffil>ARS Training &amp; Consulting</shortaffil>
+      </affiliation>
+    </author>
+  </authorgroup>
+  <mediaobject>
+    <imageobject>
+      <imagedata align="center" fileref="images/ars-logo.gif"
+        format="GIF" scale="100" />
+    </imageobject>
+  </mediaobject>
+</bookinfo>

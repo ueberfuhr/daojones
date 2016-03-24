@@ -1,0 +1,322 @@
+= Drivers {{anchor id=drivers /}} =
+
+This chapter describes the different driver types that can extend the functionality of DaoJones. The main driver implementations and their driver-specific settings and behaviour are also listed and explained. 
+
+== Database Drivers ==
+
+A database driver is responsible for accessing one type of database during runtime. Each connection refers to a database driver to delegate the CRUD operations.
+Currently, the driver for IBM Lotus Notes is currently the only existing implementation. DaoJones is not restricted to any type of database, so there could be drivers for JDBC, object-based databases or event XML files.
+
+=== IBM Lotus Notes {{anchor id=drivers_notes /}} ===
+
+The //DaoJones Driver for IBM Lotus Notes// maps the bean models to documents and views within a Lotus Notes database. It queries the database by using the Notes Formula Query Language.
+It is possible to use a local Notes client installation to access the database, which allows to use the current user session while the client is open, so a user name and password must not be specified within the connection configuration (see chapter [["Local Client Access">>#notes_local_access]] for details).
+
+The driver has a public API that provides Notes-specific data types that can be used within your application. Be aware that - in such case - your application code gets driver-dependent.
+
+==== Use the Notes driver ====
+
+To use the Notes driver,
+* the jar file must be in the classpath. It is not necessary to define a dependency to the driver at compile-time while you do not use any classes directly within your application. The driver then is found by DaoJones automatically.
+* the Notes.jar file provided by IBM must be in the classpath too 
+* you must use the id of the connection factory within the connection configuration (see the XML-file-based example below). 
+
+{{xml}}<wikbook:include href="content/drivers/notes/connectionmodel.xml"/>{{/xml}}
+
+==== Notes Database Path
+
+The database path specified within the connection model need to follow the rules of the notes driver.  
+The Notes Database Path is an URI that consists of
+* ##notes:// ##as the protocol name
+* The name or IP address of the Notes server. If not specified, the local Notes client is used to communicate with the Notes server.
+* The path to the NSF file or a replica id of the database.
+* A type parameter that specifies if the NSF file or a replica id is part of the URI.
+* A server parameter to specify the server on which the replica of the database is opened. //This parameter is only used for local client access to a replica id. This must not be the server that the DaoJones client communicates with. (See examples below.)//
+* A version parameter with a current value of ##1.1 ##(for future purposes)
+
+__Examples:__
+* This URI opens the database company/employees.nsf on server acme.com:
+  ##notes://acme.com/company/employees.nsf?version=1.1 ##
+* This URI opens the database company/employees.nsf using the local Notes client:
+  ##notes:///company/employees.nsf?version=1.1 ##
+* This URI opens the replica of the database with the given replica id on server acme.com:
+  ##notes://acme.com/C1257421103A2141?version=1.1&type=replica ##
+* This URI opens the replica of the database with the given replica id on server acme.com (using the local Notes client):
+  ##notes:///C1257421103A2141?version=1.1&type=replica&server=acme.com ##
+
+{{note}}Parsing or creating the path is implemented by the public class ##de.ars.daojones.drivers.notes.NotesDatabasePath##.{{/note}}
+
+==== Type Mapping ====
+
+The following table shows details about the mapping of Java types to Notes document fields.
+
+(% title="Type Mapping Table" %)
+|=Java type|=Notes field type
+|##java.lang.String##|Text
+|##java.lang.Character##|Text //(only first character is read)//
+|##java.lang.Boolean##|Text //(any other value than ##"true"## is ##false##)//
+|##java.lang.Number## and all sub-types|Number
+|##java.util.Date##|Date/Time
+|Primitive Types|//(same as their wrapper types)//
+|Enumerations|Text //(name of the literal)//
+|##de.ars.daojones.runtime.beans.identification.Identificator##|Text //(Universal ID of a referenced document)//
+|##de.ars.daojones.runtime.beans.fields.Resource##|//(Attachment, see chapter [["Resources">>#database_access_advanced_resources]])//
+|##de.ars.daojones.drivers.notes.types.Principal## and all sub-types|Names //(see chapter [["Names, Authors & Readers">>#notes_names]])//
+|##de.ars.daojones.drivers.notes.types.Status##|//(no field access)//
+|Arrays|//(multi-value fields with the same type as their component types)//
+
+{{note}}If you need to map a custom type to a document field type (e.g. you need support for the types that are currently not supported like Rich Text fields),
+you can implement a ##DataHandler##. See chapter [["Extending the Notes driver">>#notes_extensions]] for details.{{/note}}
+
+====Queries====
+The Notes driver executes queries as quick as possible. If a query searches for multiple bean types, a formula query is created that selects multiple forms at the same time.
+So, if all bean types are mapped to a document type (a //Form//), one query is sent to the Notes server.
+
+For each bean type, that is mapped to a view, one additional query is made where the view is selected and searched for the given criteria.
+Such a query is faster when the searched view is indexed. A bean that is mapped to a view can be updated only if it does not contain any field mapping to calculated view columns.
+If a view contains a single calculated column mapped to the bean, the whole view and its entries can only be read out.
+
+To execute a query, the Notes driver must create a formula based on the given search criteria. Therefore, multiple components are used by the driver:
+* An ##Encoder## converts a literal (e.g. a string, a number or a date that a field is compared too) to a formula-language-compatible text.
+* A ##QueryLanguageBuilder## creates the formula language for a single type of search criterion. It can use ##Encoders## to convert literals.
+* A ##ComparisonBuilder## creates the formula language for a single type of Comparison, which is part of the FieldComparison criterion. 
+
+You can create custom implementations of these components to support custom literals, search criteria or comparisons. See chapter [["Extending the Notes driver">>#notes_extensions]] for details.
+
+====Names, Authors & Readers {{anchor id=notes_names /}} ====
+If you need to read or create Names fields, the Notes driver provides a custom Java type ##Principal## and its sub-types ##User## and ##Address## (Package ##de.ars.daojones.drivers.notes.types##).
+If you use a field (single or array) of type
+* ##User##, the driver reads and writes users or user groups in flat or hierarchical form, e.g. ##CN=John Doe/O=ACME/C=US##.
+* ##Address##, the driver reads and writes RFC822 internet addresses, e.g ##John Doe <john.doe@acme.com> (Customer)##.
+* ##Principal##, both types are allowed within the field. The driver differs between both types by searching for an ##@##-address while reading out.
+
+{{note}}IBM Lotus Notes only has a ##NotesName## class representing both users and internet addresses. The DaoJones Notes driver splits these types to provide an API that is easier to use.{{/note}}
+
+If you want a Names field to be marked as an //Authors// or //Readers// field, you have to specify a meta information (property) with the name //field-type// and a value of //authors// or //readers// to the field mapping. If you use XML to declare the bean mapping, use the ##<meta .../>## tag.
+{{xml}}<wikbook:include href="content/drivers/notes/beanmodel_authors.xml"/>{{/xml}}
+If you use annotations, just annotate the field with ##@Authors## or ##Readers## (Package ##de.ars.daojones.drivers.notes.annotations##)
+{{java}}{@include de.ars.daojones.runtime.docs.drivers.notes.Note}{{/java}}
+
+{{note}}The driver uses the DaoJones ##FieldAnnotationHandler## extension to provide these annotations (see chapter [["Meta Properties for Field Mappings">>#database_access_advanced_meta_properties]]).{{/note}}
+
+====RichText {{anchor id=notes_richtext /}} ====
+If you want a text, a number or any other convertable data type to get stored within a rich text field, you can set a property ##field-type## to a value of ##richtext## or annotate the field with ##@RichText##.
+{{tip}}
+If the type of your bean member is a subclass of ##NotesIdentificator## (##DocumentIdentificator##, ##ViewIdentificator##, ##ViewEntryIdentificator## or ##DatabaseIdentificator##), a document link is inserted into the rich text field.
+{{java}}{@include de.ars.daojones.runtime.docs.drivers.notes.DocLinkExample}{{/java}}
+{{/tip}}
+
+====Attachments {{anchor id=notes_attachments /}} ====
+Attachments are by default stored as embedded objects into a rich text field. You can alternatively store an attachment as a MIME entity (used esp. for emails) by setting the property ##field-type## to a value of ##mime-entity## or by annotating the field with ##@MIMEEntity##.
+MIME Entities have the following advantages:
+* MIME headers are stored into the document, e.g. the //Content-Type//, the //Content-Length// and the //Content-Disposition// (containing the file name)
+* Images are displayed directly within the Notes UI. For other file types, an icon that is assigned by the operating system is displayed.
+* MIME Entities do not have to be imported from the file system, so they allow direct streaming and therefore save resources.
+
+==== Accessing views ====
+
+You can read out views by using the ##Datasource## annotation and specifying a ##DatasourceType## of ##VIEW##. Please note the instructions that can be found within the Lotus Notes documentation:
+
+>Using getView returns public views and folders and private views and folders that are owned by the effective id running the agent. Private views stored in the desktop are not returned.
+>
+When specifying the parameter, do not combine the view name and an alias. For example, specifying "By Author|AuthorView" does not work. Use either the view name ("By Author") or its alias ("AuthorView").
+>
+>When the view or folder name contains underscores to indicate menu accelerators, you have the option of including or excluding the underscores. The method works more efficiently, however, if you include the underscores.
+
+{{anchor id=drivers_notes_views_restrictions /}}
+Please note the following restrictions when searching beans within a view:
+{{warning}}If you search for beans that are mapped to views, DaoJones executes an FTSearch query on the view. FTSearch 
+* cannot be used to search for date-time values. Only searching for dates is allowed. DaoJones will otherwise throw an exception.
+* cannot be used to search for collection comparisons. DaoJones will otherwise throw an exception.
+* is only able to search for __case-insensitive__ field values. Each query that searches for strings with a comparison that differs from ##StringComparison.CONTAINS_IGNORECASE## will result in an exception.
+* is not able to search for calculated columns in the view. Only columns that display document fields can be searched. If a column title could not be found for comparison, the document field is compared directly.
+* only finds results of the current index (if available). You can enable DaoJones to update the full-text index of the __whole__ database before each query to any view. This could slow down performance. (see chapter [["Driver Settings">>#notes_driver_settings]] for details)  
+{{/warning}}
+
+{{tip}}The Notes driver allows to search a view using a view bean (which is more performant than searching for documents in large databases), and reading out the document-mapped bean.
+Therefore, you create a field of the document-mapped bean within the view-mapped bean and annotate it with the ##@DocumentMapped## annotation.
+{{java}}{@include de.ars.daojones.runtime.docs.drivers.notes.ExampleDocumentBean}{{/java}}
+{{java}}{@include de.ars.daojones.runtime.docs.drivers.notes.ExampleViewBean}{{/java}}
+{{/tip}}
+
+====Accessing the Notes API {{anchor id=notes_api_access /}}
+
+Although the DaoJones Notes driver implements the concept of the DaoJones Runtime to automatically map objects to a Notes database, it is sometimes necessary to access the objects of the Notes API directly, e.g. to
+* create response documents
+* invoke agents
+* update the full-text index
+* invoke ##computeWithForm## before saving a document
+
+Therefore, the ##de.ars.daojones.drivers.notes.xt.NotesAPI## class was designed to access Notes objects from the corresponding DaoJones environment. This is the only class that has the types of the Notes API as part of their public interface.
+
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.NotesAPISnippets#example1() {1}}{{/java}}
+
+It is also possible to use the DaoJones Object Mapping feature with a given Notes API object (document or view entry).
+
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.NotesAPISnippets#example2() {1}}{{/java}}
+
+If you want to handle events to Notes API objects, you can implement custom ##NotesEventHandler##s. Such events can be
+* before and after saving a document
+* before and after deleting a document
+* before and after executing a full-text search within a view
+
+You have to register a handler //per ##Connection##//, i.e. per bean type (and per application, if you have multiple).
+It is possible to map multiple bean types to a single type of document or view (e.g. to read and update a document partially) - and it is possible to have different ##NotesEventHandler##s for this type of document or view, depending from the type of the bean.
+
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.NotesAPISnippets#example3() {1}}{{/java}}
+
+Each method of the handler has two parameters:
+* a context object to access the Notes API object
+* (//beforeXXX// methods) a config object to configure the event to the Notes API object
+* (//afterXXX// methods) a result object to access to event's result 
+
+{{note}}
+  It is recommended to create subclasses of ##NotesEventHandlerAdapter## instead of directly implementing the ##NotesEventHandler## interface
+  to get a compatibility in case of interface extensions in the future.
+{{/note}}
+
+There are already two ##NotesEventHandler## implementations to
+* validate and compute fields before saving a document incl. mark fields as transient to avoid saving them into the document
+* update the database's full-text index before searching a view
+
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.NotesAPISnippets#example4() {1}}{{/java}}
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.NotesAPISnippets#example4() {2}}{{/java}}
+
+====Local Client Access {{anchor id=notes_local_access /}} ====
+If you do not specify a host (//authority//) as part of the database path (which means that the database path starts with three slashes - ##notes:/// ##), the local Notes client installation is used. If the client is not started, or the user did not allow to use the Notes session by external applications, the user is asked to enter a username and a password. Otherwise, the current Notes session is used. Credentials are not stored within the connections configuration in this case. The communication with the Domino server is handled by the local Notes client.
+
+To use the local Notes client, the following conditions must be fulfilled:
+* A Notes client must be installed on the local machine.
+* The Notes installation directory must be listed in the //PATH// environment variable of the operating system.
+* The Notes.jar file should be in the classpath of the VM's classloader (the highest in the classloader hierarchy). E.g. on JEE application servers, the Notes.jar file must not be in the classpath of an EAR or WAR, it must be in the server's classpath. //(Because native libraries can only be loaded once by a single classloader, whereas an EAR can have multiple classloaders in case of restarting an application on the server.)//
+* You must run a 32-bit JVM.
+* To avoid the halt for the input of user name and password in the console, start the Notes client and mark the option //Don't prompt for a password from other Notes-based programs// (available under //File / Security / User Security...//)
+
+{{warning}}Because of the dependencies, restrictions and known problems (e.g. unwanted process terminations), the local client access is only recommended for development environments, esp. for environments that are sometimes offline and therefore need to access local replicas. In production environments, it is highly recommended to directly connect to a Domino server using DIIOP.{{/warning}}
+
+====Driver Settings {{anchor id=notes_driver_settings /}}====
+
+The Notes driver is partially configurable. You can specify Notes-specific settings that are independent from (and not supported by) the connection and bean models.
+These settings are valid for the driver in general and cannot be customized for a single connection or a single bean type.
+You can customize them by defining a JVM system property (e.g. with a ##-D...## command line parameter).
+
+Here's a short explanation:
+|=Setting|=Description
+|##daojones.notes.session.scope## //(default: ##application##)//|The scope of a Notes session. Can be ##thread## (one session per thread) or ##application## (one session for all threads). For details about Notes and Multithreading, see the [[Domino Designer Help>>http://publib.boulder.ibm.com/infocenter/domhelp/v8r0/index.jsp?topic=%2Fcom.ibm.designer.domino.main.doc%2FH_NOTESTHREAD_CLASS_JAVA.html]]
+|##daojones.notes.save.force## //(default: ##true##)|If ##true##, the document is saved even if someone else edits and saves the document while the script is running. The last version of the document that was saved wins; the earlier version is discarded. If ##false##, and someone else edits the document while the script is running, the ##save.createresponse## setting determines what happens.
+|##daojones.notes.save.createresponse## //(default: ##false##)|If ##true##, the current document becomes a response to the original document (this is what the replicator does when there's a replication conflict). If ##false##, the save is canceled. If the ##save.force## setting is ##true##, this parameter has no effect.
+|##daojones.notes.save.markread## //(default: ##false##)|If ##true##, the document is marked as read on behalf of the current user ID. If ##false##, the document is not marked as read. If the database does not track unread marks, all documents are considered read, and this setting has no effect.
+|##daojones.notes.delete.force## //(default: ##true##)|If ##true##, the document is deleted even if another user modifies the document after the script opens it. If ##false##, the document is not deleted if another user modifies it.
+|##daojones.notes.delete.soft## //(default: ##true##)|If ##true## documents are deleted permanently from the database, doing a soft deletion if soft deletions are enabled. If ##false## documents are deleted permanently from the database, doing a hard deletion even if soft deletions are enabled.
+
+
+{{tip}}The configuration of the Notes driver can be read out by using the ##de.ars.daojones.driver.notes.Configuration## class.{{/tip}}
+
+====Extending the Notes driver {{anchor id=notes_extensions /}} ====
+
+{{caution}}
+**__TODOs:__**
+* Custom Data Handlers
+* Custom ComparisonBuilder
+* Custom Encoder
+* Custom QueryLanguageBuilder
+{{/caution}}
+
+=== Test Database Driver {{anchor id=drivers_test /}} ===
+
+For unit testing issues, you can use the [[test database driver>>#test_support_driver]] provided by the DaoJones Test Support
+to run tests independently from any database. The Notes database driver provides a test driver too, which is
+an extension of the common test driver.
+
+* You can use your connection configuration files refering to the Notes database driver. During the unit test, the original Notes driver is replaced by this test driver.
+* Test data is read from a bundle of XML file - one per database path that is specified within your connection configuration. Some examples:
+** A database path of ##notes://ACME/db.nsf ## is mapped to the file path ##ACME/db.nsf.xml##.
+** A database path of ##notes://ACME/12345?type=replica ## is mapped to the file path ##ACME/12345.xml##.
+** A database path of ##notes:///12345?type=replica&server=ACME ## is mapped to the file path ##ACME/12345.xml## too.
+** A database path of ##notes:///12345?type=replica ## is mapped to the file path ##local/12345.xml## too.
+* The ##Principal## type and its sub-types can be handled by the driver.
+
+=== Implement custom database drivers ===
+
+{{caution}}
+**__TODOs:__**
+* Implement Connection Factory (ServiceLoader or any environment mechanism)
+* Implement Connection
+* Implement BeanIdentificator thing
+{{/caution}}
+
+== Cache Drivers ==
+
+Database queries are repeated during runtime, so the performance of your application
+could be better with the usage of a cache. DaoJones has an extension interface for
+caches that can be configured with the connection model:
+
+{{xml}}<wikbook:include href="content/drivers/cache/connectionmodel_intro.xml"/>{{/xml}}
+
+
+=== DaoJones InMemory ===
+
+The DaoJones runtime itself provides a cache factory that simply caches objects within
+internal hash maps, so within the memory. This cache factory has the id ##de.ars.daojones.caches.memory##.
+
+You can optionally configure a ##timeout## property that specifies the count of seconds that a cache entry is valid.
+After this time, the entry gets invalid, and the query is executed again. If not specified, a
+default value of ##600## seconds (10 minutes) is used.
+
+{{xml}}<wikbook:include href="content/drivers/cache/connectionmodel_memory.xml"/>{{/xml}}
+
+=== IBM WebSphere Dynamic Cache Service ===
+
+A cache driver implementation to use IBM's Dynamic Cache Service is also available.
+You can find a documentation of this service at [[IBM Infocenter>>http://pic.dhe.ibm.com/infocenter/wasinfo/v8r5/index.jsp?topic=%2Fcom.ibm.websphere.base.doc%2Fae%2Fwelc6tech_dyn_intro.html]].
+
+Use the id ##com.ibm.ws.dynacache## and optionally specify the type of cache that is used.
+Configure the cache at the server runtime. Put a ##cachespec.xml## file into your application
+(e.g. into the ##WEB-INF## folder of your web application).
+
+==== Object Cache ====
+
+The Object Cache is a simple map managed (e.g. replicated) by the application server.
+This is the default type of cache that is used. You can configure the DaoJones cache driver
+with the following optional properties:
+
+* ##timeout## is the count of seconds that a cache entry is valid. Per default, there isn't any timeout.
+* ##instance## is the name of the cache instance that must be configured at the runtime. The default
+ cache instance name is ##services/cache/daojones/<app>/<connection>##, where ##<app>## is the name of
+ the DaoJones application and ##<connection>## is the id of the configured connection. Therefore, it is
+ recommended to specify an id for the connection.
+
+==== Command Cache ====
+
+The Command Cache can be used by specifying the property ##type## with a value of ##command##.
+The cache driver does not have any further configuration parameters. The timeout e.g. is
+configured directly within the ##cachespec.xml## file:
+
+{{xml}}
+<cache>
+  <cache-entry>
+    <class>command</class>
+    <sharing-policy>not-shared</sharing-policy>
+    <name>de.ars.daojones.internal.cache.ws.QueryCommand</name>
+    <cache-id>
+      <component type="method" id="getCacheId">
+        <required>true</required>
+      </component>
+      <priority>1</priority>
+      <timeout>3600</timeout>
+    </cache-id>
+  </cache-entry>
+</cache>
+{{/xml}}
+
+{{note}}To use the Command Cache, you need to enable servlet caching at the web container.{{/note}}
+
+=== Implement custom cache drivers ===
+
+{{caution}}
+**__TODOs:__**
+* Implement Cache Factory
+* Implement Cache
+* Implement BeanIdentificator thing
+{{/caution}}
+

@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>daojones-runtime-test-notes</artifactId>
+  <name>Notes Driver Extension for DaoJones Runtime Test Support</name>
+  <description>Extends the Test Support by Notes-specific data types and a custom test model file architecture.</description>
+  <parent>
+    <groupId>de.ars.daojones</groupId>
+    <artifactId>daojones-java</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+  </parent>
+ <dependencies>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-runtime</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-notes</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-runtime-test</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies></project>

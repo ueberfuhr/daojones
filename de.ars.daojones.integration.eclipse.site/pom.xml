@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>de.ars.daojones.integration.eclipse.site</artifactId>
+  <packaging>eclipse-repository</packaging>
+  <parent>
+    <groupId>de.ars.daojones</groupId>
+    <artifactId>daojones-eclipse-feature</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+  </parent>
+  <name>DaoJones Update Site</name>
+  <description>This update site provides features to integration DaoJones Runtime functionality and Eclipse integration features.</description>
+  <dependencies>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>de.ars.daojones.integration.eclipse.feature.runtime</artifactId>
+      <version>${project.version}</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>de.ars.daojones.integration.eclipse.feature.drivers.notes</artifactId>
+      <version>${project.version}</version>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+</project>

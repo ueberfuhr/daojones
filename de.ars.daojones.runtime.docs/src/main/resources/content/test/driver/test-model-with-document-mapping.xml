@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<dj:model xmlns:dj="http://www.ars.de/daojones/2.0/testmodel">
+
+  <!-- Entry for document-mapped bean -->
+  <dj:datasource type="table" name="MixedForm">
+    <dj:entry id="entry1">
+      <dj:property name="name" value="Entry 1" />
+    </dj:entry>
+  </dj:datasource>
+
+  <!-- Entry for document-mapped bean -->
+  <dj:datasource type="view" name="MixedView">
+    <dj:entry id="viewEntry1">
+      <dj:property name="?1" value="Entry 1" />
+      <!-- Reference to document-mapped entry -->
+      <dj:property name="@mapping" value="entry1" />
+    </dj:entry>
+  </dj:datasource>
+
+</dj:model>

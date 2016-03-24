@@ -1,0 +1,165 @@
+ -----
+ Download Page
+ -----
+ -----
+
+Download Page
+
+* Latest Version (${project.version})
+
+** Core & Drivers
+
+*---------------------------------------------+-----------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+
+  API & Runtime                               | {{{./${file-dj-runtime-binaries}}      Binaries }}  | {{{./${file-dj-runtime-sources}}      Sources }}      | {{{dj-runtime-maven}      Maven Dependency }} 
+*---------------------------------------------+-----------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+
+  Database Driver for IBM Lotus Notes         | {{{./${file-dj-driver-notes-binaries}} Binaries }}  | {{{./${file-dj-driver-notes-sources}} Sources }}      | {{{dj-driver-notes-maven} Maven Dependency }} 
+*---------------------------------------------+-----------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+
+  Cache Driver for IBM WebSphere Dynacache    | {{{./${file-dj-cache-ws-binaries}}     Binaries }}  | {{{./${file-dj-cache-ws-sources}}     Sources }}      | {{{dj-cache-ws-maven}     Maven Dependency }} 
+*---------------------------------------------+-----------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+
+
+** Test Support
+
+*---------------------------------------------+-----------------------------------------------------------+-------------------------------------------------------------+-------------------------------------------------------------+
+  JUnit Test Support incl. Test Driver        | {{{./${file-dj-runtime-test-binaries}}       Binaries }}  | {{{./${file-dj-runtime-test-sources}} Sources }}            | {{{dj-runtime-test-maven}            Maven Dependency }} 
+*---------------------------------------------+-----------------------------------------------------------+-------------------------------------------------------------+-------------------------------------------------------------+
+  Test Driver for IBM Lotus Notes             | {{{./${file-dj-runtime-test-notes-binaries}} Binaries }}  | {{{./${file-dj-runtime-test-notes-sources}} Sources }}      | {{{dj-runtime-test-notes-maven}      Maven Dependency }} 
+*---------------------------------------------+-----------------------------------------------------------+-------------------------------------------------------------+-------------------------------------------------------------+
+
+** Integration
+
+*---------------------------------------------+-----------------------------------------------------------+---------------------------------------------------------------+-------------------------------------------------------------+
+  Contexts and Dependency Injection (JSR-299) | {{{./${file-dj-integration-cdi-binaries}}    Binaries }}  | {{{./${file-dj-integration-cdi-sources}}      Sources }}      | {{{dj-integration-cdi-maven}      Maven Dependency }} 
+*---------------------------------------------+-----------------------------------------------------------+---------------------------------------------------------------+-------------------------------------------------------------+
+  Enterprise Java Beans                       | {{{./${file-dj-integration-ejb-binaries}}    Binaries }}  | {{{./${file-dj-integration-ejb-sources}}      Sources }}      | {{{dj-integration-ejb-maven}      Maven Dependency }} 
+*---------------------------------------------+-----------------------------------------------------------+---------------------------------------------------------------+-------------------------------------------------------------+
+  Web Applications (Servlet API, JSF)         | {{{./${file-dj-integration-web-binaries}}    Binaries }}  | {{{./${file-dj-integration-web-sources}}      Sources }}      | {{{dj-integration-web-maven}      Maven Dependency }} 
+*---------------------------------------------+-----------------------------------------------------------+---------------------------------------------------------------+-------------------------------------------------------------+
+  Ant Tasks                                   | {{{./${file-dj-integration-ant-binaries}}    Binaries }}  | {{{./${file-dj-integration-ant-sources}}      Sources }}      | 
+*---------------------------------------------+-----------------------------------------------------------+---------------------------------------------------------------+-------------------------------------------------------------+
+  Eclipse/P2 Update Site                      | Download                                                  | View                                                          | 
+                                              | \[ {{{./${file-dj-update-site-zipped}} ZIP }} \]          | \[ {{{./${file-dj-update-site-unzipped}} P2 Repository }} \]  |
+*---------------------------------------------+-----------------------------------------------------------+---------------------------------------------------------------+-------------------------------------------------------------+
+
+** Samples and Documentation
+
+*---------------------------------------------+----------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+
+  JSE Sample Application                      | {{{./${file-dj-ri-binaries}}                 Binaries }} | \[ {{{./${file-dj-ri-sources}}           Sources       }} \|   |
+                                              |                                                          |    {{{./${file-dj-ri-test-sources}}      Test-Sources  }} \]   |
+*---------------------------------------------+----------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+
+  JEE Sample Application (EAR+WAR+EJB)        | {{{./${file-dj-ri-ear-binaries}}            Binaries }}  | {{{./${file-dj-ri-ear-sources}}                Sources }}      |
+*---------------------------------------------+----------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+
+  User Documentation                          | Download                                                 | View                                                           |
+                                              | \[ {{{./${file-dj-docs-zipped}} ZIP }} \]                | \[ {{{./${file-dj-docs-unzipped}/index.html}      HTML }} \|   |
+                                              |                                                          |    {{{./${file-dj-docs-pdf}}                      PDF  }} \]   |
+*---------------------------------------------+----------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------+
+
+====================================================================================================================================================================================================================
+
+* Maven Dependencies {maven-dependencies}
+
+  To use DaoJones within your maven-based project, you have to declare the following dependencies. These dependencies are available within
+  the {{{./${project-site-repo}} DaoJones Maven Repository }}. If you use Maven, please see the {{{./maven.html} Maven Instructions }} too.
+  
+** API & Runtime {dj-runtime-maven}
+ 
++---------------------
+<dependency>
+  <groupId>de.ars.daojones</groupId>
+  <artifactId>daojones-runtime</artifactId>
+  <version>${project.version}</version>
+</dependency>
++---------------------
+
+  If you want to have the classpath scanning libraries - which are declared as optional dependencies - included, use the following dependency:
+
++---------------------
+<dependency>
+  <groupId>de.ars.daojones</groupId>
+  <artifactId>daojones-runtime-dependencies</artifactId>
+  <version>${project.version}</version>
+  <type>pom</type>
+</dependency>
++---------------------
+
+
+** Database Driver for IBM Lotus Notes {dj-driver-notes-maven}
+  
+  Use runtime scope except you use the types defined by the driver within your application.
+  
++---------------------
+<dependency>
+  <groupId>de.ars.daojones</groupId>
+  <artifactId>daojones-notes</artifactId>
+  <version>${project.version}</version>
+  <scope>runtime</scope>
+</dependency>
++---------------------
+  
+** Cache Driver for IBM WebSphere Dynacache {dj-cache-ws-maven}
+  
++---------------------
+<dependency>
+  <groupId>de.ars.daojones</groupId>
+  <artifactId>daojones-cache-websphere</artifactId>
+  <version>${project.version}</version>
+  <scope>runtime</scope>
+</dependency>
++---------------------
+
+** JUnit Test Support incl. Test Driver {dj-runtime-test-maven}
+ 
++---------------------
+<dependency>
+  <groupId>de.ars.daojones</groupId>
+  <artifactId>daojones-runtime-test</artifactId>
+  <version>${project.version}</version>
+  <scope>test</scope>
+</dependency>
++---------------------
+
+** Test Driver for IBM Lotus Notes {dj-runtime-test-notes-maven}
+ 
++---------------------
+<dependency>
+  <groupId>de.ars.daojones</groupId>
+  <artifactId>daojones-runtime-test-notes</artifactId>
+  <version>${project.version}</version>
+  <scope>test</scope>
+</dependency>
++---------------------
+  
+** Contexts and Dependency Injection (JSR-299) {dj-integration-cdi-maven}
+ 
++---------------------
+<dependency>
+  <groupId>de.ars.daojones</groupId>
+  <artifactId>daojones-integration-cdi</artifactId>
+  <version>${project.version}</version>
+  <scope>runtime</scope>
+</dependency>
++---------------------
+  
+** Enterprise Java Beans {dj-integration-ejb-maven}
+ 
++---------------------
+<dependency>
+  <groupId>de.ars.daojones</groupId>
+  <artifactId>daojones-integration-ejb</artifactId>
+  <version>${project.version}</version>
+</dependency>
++---------------------
+  
+** Web Applications (Servlet API, JSF) {dj-integration-web-maven}
+
+  You have to declare the dependency within the POM of the web module.
+  The integration jar must be packaged into the <<<WEB-INF/lib>>> folder.
+ 
++---------------------
+<dependency>
+  <groupId>de.ars.daojones</groupId>
+  <artifactId>daojones-integration-web</artifactId>
+  <version>${project.version}</version>
+</dependency>
++---------------------
+  
+  

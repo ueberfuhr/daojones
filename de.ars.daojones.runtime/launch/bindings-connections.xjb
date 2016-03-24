@@ -1,0 +1,37 @@
+<bindings version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+  extensionBindingPrefixes="xjc">
+  <globalBindings>
+    <xjc:serializable uid="1" />
+  </globalBindings>
+  <bindings
+    schemaLocation="../src/main/resources/META-INF/schemas/daojones-2.0-connections.xsd">
+    <bindings node="//xs:element[@name='configuration']">
+      <class name="ConnectionConfiguration" />
+    </bindings>
+    <bindings
+      node="//xs:element[@name='configuration']//xs:element[@name='connection']">
+      <property name="connections" />
+    </bindings>
+    <bindings
+      node="//xs:element[@name='configuration']//xs:element[@name='credential']">
+      <property name="credentials" />
+    </bindings>
+    <bindings
+      node="//xs:element[@name='configuration']//xs:element[@name='import']">
+      <property name="imports" />
+    </bindings>
+    <bindings
+      node="//xs:complexType[@name='Connection']//xs:element[@name='for-class']">
+      <property name="assignedBeanTypes" />
+    </bindings>
+    <bindings
+      node="//xs:complexType[@name='Cache']//xs:element[@name='property']">
+      <property name="properties" />
+    </bindings>
+    <bindings
+      node="//xs:complexType[@name='Credential']//xs:element[@name='property']">
+      <property name="properties" />
+    </bindings>
+  </bindings>
+</bindings>

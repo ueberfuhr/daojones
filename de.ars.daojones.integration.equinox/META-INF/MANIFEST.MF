@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DaoJones Integration for Equinox
+Bundle-SymbolicName: de.ars.daojones.integration.equinox;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Bundle-Vendor: ARS Computer und Consulting GmbH
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.eclipse.osgi.framework.console,
+ org.osgi.framework,
+ org.osgi.service.prefs;version="1.1.1"
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.9.0",
+ org.eclipse.equinox.ds;bundle-version="1.2.0";resolution:=optional,
+ de.ars.daojones.runtime;bundle-version="2.0.0"
+Service-Component: OSGI-INF/services/*.xml
+Export-Package: de.ars.daojones.integration.equinox;version="2.0.0",
+ de.ars.daojones.integration.equinox.util;version="2.0.0"
+Bundle-Activator: de.ars.daojones.internal.integration.equinox.Activator

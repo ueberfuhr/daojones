@@ -1,0 +1,124 @@
+= Integration {{anchor id=integration /}} =
+
+This chapter describes the integration of the DaoJones runtime into different environments.
+The DaoJones context initialization and management should be done by such environments, if possible.
+The application developer has to provide configuration files and should be able to access the
+DaoJones environment in a familiar way.  
+
+== OSGi Integration ==
+
+Erweiterung folgender Typen
+Activator: ServiceLoader && Annotations
+Activator direkt einsetzen, als Oberklasse oder als Delegate
+alternativ ServiceLoader Mediator nutzen, jedoch statisch, also nur für bestimmte Typen
+DaoJonesBundle für Zugriff auf Bundle-Managed Context -> sollte ausreichen.
+Bei eigenem Context -> an Bundle-Lifecycle binden, ServiceLoader-Dinge werden immer geladen, OSGi Services nicht automatisch
+
+DaoJones libraries are automatically packaged with OSGi bundle headers, so they can be 
+
+== Enterprise Java Integration ==
+
+Java Enterprise environments typically
+* are managed environments, so they are configured by an administrator and initialized automatically by the runtime environment,
+* are multi-threaded (thread managed),
+* run multi-module applications,
+* have hierarchical classloaders,
+* run applications on multiple servers (cluster) incl. replication of objects and
+* have higher requirements to security and isolation of applications
+
+DaoJones is intended to be used in such environments too. Therefore, the connections are implemented to be thread-safe. 
+
+=== CDI ===
+
+Within a CDI environment, the DaoJones context is managed as an application-scoped instance.
+It is possible to get the environment objects injected by the CDI container as shown below:
+
+{{java}}{@include de.ars.daojones.runtime.docs.integration.SampleBean}{{/java}}
+
+=== Web Modules ===
+
+The DaoJones context instance is lifecycle-managed by CDI and can be injected into web components as well.
+Additionally, the instance is automatically configured during application startup and shutdown.
+Therefore, each web application gets a DaoJones application id which follows by default the pattern
+##<module>#<ear>#web-app##. Within the context of a web application, a DaoJones application id is not necessary  
+for the CDI injection of a connection provider or DaoJones application instance.
+
+{{java}}{@include de.ars.daojones.runtime.docs.integration.SampleWebBean}{{/java}}
+
+The DaoJones environment is made available within the web application scope and represented by the
+##DaoJonesEnvironment## interface. You can access the instance using a helper class named
+##WebApplication##.
+
+[[image:images/content/integration/daojonesenvironment.png||title="The DaoJones Environment" align="center" html:scale="100" fo:width="10mm"]]
+
+A sample tag handler could look like this:
+
+{{java}}{@include de.ars.daojones.runtime.docs.integration.PrintEnvironmentTag}{{/java}}
+
+The ##DaoJonesEnvironment## is also available within JSPs and Tag Files as an implicit object
+that is named ##dj## by default. The sample tag handler could be implemented alternatively as a
+tag file:
+  
+{{xml}}<wikbook:include href="content/integration/printEnvironment.tagx"/>{{/xml}}
+
+Of course, it can be used within a JSF application (JSF Managed Beans, Facelets and other Faces Components) too. 
+
+==== Web Application Configuration ====
+
+Web applications are configurable via context parameters that are specified within the web deployment descriptor.
+DaoJones allows to configure the context initialization process with a couple of parameters that are documented here:
+
+* ##daojones.CONNECTION_CONFIG_FILES## (default: ##WEB-INF/daojones-connections.xml,META-INF/daojones-connections.xml##)
+  defines the comma-separated list of connection configuration files. The classpath of the web application is scanned for these files, so
+  they could be placed within a JAR file that is located under the ##WEB-INF/lib## directory.
+* ##daojones.BEAN_CONFIG_FILES## (default: ##WEB-INF/daojones-beans.xml,META-INF/daojones-beans.xml##)
+  defines the comma-separated list of bean configuration files. The classpath of the web application is scanned for these files, so
+  they could be placed within a JAR file that is located under the ##WEB-INF/lib## directory.
+* ##daojones.SCAN_ANNOTATIONS## (default: ##true##)
+  defines whether the classpath of the web application is scanned for annotations or not. This allows to declare bean models with
+  directly annotating the corresponding Java elements.
+* ##daojones.APPLICATION## (default: ##web-app##)
+  influences the name of the DaoJones application id that is assigned to this web application.
+* ##daojones.APPLICATION_SCOPE## (default: ##module##)
+  defines the scope of the DaoJones application id that is assigned to this web application. The scope is encoded within the DaoJones application id
+  as described below. (##<app>## is the value of the ##daojones.APPLICATION## initialization parameter)
+  ** ##public##: ##<app>## is used directly as the name of the DaoJones application id.
+  ** ##application##: The name of the EAR is encoded into the DaoJones application id (##<ear>#<app>##).
+  ** ##module##: The name of the EAR and WAR module are both encoded into the DaoJones application id (##<ear>#<war>#<app>##).
+* ##daojones.ENV_NAME## (default: ##dj##)
+  defines the name of the ##DaoJonesEnvironment## object (and the JSP/Facelet-implicit object) within the application scope.
+* ##daojones.SKIP_CONFIG## (default: ##false##)
+  suppresses the automatic initialization of the DaoJones environment, if ##true##. The ##DaoJonesEnvironment## object will get initialized anyway
+  to avoid NullPointerExceptions.
+
+You can programmatically read the names of the parameters, their default values and their value for the current web application instance using the
+##Configuration## class.
+
+[[image:images/content/integration/configuration.png||title="The DaoJones Environment" align="center" html:scale="100" fo:width="10mm"]]
+
+If you have a single web module with DaoJones annotated beans, your first steps would be:
+1. Put the DaoJones Web Integration JAR into the ##WEB-INF/lib## directory.
+1. Create a ##daojones-connections.xml## under the ##WEB-INF## folder and configure the connections there.
+1. Create a ##daojones-beans.xml## under the ##WEB-INF## folder to get the annotated classes found by the annotation scanner. The file must contain at least the XML root element.
+1. That's it!
+
+{{caution}}
+**__TODOs:__**
+* EJBs
+* JAAS Provider
+* JSR 303 Bean Validation before updating!!!
+{{/caution}}
+
+{{caution}}
+**__TODOs:__**
+* OSGi
+** simple
+** OSGi Enterprise
+{{/caution}}
+
+== Lotus Notes Agents ==
+
+{{caution}}
+**__TODOs:__**
+* Notes (z.B. Agenten)
+{{/caution}}

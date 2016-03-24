@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<umlnotation:UMLDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.3/Umlnotation" xmi:id="_xtrUoIzcEeKVlfsGXhF1Rw" type="Class" name="daojonescontext.dnx">
+  <eAnnotations xmi:id="_xtrUoYzcEeKVlfsGXhF1Rw" source="com.ibm.xtools.common.ui.reduction.editingCapabilities">
+    <details xmi:id="_xtrUoozcEeKVlfsGXhF1Rw" key="com.ibm.xtools.activities.javaVisualizerActivity" value="1"/>
+  </eAnnotations>
+  <children xmi:type="umlnotation:UMLClassifierShape" xmi:id="_D5Y3IIzdEeKVlfsGXhF1Rw" fontName="Segoe UI" fontHeight="8" showListSignature="true" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label" useClassifierShape="true">
+    <children xmi:type="notation:DecorationNode" xmi:id="_D5ioIIzdEeKVlfsGXhF1Rw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_D5ioIYzdEeKVlfsGXhF1Rw" width="530" height="530"/>
+    </children>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_D5ioIozdEeKVlfsGXhF1Rw" type="Stereotype"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_D5ioI4zdEeKVlfsGXhF1Rw" type="Kind"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_D5ioJIzdEeKVlfsGXhF1Rw" type="Name"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_D5ioJYzdEeKVlfsGXhF1Rw" type="Parent"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_D5ryEIzdEeKVlfsGXhF1Rw" visible="false" type="AttributeCompartment"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_D5ryEYzdEeKVlfsGXhF1Rw" type="OperationCompartment" sortingKeys="" filtering="Manual" filteringKeys="">
+      <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=addConnectionEventListener%5Esign=(QConnectionEventListener;)V%5Bjsrctype%5Ename=DaoJonesContext%5Bjcu%5Ename=DaoJonesContext.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D$uml.Operation"/>
+      <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=removeConnectionEventListener%5Esign=(QConnectionEventListener;)V%5Bjsrctype%5Ename=DaoJonesContext%5Bjcu%5Ename=DaoJonesContext.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D$uml.Operation"/>
+      <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=close%5Esign=()V%5Bjsrctype%5Ename=DaoJonesContext%5Bjcu%5Ename=DaoJonesContext.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D$uml.Operation"/>
+    </children>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_D5ryEozdEeKVlfsGXhF1Rw" visible="false" type="SignalCompartment"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=DaoJonesContext%5Bjcu%5Ename=DaoJonesContext.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D5Y3IYzdEeKVlfsGXhF1Rw" x="2794" y="4572"/>
+  </children>
+  <children xmi:type="umlnotation:UMLShape" xmi:id="_EfemwIzdEeKVlfsGXhF1Rw" fontName="Segoe UI" fontHeight="8" showListSignature="true" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
+    <children xmi:type="notation:DecorationNode" xmi:id="_EfnwsIzdEeKVlfsGXhF1Rw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_EfnwsYzdEeKVlfsGXhF1Rw" width="1320" height="1320"/>
+    </children>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_EfnwsozdEeKVlfsGXhF1Rw" type="Stereotype"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_Efnws4zdEeKVlfsGXhF1Rw" type="Name"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_EfnwtIzdEeKVlfsGXhF1Rw" type="Parent"/>
+    <children xmi:type="notation:ListCompartment" xmi:id="_EfnwtYzdEeKVlfsGXhF1Rw" visible="false" type="ANNOTATION_COMPARTMENT"/>
+    <children xmi:type="notation:ListCompartment" xmi:id="_EfnwtozdEeKVlfsGXhF1Rw" visible="false" type="ANNOTATED_ATTRIBUTE_COMPARTMENT"/>
+    <children xmi:type="notation:ListCompartment" xmi:id="_Efnwt4zdEeKVlfsGXhF1Rw" type="ANNOTATED_OPERATION_COMPARTMENT" filtering="Manual">
+      <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=configureSPI%5Esign=(QDaoJonesContext;)V%5Bjsrctype%5Ename=DaoJonesContextFactory%5Bjcu%5Ename=DaoJonesContextFactory.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D$uml.Operation"/>
+    </children>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=DaoJonesContextFactory%5Bjcu%5Ename=DaoJonesContextFactory.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EfemwYzdEeKVlfsGXhF1Rw" x="2413" y="1778"/>
+  </children>
+  <children xmi:type="umlnotation:UMLClassifierShape" xmi:id="_M3NGsIzdEeKVlfsGXhF1Rw" fontName="Segoe UI" fontHeight="8" showListSignature="true" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label" useClassifierShape="true">
+    <children xmi:type="notation:DecorationNode" xmi:id="_M3NGsozdEeKVlfsGXhF1Rw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_M3NGs4zdEeKVlfsGXhF1Rw" width="530" height="530"/>
+    </children>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_M3NGtIzdEeKVlfsGXhF1Rw" type="Stereotype"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_M3NGtYzdEeKVlfsGXhF1Rw" type="Kind"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_M3NGtozdEeKVlfsGXhF1Rw" type="Name"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_M3NGt4zdEeKVlfsGXhF1Rw" type="Parent"/>
+    <children xmi:type="notation:ListCompartment" xmi:id="_M3NGuIzdEeKVlfsGXhF1Rw" visible="false" type="AttributeCompartment" collapsed="true"/>
+    <children xmi:type="notation:ListCompartment" xmi:id="_M3W3sIzdEeKVlfsGXhF1Rw" type="OperationCompartment"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_M3W3sYzdEeKVlfsGXhF1Rw" visible="false" type="SignalCompartment"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jbintype%5Ename=java.io.Closeable%5Bproject%5Eid=de.ars.daojones.runtime%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M3NGsYzdEeKVlfsGXhF1Rw" x="2540" y="7112"/>
+  </children>
+  <children xmi:type="umlnotation:UMLClassifierShape" xmi:id="_PYL1sIzdEeKVlfsGXhF1Rw" fontName="Segoe UI" fontHeight="8" showListSignature="true" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label" useClassifierShape="true">
+    <children xmi:type="notation:DecorationNode" xmi:id="_PYL1sozdEeKVlfsGXhF1Rw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_PYL1s4zdEeKVlfsGXhF1Rw" width="530" height="530"/>
+    </children>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_PYL1tIzdEeKVlfsGXhF1Rw" type="Stereotype"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_PYL1tYzdEeKVlfsGXhF1Rw" type="Kind"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_PYL1tozdEeKVlfsGXhF1Rw" type="Name"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_PYL1t4zdEeKVlfsGXhF1Rw" type="Parent"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_PYL1uIzdEeKVlfsGXhF1Rw" visible="false" type="AttributeCompartment"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_PYL1uYzdEeKVlfsGXhF1Rw" visible="false" type="OperationCompartment"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_PYL1uozdEeKVlfsGXhF1Rw" visible="false" type="SignalCompartment"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=Application%5Bjcu%5Ename=Application.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PYL1sYzdEeKVlfsGXhF1Rw" x="4064" y="9017"/>
+  </children>
+  <children xmi:type="umlnotation:UMLClassifierShape" xmi:id="_RU2WsIzdEeKVlfsGXhF1Rw" fontName="Segoe UI" fontHeight="8" showListSignature="true" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label" useClassifierShape="true">
+    <children xmi:type="notation:DecorationNode" xmi:id="_RU2WsozdEeKVlfsGXhF1Rw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_RU2Ws4zdEeKVlfsGXhF1Rw" width="530" height="530"/>
+    </children>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_RU2WtIzdEeKVlfsGXhF1Rw" type="Stereotype"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_RU2WtYzdEeKVlfsGXhF1Rw" type="Kind"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_RU2WtozdEeKVlfsGXhF1Rw" type="Name"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_RU2Wt4zdEeKVlfsGXhF1Rw" type="Parent"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_RU2WuIzdEeKVlfsGXhF1Rw" visible="false" type="AttributeCompartment"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_RU2WuYzdEeKVlfsGXhF1Rw" type="OperationCompartment"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_RU2WuozdEeKVlfsGXhF1Rw" visible="false" type="SignalCompartment"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=DaoJonesContextConfiguration%5Bjcu%5Ename=DaoJonesContextConfiguration.java%5Bjpack%5Ename=de.ars.daojones.runtime.configuration.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RU2WsYzdEeKVlfsGXhF1Rw" x="9652" y="4572"/>
+  </children>
+  <children xmi:type="umlnotation:UMLClassifierShape" xmi:id="_MSyVkIzeEeKjN5UWNeaCzw" fontName="Segoe UI" fontHeight="8" showListSignature="true" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label" useClassifierShape="true">
+    <children xmi:type="notation:DecorationNode" xmi:id="_MS8GkIzeEeKjN5UWNeaCzw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_MS8GkYzeEeKjN5UWNeaCzw" width="530" height="530"/>
+    </children>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_MS8GkozeEeKjN5UWNeaCzw" type="Stereotype"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_MS8Gk4zeEeKjN5UWNeaCzw" type="Kind"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_MS8GlIzeEeKjN5UWNeaCzw" type="Name"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_MS8GlYzeEeKjN5UWNeaCzw" type="Parent"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_MS8GlozeEeKjN5UWNeaCzw" visible="false" type="AttributeCompartment"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_MS8Gl4zeEeKjN5UWNeaCzw" type="OperationCompartment"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_MS8GmIzeEeKjN5UWNeaCzw" visible="false" type="SignalCompartment"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=ConnectionProvider%5Bjcu%5Ename=ConnectionProvider.java%5Bjpack%5Ename=de.ars.daojones.runtime.connections%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MSyVkYzeEeKjN5UWNeaCzw" x="8636" y="8001"/>
+  </children>
+  <element xsi:nil="true"/>
+  <edges xmi:type="umlnotation:UMLConnector" xmi:id="_EpllAIzdEeKVlfsGXhF1Rw" source="_EfemwIzdEeKVlfsGXhF1Rw" target="_D5Y3IIzdEeKVlfsGXhF1Rw" fontName="Segoe UI" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
+    <children xmi:type="notation:DecorationNode" xmi:id="_EpllAozdEeKVlfsGXhF1Rw" visible="false" type="KindLabel">
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_EpllBIzdEeKVlfsGXhF1Rw" type="Stereotype"/>
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_EpllBozdEeKVlfsGXhF1Rw" type="Kind"/>
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_EpllBYzdEeKVlfsGXhF1Rw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EpllA4zdEeKVlfsGXhF1Rw" y="-186"/>
+    </children>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=DaoJonesContextFactory%5Bjcu%5Ename=DaoJonesContextFactory.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=DaoJonesContext%5Bjcu%5Ename=DaoJonesContext.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_EpllAYzdEeKVlfsGXhF1Rw" points="[-274, 52, 0, -682]$[-274, 734, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_T9aUZozdEeKVlfsGXhF1Rw" id="(0.33335134966889207,0.9754529514903566)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_T9aUZ4zdEeKVlfsGXhF1Rw" id="(0.5001669663649339,0.0)"/>
+  </edges>
+  <edges xmi:type="umlnotation:UMLConnector" xmi:id="_M3gosIzdEeKVlfsGXhF1Rw" source="_D5Y3IIzdEeKVlfsGXhF1Rw" target="_M3NGsIzdEeKVlfsGXhF1Rw" fontName="Segoe UI" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
+    <children xmi:type="notation:DecorationNode" xmi:id="_M3gosozdEeKVlfsGXhF1Rw" type="NameLabel">
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_M3gotIzdEeKVlfsGXhF1Rw" type="Stereotype"/>
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_M3gotYzdEeKVlfsGXhF1Rw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M3gos4zdEeKVlfsGXhF1Rw" y="-186"/>
+    </children>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=DaoJonesContext%5Bjcu%5Ename=DaoJonesContext.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D%5Bjbintype%5Ename=java.io.Closeable%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_M3gosYzdEeKVlfsGXhF1Rw" points="[-1523, 45, 157, -913]$[-1523, 958, 157, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_T9aUYIzdEeKVlfsGXhF1Rw" id="(0.5001669663649339,0.972377507398882)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_T9aUYYzdEeKVlfsGXhF1Rw" id="(0.6668671327029058,1.2323776446787645E-15)"/>
+  </edges>
+  <edges xmi:type="umlnotation:UMLConnector" xmi:id="_PYxrl4zdEeKVlfsGXhF1Rw" source="_PYL1sIzdEeKVlfsGXhF1Rw" target="_M3NGsIzdEeKVlfsGXhF1Rw" fontName="Segoe UI" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
+    <children xmi:type="notation:DecorationNode" xmi:id="_PYxrmYzdEeKVlfsGXhF1Rw" type="NameLabel">
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_PYxrm4zdEeKVlfsGXhF1Rw" type="Stereotype"/>
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_PYxrnIzdEeKVlfsGXhF1Rw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PYxrmozdEeKVlfsGXhF1Rw" y="-186"/>
+    </children>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=Application%5Bjcu%5Ename=Application.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D%5Bjbintype%5Ename=java.io.Closeable%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_PYxrmIzdEeKVlfsGXhF1Rw" points="[-835, -848, 1094, 1905]$[-835, -1485, 1094, 1268]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_T9kFYIzdEeKVlfsGXhF1Rw" id="(0.5,0.9572301425661914)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_T9kFYYzdEeKVlfsGXhF1Rw" id="(0.3335337667522545,1.2323776446787645E-15)"/>
+  </edges>
+  <edges xmi:type="umlnotation:UMLConnector" xmi:id="_RVvukIzdEeKVlfsGXhF1Rw" source="_D5Y3IIzdEeKVlfsGXhF1Rw" target="_RU2WsIzdEeKVlfsGXhF1Rw" fontName="Segoe UI" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
+    <children xmi:type="notation:DecorationNode" xmi:id="_RVvukozdEeKVlfsGXhF1Rw" visible="false" type="KindLabel">
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_RVvulIzdEeKVlfsGXhF1Rw" type="Stereotype"/>
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_RVvulozdEeKVlfsGXhF1Rw" type="Kind"/>
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_RVvulYzdEeKVlfsGXhF1Rw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RVvuk4zdEeKVlfsGXhF1Rw" y="-186"/>
+    </children>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=DaoJonesContext%5Bjcu%5Ename=DaoJonesContext.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=DaoJonesContextConfiguration%5Bjcu%5Ename=DaoJonesContextConfiguration.java%5Bjpack%5Ename=de.ars.daojones.runtime.configuration.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_RVvukYzdEeKVlfsGXhF1Rw" points="[1523, -566, -6973, 1016]$[5209, -566, -3287, 1016]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_T9aUZIzdEeKVlfsGXhF1Rw" id="(0.7501669663649341,0.972377507398882)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_T9aUZYzdEeKVlfsGXhF1Rw" id="(0.33333339075454227,0.0)"/>
+  </edges>
+  <edges xmi:type="umlnotation:UMLConnector" xmi:id="_MUIZY4zeEeKjN5UWNeaCzw" source="_PYL1sIzdEeKVlfsGXhF1Rw" target="_MSyVkIzeEeKjN5UWNeaCzw" fontName="Segoe UI" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
+    <children xmi:type="notation:DecorationNode" xmi:id="_MUIZZYzeEeKjN5UWNeaCzw" type="NameLabel">
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_MUIZZ4zeEeKjN5UWNeaCzw" type="Stereotype"/>
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_MUIZaIzeEeKjN5UWNeaCzw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MUIZZozeEeKjN5UWNeaCzw" y="-149"/>
+    </children>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=Application%5Bjcu%5Ename=Application.java%5Bjpack%5Ename=de.ars.daojones.runtime.context%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=ConnectionProvider%5Bjcu%5Ename=ConnectionProvider.java%5Bjpack%5Ename=de.ars.daojones.runtime.connections%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.runtime%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_MUIZZIzeEeKjN5UWNeaCzw" points="[1692, -62, -6086, 658]$[4277, -62, -3501, 658]"/>
+  </edges>
+</umlnotation:UMLDiagram>

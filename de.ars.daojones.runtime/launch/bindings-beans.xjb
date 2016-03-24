@@ -1,0 +1,62 @@
+<bindings version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+  extensionBindingPrefixes="xjc">
+  <globalBindings>
+    <xjc:serializable uid="1" />
+    <xjc:javaType name="java.lang.String" xmlType="xs:string"
+      adapter="de.ars.daojones.internal.runtime.utilities.StringTrimAdapter" />
+  </globalBindings>
+  <bindings
+    schemaLocation="../src/main/resources/META-INF/schemas/daojones-2.0-beans.xsd">
+    <bindings
+      node="//xs:complexType[@name='DatabaseTypeMapping']/xs:attribute[@name='type']/xs:simpleType">
+      <typesafeEnumClass name="DataSourceType" />
+    </bindings>
+    <bindings node="//xs:element[@name='beans-config']">
+      <class name="BeanConfiguration" />
+    </bindings>
+    <bindings
+      node="//xs:element[@name='beans-config']//xs:element[@name='bean']">
+      <property name="beans" />
+    </bindings>
+    <bindings
+      node="//xs:element[@name='beans-config']//xs:element[@name='converter']">
+      <property name="converters" />
+    </bindings>
+    <bindings node="//xs:complexType[@name='Bean']">
+      <bindings node="//xs:element[@name='field']">
+        <property name="fields" />
+      </bindings>
+      <bindings node="//xs:element[@name='method']">
+        <property name="methods" />
+      </bindings>
+    </bindings>
+    <bindings
+      node="//xs:complexType[@name='DatabaseFieldMapping']//xs:element[@name='meta']">
+      <property name="metadata" />
+    </bindings>
+    <bindings
+      node="//xs:complexType[@name='DatabaseFieldMapping']/xs:attribute[@name='update-policy']/xs:simpleType">
+      <typesafeEnumClass name="UpdatePolicy" />
+    </bindings>
+    <bindings
+      node="//xs:complexType[@name='Invocable']//xs:element[@name='parameter']">
+      <property name="parameters" />
+    </bindings>
+    <bindings node="//xs:complexType[@name='BeanMember']">
+      <class ref="de.ars.daojones.runtime.configuration.beans.BeanMember" />
+    </bindings>
+    <bindings node="//xs:complexType[@name='InvocableElement']">
+      <class
+        ref="de.ars.daojones.runtime.configuration.beans.InvocableElement" />
+    </bindings>
+    <bindings node="//xs:complexType[@name='ConverterProvidingElement']">
+      <class
+        ref="de.ars.daojones.runtime.configuration.beans.ConverterProvidingElement" />
+    </bindings>
+    <bindings node="//xs:complexType[@name='BeanIdentificatorProvidingElement']">
+      <class
+        ref="de.ars.daojones.runtime.configuration.beans.BeanIdentificatorProvidingElement" />
+    </bindings>
+  </bindings>
+</bindings>

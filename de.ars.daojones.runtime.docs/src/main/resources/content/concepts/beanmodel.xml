@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans-config xmlns="http://www.ars.de/daojones/2.0/beans">
+  <bean type="de.ars.daojones.example.mails.Memo">
+    <type-mapping name="Memo" />
+    <field name="sender">
+      <field-mapping name="From" />
+    </field>
+  </bean>
+</beans-config>

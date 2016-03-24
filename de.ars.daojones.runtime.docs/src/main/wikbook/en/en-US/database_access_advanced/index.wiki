@@ -1,0 +1,182 @@
+= Database Access (Advanced) =
+
+This chapter contains information about topics that you do not need in your applications by default.
+In some cases, extensions and customizations are necessary. The extensions supported by DaoJones are described within this chapter.
+
+== Deconfiguring the context ==
+
+As you have already seen, you can make changes to the configuration by accessing the model managers directly or by adding configuration sources to the context factory __before__ creating the context.
+There is another possibility that provides a more comfortable configuration __after__ the context was created: the //DaoJonesContextConfigurator// class. This class even allows to undo a configuration very quickly.
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.CodeSnippets#contextConfiguration(de.ars.daojones.runtime.context.DaoJonesContext,de.ars.daojones.runtime.configuration.provider.ConfigurationSource) {1}}
+{{/java}}
+
+== Accessing views ==
+
+If you specify the field mapping for a bean that is mapped to a view, the name of the field is interpreted as the title of the column of the view. Alternatively,
+you can map to the index of the column within the view - ##?0## for the first column, ##?1## for the second and so on.
+
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.Author}{{/java}}
+
+Views are restricted. For example, they cannot provide resources. Beans are only updateable if their writeable fields are only mapped to columns that are not calculated.
+
+On the other hand, views can encapsulate a query, search faster because of an index and sort results.
+
+{{note}}Hidden columns will be addressed too, so the index of the first visible column in the view is not always ##?0##.{{/note}}.
+{{note}}You can decide whether to access the view column by specifying their title or their index. In case of design changes, it matters if the title of a column was changed, or columns were inserted or deleted. It is recommended only to map the bean type to a technical view that is not displayed in the Notes UI. The Notes designer then can change all UI views, but must be careful with changes to technical views.{{/note}}.
+
+== Resources {{anchor id=database_access_advanced_resources /}} ==
+
+Databases often allow to store large binaries (BLOBs) and characters (CLOBs). Lotus Notes documents can contain attachments.
+DaoJones provides a ##Resource## interface to read and write such data. You just need to declare a field mapping to a parameter or method result with this type.
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.Memo#processAttachment(de.ars.daojones.runtime.beans.fields.Resource)}
+{{/java}}
+
+{{warning}}
+It is not recommended to map instance variables of this type, because resources can allocate a big size of memory.
+Furthermore, resources are not ##Serializable## by default. And they are not liable to be accessible after reading the bean during query result iteration.
+{{/warning}}
+{{tip}}
+If you want to buffer a resource as an instance variable within your bean, you can use the type ##de.ars.daojones.runtime.beans.fields.BufferedResource##.
+{{/tip}}
+
+There are default implementations of the ##Resource## interface to easily store small BLOBs/CLOBs/attachments to the database.
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.Memo#createAttachment1()}
+
+{@include de.ars.daojones.runtime.docs.database_access_advanced.Memo#createAttachment2()}
+{{/java}}
+
+== Converters ==
+
+If you map an instance variable, a parameter or a method result to a database field, the database value is converted automatically to the Java type. This  behaviour must be customized when the default conversion does not match your requirements or you use custom data types that DaoJones is not able to convert to.
+Therefore, you can implement custom converters by extending the ##TypeConverter## class and customizing your field mapping.
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.PersonConverter}
+{{/java}}
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.Memo#sender}
+{{/java}}
+
+{{note}}
+The ##TypeConverter## converts single objects, but it can be used for arrays or collections of these objects. The ##TypeConverter## then automatically reads and converts the array or collection by using the single object conversion methods.
+{{/note}}
+
+During conversion, there is a ##ConverterContext## parameter that provides information about the context of the conversion.
+It is possible to get details about the field that is currently converted.
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.CodeSnippets#converterContext(de.ars.daojones.runtime.beans.fields.ConverterContext) {1}}
+{{/java}}
+
+If you need to derive the name of the database field or even want to store the value into multiple database fields, you can implement the ##Converter## interface directly. You then have the responsibility to access the database by using helper objects. It is possible to map a single bean property to multiple fields within the database.
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.PersonConverter2}
+{{/java}}
+
+{{note}}
+It is possible to store a bean value to multiple database fields. It is possible to load multiple fields from the database to a single bean field. If you want to store database values into multiple bean fields, you need to use methods (e.g. a Setter) that assign the single value to multiple fields.
+{{/note}}
+
+For custom field types, it might be easier to create common, system-wide converters. Those converters do not have to be referenced at each field of this type. They just have to get annotated with ##@Converts##.
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.PersonConverter3}
+{{/java}}
+
+== Custom Search Criteria {{anchor id=database_access_advanced_custom_search_criteria /}} ==
+
+DaoJones provides common search criteria that should meet your requirements in most cases. Nevertheless, DaoJones allows to create custom search criteria.
+First, you need to implement the ##SearchCriterion## interface to provide an API for your application's classes.
+It is recommended to use the super class ##AbstractSearchCriterion##.
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.IsFavorite}
+{{/java}}
+
+{{warning}}
+Be aware that you should overwrite ##equals(Object)## and ##hashCode()## whenever you have instance variables to make it possible to compare search criteria. This is used e.g. for the caching of query results.
+{{/warning}}
+
+If you need to read and compare field values, you can use the ##getFieldValue(...)## method.
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.IsMailToSelf}
+{{/java}}
+
+For simple comparisons of a field value, you could extend the ##FieldComparison## criterion by custom ##Comparison## types.
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.FamilyComparison}
+{{/java}}
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_advanced.CodeSnippets#familyComparison() {1}}
+{{/java}}
+
+{{note}}
+You also have to implement a handler that is used during query execution. This implementation is driver-specific. For the Notes driver, please see chapter [["Extending the Notes driver">>#notes_extensions]].
+{{/note}}
+
+== Custom Bean Identification {{anchor id=database_access_advanced_custom_identification /}} ==
+It is possible to implement a custom bean identification behaviour, e.g. if you want to use bytecode weaving to automatically create an id field during class loading, or if the identificator of a bean should be stored externally. Such strategies need special handling e.g. for replication or caching of beans, so they are not part of the DaoJones default behaviour.
+
+For the implementation of the custom behaviour, you need to to the following steps:
+
+1. Implement the ##BeanIdentificator## interface
+This interface defines methods for reading and storing an identificator of a bean. Implement these methods for your custom behaviour.
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.CustomBeanIdentificator}{{/java}}
+1. Annotate your bean with ##@IdentifiedBy## and link to your custom implementation class (or within XML file based configuration, use the ##<identificator-type>## tag).
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.Training}{{/java}}
+
+{{important}}To identify beans that are used by multiple applications, your custom implementation has to deal with different identificators. You can use the ##ApplicationDependentIdentificator## class, which is a wrapper for multiple identificators of a single bean.{{/important}}
+
+== Field Properties {{anchor id=database_access_advanced_meta_properties /}} ==
+Fields can have properties declared. Such properties can be defined and read out by a converter or database driver. The following example shows how to define such meta properties within an XML bean mapping file:
+{{xml}}<wikbook:include href="content/database_access_advanced/beanmodel_meta.xml"/>{{/xml}}
+A converter that reads out the meta information, could look like this:
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.MetaConverter}{{/java}}
+
+To set properties, you could also use the ##@Property## or ##@Metadata## annotations (Package ##de.ars.daojones.runtime.beans.annotations##).
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.PropertyExample}{{/java}}
+
+Or you could create a custom annotation and a custom ##FieldAnnotationHandler## to manage the meta properties at a central position. The ##FieldAnnotationHandler## is registered using the Java Serviceloader Mechanism. You can use the ##AbstractFieldAnnotationHandler## subclass, that provides utility methods, to create a custom implementation.
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.Uppercase}{{/java}}
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.UppercaseHandler}{{/java}}
+
+{{tip}}
+One built-in application is the ##computed## flag of a field, which can have values of equal and unequal to ##"true"##. Computed flags are automatically reset by the database before storing an entry. The framework will reinject such fields after storing or deleting a bean.
+It is possible to mark a member of your bean class with the ##@Computed## annotation.
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.Car}{{/java}}
+{{/tip}}
+
+{{tip}}
+To read out properties, you could access the bean model directly. Common properties can be read out using the ##de.ars.daojones.runtime.beans.fields.Properties## helper class. It provides constants for property names and helper methods to read out common property values.
+{{/tip}}
+
+== Appended Fields {{anchor id=database_access_advanced_appended /}} ==
+
+In most cases, the field values are read out from the database, modified within the bean, and written back into the database. The database entry is then fully replaced by the bean value.
+
+Sometimes, this behaviour is not intended, e.g.
+* if the value in the database is very large and would slow down the performance of your application
+* if the value in the database is critical and should not be stored within a bean (and cached...)
+
+For this, fields provide a setting named //Update Policy//. This policy can have one of the following values:
+* **REPLACE** //(default)//: The field has to be fully replaced by the value that is given by the bean.
+* **INSERT**: The value, that is given by the bean, is inserted into the field at the top position.
+* **APPEND**: The value, that is given by the bean, is inserted into the field at the bottom position.
+
+{{note}}
+To avoid inserting or appending field values multiple times, the framework does not inject bean member values 
+with a policy of //INSERT// or //APPEND//. After storing a bean, fields with this policy are cleaned, if possible.
+{{/note}}
+
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_advanced.BusinessProcess}{{/java}}

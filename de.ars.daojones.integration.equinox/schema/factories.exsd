@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="de.ars.daojones.integration.equinox" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="de.ars.daojones.integration.equinox" id="factories" name="Factory Configuration"/>
+      </appinfo>
+      <documentation>
+         Configuration of factory classes.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice minOccurs="0" maxOccurs="unbounded">
+            <element ref="connection-factory"/>
+            <element ref="cache-factory"/>
+            <element ref="callback-handler-factory"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connection-factory">
+      <complexType>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The ID to refer from the connections configuration.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  An implementation of a ConnectionFactory that creates a connection for a special DaoJones implementation.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":de.ars.daojones.runtime.spi.database.ConnectionFactory"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="cache-factory">
+      <complexType>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The ID to refer from the connections configuration.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  An implementation of a ConnectionFactory that creates a connection for a special DaoJones implementation.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":de.ars.daojones.runtime.spi.cache.CacheFactory"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="callback-handler-factory">
+      <annotation>
+         <documentation>
+            A factory that creates callbacks that can be used for JAAS authentication. This is used for secured connections.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The ID to refer from the connections configuration.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  An implementation of a ConnectionFactory that creates a connection for a special DaoJones implementation.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":de.ars.daojones.runtime.spi.security.CallbackHandlerFactory"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         1.0
+      </documentation>
+   </annotation>
+
+
+
+
+
+</schema>

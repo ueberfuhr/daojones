@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><launchConfiguration type="org.eclipse.ui.externaltools.ProgramLaunchConfigurationType">
+<stringAttribute key="org.eclipse.debug.core.ATTR_REFRESH_SCOPE" value="${working_set:&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&lt;resources&gt;&#13;&#10;&lt;item path=&quot;/de.ars.daojones.runtime.test/src/main/generated&quot; type=&quot;2&quot;/&gt;&#13;&#10;&lt;/resources&gt;}"/>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.ui.externaltools.launchGroup"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE" value="${none}"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="C:\Program Files\Java\jdk1.7.0_60\bin\xjc.exe"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="&quot;${workspace_loc:/de.ars.daojones.runtime.test/src/main/resources/META-INF/schemas/daojones-2.0-testmodel.xsd}&quot;&#13;&#10;-b &quot;${workspace_loc:/de.ars.daojones.runtime.test/launch/bindings-testmodel.xjb}&quot;&#13;&#10;-p de.ars.daojones.runtime.test.data&#13;&#10;-extension&#13;&#10;-no-header"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="${workspace_loc:/de.ars.daojones.runtime.test/src/main/generated}"/>
+</launchConfiguration>

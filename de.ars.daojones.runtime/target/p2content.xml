@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='1'>
+  <unit id='de.ars.daojones.runtime' version='2.0.0.201303131345' singleton='false'>
+    <update id='de.ars.daojones.runtime' range='[0.0.0,2.0.0.201303131345)' severity='0'/>
+    <properties size='5'>
+      <property name='org.eclipse.equinox.p2.name' value='DaoJones Runtime'/>
+      <property name='org.eclipse.equinox.p2.provider' value='ARS Computer und Consulting GmbH'/>
+      <property name='maven-groupId' value='de.ars.daojones'/>
+      <property name='maven-artifactId' value='de.ars.daojones.runtime'/>
+      <property name='maven-version' value='2.0.0-SNAPSHOT'/>
+    </properties>
+    <provides size='18'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='de.ars.daojones.runtime' version='2.0.0.201303131345'/>
+      <provided namespace='osgi.bundle' name='de.ars.daojones.runtime' version='2.0.0.201303131345'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.beans.annotations' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.beans.configuration' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.beans.configuration.provider' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.beans.fields' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.configuration.provider' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.connections' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.connections.configuration' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.connections.configuration.provider' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.connections.events' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.context' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.context.configuration' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.query' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.spi' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.spi.cache' version='2.0.0'/>
+      <provided namespace='java.package' name='de.ars.daojones.runtime.spi.database' version='2.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+    </provides>
+    <requires size='7'>
+      <required namespace='java.package' name='com.google.common.collect' range='0.8.0'/>
+      <required namespace='java.package' name='javassist.bytecode' range='3.12.1'/>
+      <required namespace='java.package' name='org.osgi.framework' range='1.5.0'/>
+      <required namespace='java.package' name='org.reflections' range='[0.9.5,0.9.8)'/>
+      <required namespace='java.package' name='org.reflections.adapters' range='[0.9.5,0.9.8)'/>
+      <required namespace='java.package' name='org.reflections.scanners' range='[0.9.5,0.9.8)'/>
+      <required namespace='java.package' name='org.reflections.util' range='[0.9.5,0.9.8)'/>
+    </requires>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='de.ars.daojones.runtime' version='2.0.0.201303131345'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: de.ars.daojones.runtime&#xA;Bundle-Version: 2.0.0.201303131345&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>

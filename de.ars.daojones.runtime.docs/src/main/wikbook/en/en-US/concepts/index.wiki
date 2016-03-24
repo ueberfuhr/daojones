@@ -1,0 +1,136 @@
+= Concepts =
+
+This chapter names and describes basic concepts and terms that should be known to understand the functionality of the framework.
+
+== Bean Mapping ==
+
+The most important concept is the mapping of beans to an artifact within the database. The following graphic shows the mapping between a Java bean and a Notes document. The Java bean has a class that is mapping to the //Form// field of the Notes document. The fields of the class are mapped to further fields of the Notes document. This mapping can be customized by annotations, an external XML file or programmatically at runtime using the //Bean Model API//. See chapter [["Bean Model">>#concepts_bean_model]] for detailed information.
+
+[[image:images/content/concepts/mapping.png||title="The bean mapping to a Notes document" align="center" html:scale="100" fo:width="10mm"]]
+
+It is also possible to map a bean to a view, i.e. a selection of entities based on a query and a provision of columns based on single fields or on calculated values. Views can provide sorting and categorizing entries.
+
+[[image:images/content/concepts/mappingView.png||title="The bean mapping to a Notes view" align="center" html:scale="100" fo:width="10mm"]]
+
+{{caution}}Please be aware that view columns with calculated values can only be mapped to read-only fields and therefore cannot be used for updates.{{/caution}}
+
+== Datatype Mapping ==
+
+The mapping of Java and database fields or columns is not limited to strings. The following types can be used as Java field type:
+* Primitive types and their wrapper classes
+* ##java.lang.String##
+* ##java.util.Date##
+* Enumerations
+* One-dimensional Arrays or collections of these types
+* ##de.ars.daojones.runtime.beans.fields.Resource## (for BLOBs, CLOBs, Attachments...) - see Section [["Resources">>#database_access_advanced_resources]]
+
+{{note}}A database driver implementation can provide further types, but the types listed above must be provided by each driver implementation. The driver implementation decides to which types in the database those types are mapped.{{/note}}
+
+== DaoJones Context ==
+
+The central element for initializing DaoJones is the DaoJones Context object. It provides access to the whole configuration and to the connections. See the diagram below.
+
+[[image:images/content/concepts/daojonescontext.png||title="The DaoJones Context API" align="center" html:scale="100" fo:width="10mm"]]
+
+The diagram shows a couple of interfaces/classes that have the following meaning:
+* **DaoJonesContextConfig** provides access to the configuration models (see [["Bean Model">>#concepts_bean_model]], [["Connection Model">>#concepts_connection_model]] and [["Further configuration models">>#concepts_configuration_models]])
+* **ConnectionProvider** is a common interface for objects that provide connections. Those connections are used to access a database with the common CRUD operations.
+* **Application** is a special //ConnectionProvider// derivation that represents a single application. DaoJones is designed to work for multiple applications within a single process. Those applications manage their connections by using a unique id.
+* **DaoJonesContext** provides access the the //DaoJonesContextConfig// and the //ApplicationContext// objects.
+* **DaoJonesContextFactory** is a factory class that creates //DaoJonesContext// objects that have pre-configured configuration models (see [["Further configuration models">>#concepts_configuration_models]]).
+
+The initialization of DaoJones may look like the following example:
+{{java}}
+{@include de.ars.daojones.runtime.docs.concepts.DaoJonesContextFactoryExample#createContext() {1}}
+{{/java}}
+
+{{note}}//DaoJonesContext//, //Application// and //Connection// implement the interface ##java.io.Closeable## and therefore the ##try-with-resource## block (new feature of Java7) can be used.{{/note}}
+
+{{java}}
+final DaoJonesContextFactory factory = new DaoJonesContextFactory();
+try (final DaoJonesContext ctx = factory.createContext()) {
+  try (final Application app = ctx.getApplication( "mail" )) {
+    try(final Connection<Memo> con = app.getConnection( Memo.class )) {
+      // Access database
+    }
+  }
+}
+{{/java}}
+  
+== Bean Model {{anchor id=concepts_bean_model /}}==
+
+The bean model describes the mapping of Java beans to database entities. You can access the bean models via
+{{java}}{@include de.ars.daojones.runtime.docs.concepts.beanmodel.CodeSnippets#beanModelAccess() {1}}{{/java}}
+
+or, to read only a single bean, via
+{{java}}{@include de.ars.daojones.runtime.docs.concepts.beanmodel.CodeSnippets#beanModelAccessSingle() {1}}{{/java}}
+
+The diagram below shows the main artifacts of the bean model.
+[[image:images/content/concepts/beanmodel.png||title="The bean model" align="center" html:scale="100" fo:width="10mm"]]
+
+The following statements can be read out from this diagram:
+* A bean model is uniquely identified by the qualified name of the Java type and the name of the application. So it is possible to map the same class twice using different applications.
+* A bean type is mapped to a table (Notes: //document//) or a view.
+* There are multiple types of elements that can be mapped to a database field:
+** **Fields** are injected while reading from the database. They are read out while storing values into the database.
+** **Method parameters** are injected while reading from the database. The method then is invoked with the parameter values. It is possible to use multiple annotated parameters for a single method. There is no ordering of method invocations.
+** **Constructor parameters** are treated similarly with the exception of the time and the multiplicity. There can be only one constructor with annotated parameters. If there isn't any constructor with annotated parameters, the default constructor must be provided.
+** **Method results** are read out while storing values into the database. The method then is invoked. Currently, such methods must not have any parameters.
+
+So the Memo type could map the sender field like this:
+{{java}}
+@Field( value = "From", id = "sender" )
+public String getSender() {
+  // Calculate sender
+  return sender;
+}
+public void setSender( @FieldRef( "sender" ) final String sender ) {
+  // Process sender
+}
+{{/java}}
+
+{{tip}}
+It is recommended to map fields to the database, because they are not restricted to read-only or write-only access and imply the simplest solution.
+The mapping of parameters or return values of methods could be used for
+* information that is processed, but not stored within the bean, e.g. some kind of attachment
+* multiple values that need to be combined and handled together
+* final fields (constructor parameters)  
+{{/tip}}
+{{caution}}Be aware that the bean model does not make any provisions for inheritation and interface implementations. It is possible to map elements of interfaces and abstract classes with the bean model, but it is only allowed to access the database using a concrete type. To get all mapped elements of a type (in consideration of overwritten elements), you can use
+{{java}}{@include de.ars.daojones.runtime.docs.concepts.beanmodel.CodeSnippets#beanModelEffective() {1}}{{/java}}
+{{/caution}}
+{{tip}}
+The declaration of the bean model with the usage of annotations is only one possibility. You can also define the mappings programmatically and with XML files. Here's a short example:
+{{xml}}<wikbook:include href="content/concepts/beanmodel.xml"/>{{/xml}}
+{{/tip}}
+
+== Connection Model {{anchor id=concepts_connection_model /}}==
+
+The connection model describes the connections to the databases that are accessed by the DaoJones runtime. You can access the configuration model via
+{{java}}{@include de.ars.daojones.runtime.docs.concepts.connectionmodel.CodeSnippets#connectionModelAccess() {1}}{{/java}}
+
+or, to read only a single connection, via
+{{java}}{@include de.ars.daojones.runtime.docs.concepts.connectionmodel.CodeSnippets#connectionModelAccessSingle() {1}}{{/java}}
+
+The diagram below shows the main artifacts of the connection model.
+[[image:images/content/concepts/connectionmodel.png||title="The connection model" align="center" html:scale="100" fo:width="10mm"]]
+
+You should know:
+* A connection model is uniquely identified by the name of the application and the id of the connection.
+* The id of the database driver is assigned as an attribute of a connection. The path to the database is driver-specific.
+* During runtime, the connection is determined by the name of the application and the type of the bean. Therefore, each connection model has a list of type names assigned. There is also a default flag. The default connection of an application is used for all bean bean types that are not explicitely assigned to any other connection. 
+* There is a built-in-support for cached connections. Cache drivers can be used to minimize database accesses.
+
+{{tip}}
+The declaration of the connection model can be defined programmatically and with XML files. Here's a short example:
+{{xml}}<wikbook:include href="content/concepts/connectionmodel.xml"/>{{/xml}}
+{{/tip}}
+
+== Further configuration models  {{anchor id=concepts_configuration_models /}} ==
+
+There are further models available through the //DaoJonesContextConfig// object.
+* //ConnectionFactoryModel// and //CacheFactoryModel// provide driver implementations for database access and caching. They are typically registered by the driver itself using the Java ServiceLoader API.
+* //ApplicationModel// is not required. It provides the possibility to describe an application for logging or prospecting purposes. Connection and bean models can be requested for application names that are described by an ApplicationModel.
+
+
+  

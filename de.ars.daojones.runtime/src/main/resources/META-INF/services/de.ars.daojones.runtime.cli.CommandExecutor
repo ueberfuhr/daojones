@@ -1,0 +1,4 @@
+de.ars.daojones.internal.runtime.cli.ScanBeanModelExecutor
+de.ars.daojones.internal.runtime.cli.ShowConnectionsExecutor
+de.ars.daojones.internal.runtime.cli.TestExecutor
+de.ars.daojones.internal.runtime.cli.HelpExecutor

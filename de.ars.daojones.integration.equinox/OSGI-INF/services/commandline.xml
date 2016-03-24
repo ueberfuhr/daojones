@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="OSGi Command Line Interface">
+   <implementation class="de.ars.daojones.internal.integration.equinox.cli.DaoJonesCommandProvider"/>
+   <service>
+      <provide interface="org.eclipse.osgi.framework.console.CommandProvider"/>
+   </service>
+</scr:component>

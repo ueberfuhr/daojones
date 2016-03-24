@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="DaoJones Update Site">
+      This update site provides features to integration DaoJones Runtime functionality and Eclipse integration features.
+   </description>
+   <feature url="features/de.ars.daojones.integration.eclipse.feature.runtime_2.0.0.qualifier.jar" id="de.ars.daojones.integration.eclipse.feature.runtime" version="2.0.0.qualifier">
+      <category name="binaries"/>
+   </feature>
+   <feature url="features/de.ars.daojones.integration.eclipse.feature.drivers.notes_2.0.0.qualifier.jar" id="de.ars.daojones.integration.eclipse.feature.drivers.notes" version="2.0.0.qualifier">
+      <category name="binaries"/>
+   </feature>
+   <feature url="features/de.ars.daojones.integration.eclipse.feature.runtime.source_2.0.0.qualifier.jar" id="de.ars.daojones.integration.eclipse.feature.runtime.source" version="2.0.0.qualifier">
+      <category name="sources"/>
+   </feature>
+   <feature url="features/de.ars.daojones.integration.eclipse.feature.drivers.notes.source_2.0.0.qualifier.jar" id="de.ars.daojones.integration.eclipse.feature.drivers.notes.source" version="2.0.0.qualifier">
+      <category name="sources"/>
+   </feature>
+   <category-def name="binaries" label="DaoJones Eclipse Integration"/>
+   <category-def name="sources" label="DaoJones Eclipse Integration (SDK)"/>
+</site>

@@ -1,0 +1,116 @@
+= Test Support {{anchor id=test_support /}} =
+
+Module tests should be designed to be
+* repeatable
+* runnable in parallel
+* isolated from the (productive) environment and from each other
+
+Therefore, the DaoJones context (if necessary for the test) has to be initialized once per test.
+The DaoJones Test Support provides this functionality in an easy-to-use way - as a JUnit Runner.
+
+== JUnit Runner ==
+
+Run your test class with ##de.ars.daojones.runtime.test.junit.DaoJones## - that's the minimal condition.
+
+{{java}}{@include de.ars.daojones.runtime.docs.test_support.SimpleTest}{{/java}}
+
+=== Access the DaoJones environment ===
+
+You can then get access to the DaoJones environment per Dependency Injection. Supported is:
+* Field injection - create instance variables and annotate them with ##de.ars.daojones.runtime.test.junit.Inject##
+* Constructor injection - specify a constructor with arguments (annotation is optional)
+* Parameter injection - extend your test method to the usage of parameters (annotation is optional)
+
+{{java}}{@include de.ars.daojones.runtime.docs.test_support.Simple2Test}{{/java}}
+
+=== Configure the test ===
+
+If you do not configure your test, a default configuration is used for a default DaoJones application. At least, the classpath is scanned for annotations to build the [[Bean Model>>#concepts_bean_model]].
+And a single connection is configured for all bean types that uses the [["DaoJones Test Driver">>#test_support_driver]].
+This driver allows to read the test data from an XML file or to define the model directly within the test class.
+
+{{tip}}
+The name of the default test data file is ##<test-class>-model.xml##, where ##<test-class>## is the name of the test class.
+This file is searched within the classpath relative to the test class. If you use a different application id, the name of the data file
+is ##<test-class>-model-<application>.xml##. You can query the model file name at runtime using ##DaoJones.getModelFile(testClass, application)##.
+{{/tip}}
+
+{{tip}}
+As described below, each test class has its own bundle of test model files by default. This is because of the isolation of tests.
+{{/tip}}
+
+If you want to configure your own connections or bean models, you can use the ##@Config## annotation. Annotate the test class to get all tests configured the same, or annotate
+a test method to configure the single test. If you have multiple configurations, you can collect them with the ##@Configs## annotation. The get the classpath scanned for the bean model annotations, 
+do not configure any custom bean model xml file or (if so) use ##@ConfigAnnotations##. With these annotations, you can derive from the default application id by optionally defining a custom application id.
+
+The following example demonstrates all the features:
+
+{{java}}{@include de.ars.daojones.runtime.docs.test_support.ConfiguredTest}{{/java}}
+
+== JUnit Test Rule ==
+
+JUnit 4.8 introduced the Rule mechanism to configure test methods in a more flexible way. You can get the DaoJones environment configured too by a rule.
+This could be necessary, if you want to use another JUnit runner (e.g. for parameterized tests). Just define a rule inside of your test class.
+Be aware that JUnit expects the rule variable to be declared as ##public##. The test class and the test method can be annotated the same way like the runner expects.
+
+{{java}}{@include de.ars.daojones.runtime.docs.test_support.RuleBasedTest}{{/java}}
+
+{{note}}The rule is restricted to configure and provide the DaoJones environment. Dependency Injection to fields, constructors and test methods is not possible.
+You then have to go by what the runner expects (default constructor and test methods without parameters by default).{{/note}}
+
+{{note}}Although it is possible to use the DaoJones JUnit Rule as class or suite level rule,
+it is not intended to be used this way because of the independency of tests. In other words,
+the test must not be dependent from being run within a suite or standalone.{{/note}}
+
+== Java-based Test Model Configuration ==
+
+If you use the default connection configuration, the test support allows to configure the test model using annotations instead of an XML file. You then can create instances of 
+##DataSource## (Package ##de.ars.daojones.runtime.test.data##) and assign them to annotated instance variables. For simple creation of such models,
+you can use the ##TestModelBuilder## class. This feature is available for both the JUnit Runner and the JUnit Test Rule.
+
+{{java}}{@include de.ars.daojones.runtime.docs.test_support.TestModelTest}{{/java}}
+
+{{tip}}The data source instance is used directly be the connection to execute queries and updates.
+It is possible to modify the data source before the test (even replace the instance) and verify the instance after the test.
+To leave tests isolated, do not declare the field ##static##. Otherwise, this is a class-level data source instance that
+is shared between multiple tests within the test class.
+{{/tip}}
+
+== Hamcrest Matchers ==
+
+To verify your results, DaoJones provides a couple of matchers. These matchers are helpful to verify
+the results, if you used the Java-based test model configuration.
+
+{{java}}{@include de.ars.daojones.runtime.docs.test_support.TestModelMatchersTest}{{/java}}
+
+== Test Driver {{anchor id=test_support_driver /}} ==
+
+The test database driver (id: ##de.ars.daojones.drivers.test##) is a driver that allows to configure test data within an XML file.
+The path of the XML file is the path that is specified as ##database## within the connection configuration.
+(As described below, this database name is dependent from the test class and the application id, so
+each test class has its own bundle of files.)
+
+{{xml}}<wikbook:include href="content/test/driver/test-model.xml"/>{{/xml}}
+
+{{tip}}
+It is possible to store Resources (BLOBs, CLOBs, Attachments) within the XML file.
+Such a resource is represented by a RFC-2397 data url.
+{{/tip}}
+
+{{tip}}
+Reading and writing the default field types is fully supported by the test driver.
+If you need to read custom types (esp. those that the database driver declares and supports),
+you can implement the ##de.ars.daojones.runtime.test.DataHandler## interface. The implementation
+has to be registered using the ServiceLoader API.
+{{/tip}}
+
+{{tip}}Typically, you do not configure any connections when using Java-based test model setup. To use the Notes test driver, you have to use the ##@ConfigDriver## annotation:
+{{java}}{@include de.ars.daojones.runtime.docs.test_support.TestModelWithDriver}{{/java}}
+{{/tip}}
+
+{{tip}}The Notes driver allows to search a view using a view bean, and reading out the document-mapped bean using the ##@DocumentMapped## annotation.
+To simulate this with the test model, you specify a ##@mapping## property to the view entry as shown below:
+{{xml}}<wikbook:include href="content/test/driver/test-model-with-document-mapping.xml"/>{{/xml}}
+{{java}}{@include de.ars.daojones.runtime.docs.test_support.TestDocumentMapped}{{/java}}
+{{/tip}}
+

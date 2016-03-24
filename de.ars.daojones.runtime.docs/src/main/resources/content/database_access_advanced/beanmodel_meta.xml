@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans-config xmlns="http://www.ars.de/daojones/2.0/beans">
+  <bean type="de.ars.daojones.example.Mail">
+    <type-mapping name="Memo" />
+    <field name="subject">
+      <field-mapping name="Subject">
+        <meta name="case" value="upper-case"/>
+      </field-mapping>
+    </field>
+  </bean>
+</beans-config>

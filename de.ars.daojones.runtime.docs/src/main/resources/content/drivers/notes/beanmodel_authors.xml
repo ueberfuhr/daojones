@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans-config xmlns="http://www.ars.de/daojones/2.0/beans">
+  <bean type="de.ars.daojones.example.Note">
+    <type-mapping name="Note" />
+    <field name="author">
+      <field-mapping name="Author">
+        <meta name="field-type" value="authors"/>
+      </field-mapping>
+    </field>
+  </bean>
+</beans-config>

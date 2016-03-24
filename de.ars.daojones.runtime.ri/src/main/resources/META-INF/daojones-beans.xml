@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans-config xmlns="http://www.ars.de/daojones/2.0/beans">
+  <!-- empty file to enable annotation scanning -->
+</beans-config>

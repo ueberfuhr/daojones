@@ -1,0 +1,5 @@
+de.ars.daojones.internal.drivers.notes.search.builders.comparisons.StringComparisonBuilder
+de.ars.daojones.internal.drivers.notes.search.builders.comparisons.BooleanComparisonBuilder
+de.ars.daojones.internal.drivers.notes.search.builders.comparisons.DateComparisonBuilder
+de.ars.daojones.internal.drivers.notes.search.builders.comparisons.NumberComparisonBuilder
+de.ars.daojones.internal.drivers.notes.search.builders.comparisons.CollectionComparisonBuilder

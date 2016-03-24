@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://www.ars.de/daojones/2.0/connections">
+
+  <connection type="...">
+    <cache type="de.ars.daojones.caches.memory">
+      <property name="timeout" value="3600" />
+    </cache>
+    <database>...</database>
+  </connection>
+
+</configuration>

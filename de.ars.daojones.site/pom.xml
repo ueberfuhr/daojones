@@ -1,0 +1,488 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>daojones-site</artifactId>
+  <packaging>jar</packaging>
+  <name>DaoJones Website</name>
+  <inceptionYear>2014</inceptionYear>
+
+  <parent>
+    <groupId>de.ars.daojones</groupId>
+    <artifactId>daojones-doc</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+  </parent>
+
+  <distributionManagement>
+    <site>
+      <id>daojones-site</id>
+      <url>file://///Hiob/Services/AD/ARS/DaoJones/site/</url>
+    </site>
+  </distributionManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>lt.velykis.maven.skins</groupId>
+      <artifactId>reflow-velocity-tools</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <!-- Reflow skin requires Velocity >= 1.7 -->
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity</artifactId>
+      <version>1.7</version>
+    </dependency>
+    <!-- Dependencies that are copied into the site -->
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-runtime</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-runtime</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-runtime-dependencies</artifactId>
+      <version>${daojones.version}</version>
+      <type>pom</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-notes</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-notes</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-cache-websphere</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-cache-websphere</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-runtime-test</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-runtime-test</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-runtime-test-notes</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-runtime-test-notes</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-integration-cdi</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-integration-cdi</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-integration-ejb</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-integration-ejb</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-integration-web</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-integration-web</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-docs</artifactId>
+      <version>${daojones.version}</version>
+      <type>zip</type>
+      <classifier>html</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-docs</artifactId>
+      <version>${daojones.version}</version>
+      <type>pdf</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-ri</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-ri</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-ri</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <classifier>test-sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-ri-ear</artifactId>
+      <version>${daojones.version}</version>
+      <type>ear</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-ri-ear</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones.maven.plugins</groupId>
+      <artifactId>daojones-maven-plugin</artifactId>
+      <version>${daojones.version}</version>
+      <type>maven-plugin</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones.maven.plugins</groupId>
+      <artifactId>daojones-maven-plugin</artifactId>
+      <version>${daojones.version}</version>
+      <type>maven-plugin</type>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones.maven.archetypes</groupId>
+      <artifactId>daojones-java-archetype</artifactId>
+      <version>${daojones.version}</version>
+      <type>pom</type>
+      <!-- <type>maven-archetype</type> -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones.maven.archetypes</groupId>
+      <artifactId>daojones-java-archetype</artifactId>
+      <version>${daojones.version}</version>
+      <type>jar</type>
+      <!-- <type>maven-archetype</type> -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones.ant.plugins</groupId>
+      <artifactId>daojones-ant-plugin</artifactId>
+      <version>${daojones.version}</version>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones.ant.plugins</groupId>
+      <artifactId>daojones-ant-plugin</artifactId>
+      <version>${daojones.version}</version>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>de.ars.daojones.integration.eclipse.site</artifactId>
+      <version>${daojones.version}</version>
+      <type>zip</type>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.7</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.2</version>
+        <dependencies>
+          <dependency>
+            <!-- Markdown support for writing website content -->
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-module-markdown</artifactId>
+            <version>1.3</version>
+          </dependency>
+          <dependency>
+            <groupId>lt.velykis.maven.skins</groupId>
+            <artifactId>reflow-velocity-tools</artifactId>
+            <version>1.0.0</version>
+          </dependency>
+          <dependency>
+            <!-- Reflow skin requires velocity 1.7 -->
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <!-- Suppress Dependencies Report -->
+          <generateReports>false</generateReports>
+          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+          <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+          <locales>en</locales>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.8</version>
+        <executions>
+          <execution>
+            <id>create-repo</id>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <includeGroupIds>de.ars.daojones,de.ars.daojones.maven.plugins,de.ars.daojones.maven.archetypes</includeGroupIds>
+              <addParentPoms>true</addParentPoms>
+              <excludeTransitive>true</excludeTransitive>
+              <useRepositoryLayout>true</useRepositoryLayout>
+              <copyPom>true</copyPom>
+              <outputDirectory>${project.build.directory}/site/${project.site.repo}</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unzip-docs</id>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>de.ars.daojones</groupId>
+                  <artifactId>daojones-docs</artifactId>
+                  <version>${daojones.version}</version>
+                  <type>zip</type>
+                  <classifier>html</classifier>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/site/${file-dj-docs-unzipped}</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>de.ars.daojones</groupId>
+                  <artifactId>de.ars.daojones.integration.eclipse.site</artifactId>
+                  <version>${daojones.version}</version>
+                  <type>zip</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/site/${file-dj-update-site-unzipped}</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+              <overWriteReleases>true</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <!--This plugin's configuration is used to store Eclipse m2e settings 
+          only. It has no influence on the Maven build itself. -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <versionRange>[2.6,)</versionRange>
+                    <goals>
+                      <goal>unpack</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.site.repo>repo</project.site.repo>
+    <project.site.repo.dj>${project.site.repo}/de/ars/daojones</project.site.repo.dj>
+    <!-- Used for copying dependencies and to refer from the download page -->
+    <!-- no '.' within property names, see http://maven.apache.org/plugins/maven-site-plugin/examples/creating-content.html#Filtering -->
+
+    <project-site-repo>${project.site.repo}</project-site-repo>
+
+    <file-dj-runtime-binaries>${project.site.repo.dj}/daojones-runtime/${daojones.version}/daojones-runtime-${daojones.version}.jar</file-dj-runtime-binaries>
+    <file-dj-runtime-sources>${project.site.repo.dj}/daojones-runtime/${daojones.version}/daojones-runtime-${daojones.version}-sources.jar</file-dj-runtime-sources>
+
+    <file-dj-driver-notes-binaries>${project.site.repo.dj}/daojones-notes/${daojones.version}/daojones-notes-${daojones.version}.jar</file-dj-driver-notes-binaries>
+    <file-dj-driver-notes-sources>${project.site.repo.dj}/daojones-notes/${daojones.version}/daojones-notes-${daojones.version}-sources.jar</file-dj-driver-notes-sources>
+
+    <file-dj-cache-ws-binaries>${project.site.repo.dj}/daojones-cache-websphere/${daojones.version}/daojones-cache-websphere-${daojones.version}.jar</file-dj-cache-ws-binaries>
+    <file-dj-cache-ws-sources>${project.site.repo.dj}/daojones-cache-websphere/${daojones.version}/daojones-cache-websphere-${daojones.version}-sources.jar</file-dj-cache-ws-sources>
+
+    <file-dj-runtime-test-binaries>${project.site.repo.dj}/daojones-runtime-test/${daojones.version}/daojones-runtime-test-${daojones.version}.jar</file-dj-runtime-test-binaries>
+    <file-dj-runtime-test-sources>${project.site.repo.dj}/daojones-runtime-test/${daojones.version}/daojones-runtime-test-${daojones.version}-sources.jar</file-dj-runtime-test-sources>
+
+    <file-dj-runtime-test-notes-binaries>${project.site.repo.dj}/daojones-runtime-test-notes/${daojones.version}/daojones-runtime-test-notes-${daojones.version}.jar</file-dj-runtime-test-notes-binaries>
+    <file-dj-runtime-test-notes-sources>${project.site.repo.dj}/daojones-runtime-test-notes/${daojones.version}/daojones-runtime-test-notes-${daojones.version}-sources.jar</file-dj-runtime-test-notes-sources>
+
+    <file-dj-integration-cdi-binaries>${project.site.repo.dj}/daojones-integration-cdi/${daojones.version}/daojones-integration-cdi-${daojones.version}.jar</file-dj-integration-cdi-binaries>
+    <file-dj-integration-cdi-sources>${project.site.repo.dj}/daojones-integration-cdi/${daojones.version}/daojones-integration-cdi-${daojones.version}-sources.jar</file-dj-integration-cdi-sources>
+
+    <file-dj-integration-ejb-binaries>${project.site.repo.dj}/daojones-integration-ejb/${daojones.version}/daojones-integration-ejb-${daojones.version}.jar</file-dj-integration-ejb-binaries>
+    <file-dj-integration-ejb-sources>${project.site.repo.dj}/daojones-integration-ejb/${daojones.version}/daojones-integration-ejb-${daojones.version}-sources.jar</file-dj-integration-ejb-sources>
+
+    <file-dj-integration-web-binaries>${project.site.repo.dj}/daojones-integration-web/${daojones.version}/daojones-integration-web-${daojones.version}.jar</file-dj-integration-web-binaries>
+    <file-dj-integration-web-sources>${project.site.repo.dj}/daojones-integration-web/${daojones.version}/daojones-integration-web-${daojones.version}-sources.jar</file-dj-integration-web-sources>
+
+    <file-dj-integration-ant-binaries>${project.site.repo.dj}/ant/plugins/daojones-ant-plugin/${daojones.version}/daojones-ant-plugin-${daojones.version}.jar</file-dj-integration-ant-binaries>
+    <file-dj-integration-ant-sources>${project.site.repo.dj}/ant/plugins/daojones-ant-plugin/${daojones.version}/daojones-ant-plugin-${daojones.version}-sources.jar</file-dj-integration-ant-sources>
+
+    <file-dj-docs-zipped>${project.site.repo.dj}/daojones-docs/${daojones.version}/daojones-docs-${daojones.version}-html.zip</file-dj-docs-zipped>
+    <file-dj-docs-unzipped>view/daojones-docs-${daojones.version}</file-dj-docs-unzipped>
+    <file-dj-docs-pdf>${project.site.repo.dj}/daojones-docs/${daojones.version}/daojones-docs-${daojones.version}.pdf</file-dj-docs-pdf>
+
+    <file-dj-ri-binaries>${project.site.repo.dj}/daojones-ri/${daojones.version}/daojones-ri-${daojones.version}.jar</file-dj-ri-binaries>
+    <file-dj-ri-sources>${project.site.repo.dj}/daojones-ri/${daojones.version}/daojones-ri-${daojones.version}-sources.jar</file-dj-ri-sources>
+    <file-dj-ri-test-sources>${project.site.repo.dj}/daojones-ri/${daojones.version}/daojones-ri-${daojones.version}-test-sources.jar</file-dj-ri-test-sources>
+
+    <file-dj-ri-ear-binaries>${project.site.repo.dj}/daojones-ri-ear/${daojones.version}/daojones-ri-ear-${daojones.version}.ear</file-dj-ri-ear-binaries>
+    <file-dj-ri-ear-sources>${project.site.repo.dj}/daojones-ri-ear/${daojones.version}/daojones-ri-ear-${daojones.version}-sources.jar</file-dj-ri-ear-sources>
+
+    <file-dj-update-site-zipped>${project.site.repo.dj}/de.ars.daojones.integration.eclipse.site/${daojones.version}/de.ars.daojones.integration.eclipse.site-${daojones.version}.zip</file-dj-update-site-zipped>
+    <file-dj-update-site-unzipped>p2</file-dj-update-site-unzipped>
+
+  </properties>
+
+</project>

@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="de.ars.daojones.integration.eclipse" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="de.ars.daojones.integration.eclipse" id="databasePathEditors" name="Database Path Editors"/>
+      </appinfo>
+      <documentation>
+         This extension point allows Driver UIs to provide editors for the driver-specific database path.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice minOccurs="0" maxOccurs="unbounded">
+            <element ref="editor"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="editor">
+      <annotation>
+         <documentation>
+            Extends the DaoJones UI by a driver-specific database path editor.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="connection-factory" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the driver.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="de.ars.daojones.integration.equinox.factories/connection-factory/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The implementation of the editor that must implement de.ars.daojones.ui.DatabasePathEditor.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":de.ars.daojones.ui.DatabasePathEditor"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         1.1.0
+      </documentation>
+   </annotation>
+
+
+
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         ARS Computer und Consulting GmbH
+      </documentation>
+   </annotation>
+
+</schema>

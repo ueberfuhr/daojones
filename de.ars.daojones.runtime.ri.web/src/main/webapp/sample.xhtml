@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<link rel="stylesheet" href="theme/style.css" type="text/css" />
+	<title>Sample facelet - DaoJones Reference Web Application</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<h1>DaoJones Reference Web Application</h1>
+	<h2>
+		<h:outputText value="${dj.title} ${dj.version} (by ${dj.vendor})" />
+	</h2>
+	<p>This sample page demonstrates the DaoJones access to the
+		DaoJones sample Notes database. Please enter a text to filter out the
+		entries.</p>
+	<h3>MixedBeans from View</h3>
+	<h:form>
+	<h:outputLabel for="txtFilter" value="Filter:"/>
+	<h:inputText id="txtFilter" value="#{sampleController.filter}">
+	  <f:ajax event="keyup" render="beansTable"/>
+	</h:inputText>
+	<h:dataTable var="bean" value="#{sampleController.beans}"
+		id="beansTable">
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Name" />
+			</f:facet>
+			<h:outputText value="#{bean.name}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Date Field" />
+			</f:facet>
+			<h:outputText value="#{bean.datefield}">
+				<f:convertDateTime dateStyle="full" />
+			</h:outputText>
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Last Modified" />
+			</f:facet>
+			<h:outputText value="#{bean.lastModified}">
+				<f:convertDateTime type="both"/>
+			</h:outputText>
+		</h:column>
+	</h:dataTable>
+	</h:form>
+</h:body>
+</html>

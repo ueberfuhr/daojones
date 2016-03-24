@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<dj:model xmlns:dj="http://www.ars.de/daojones/2.0/testmodel">
+  <dj:datasource type="table" name="MixedForm">
+    <dj:entry id="entry1">
+      <dj:property name="name" value="Entry 1" />
+    </dj:entry>
+    <dj:entry id="entry2">
+      <dj:property name="name" value="Entry 2" />
+      <dj:property name="generated" value="true" />
+    </dj:entry>
+    <dj:entry id="entry3">
+      <dj:property name="name" value="Entry 3" />
+    </dj:entry>
+  </dj:datasource>
+</dj:model>

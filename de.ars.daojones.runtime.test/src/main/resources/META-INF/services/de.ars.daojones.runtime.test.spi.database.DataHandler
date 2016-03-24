@@ -1,0 +1,8 @@
+de.ars.daojones.internal.runtime.test.datahandler.BooleanDataHandler
+de.ars.daojones.internal.runtime.test.datahandler.CharacterDataHandler
+de.ars.daojones.internal.runtime.test.datahandler.DateDataHandler
+de.ars.daojones.internal.runtime.test.datahandler.EnumDataHandler
+de.ars.daojones.internal.runtime.test.datahandler.IdentificatorDataHandler
+de.ars.daojones.internal.runtime.test.datahandler.NumberDataHandler
+de.ars.daojones.internal.runtime.test.datahandler.ResourceDataHandler
+de.ars.daojones.internal.runtime.test.datahandler.StringDataHandler

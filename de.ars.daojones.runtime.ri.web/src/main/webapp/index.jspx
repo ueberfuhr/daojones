@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  >
+<jsp:directive.page language="java"
+	contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+<jsp:output doctype-root-element="html"
+	doctype-public="-//W3C//DTD XHTML 1.1//EN"
+	doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"
+	omit-xml-declaration="false"/>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Index page - DaoJones Reference Web Application</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  <link rel="stylesheet" type="text/css" href="theme/style.css"/>
+</head>
+<body>
+  <h1>DaoJones Reference Web Application</h1>
+  <h2><c:out value="${dj.title} ${dj.version} (by ${dj.vendor})"/></h2>
+  <p>
+  This is a DaoJones Reference Web Application. DaoJones provides a JEE integration
+  </p>
+  <ul>
+    <li>for CDI to get the DaoJones Context and Config injected and</li>
+    <li>for web applications to automatically get the DaoJones Context configured.</li>
+  </ul>
+  <p>
+  This integration is demonstrated here. You can access the DaoJones environment as the following table demonstrates.
+  See also the <a href="sample.xhtml" title="Open the sample facelet">sample facelet</a> that accesses the DaoJones sample Notes database.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Expression</th>
+        <th>Current Evaluation Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><pre>&amp;#36;{dj.title}</pre></td><td><c:out value="${dj.title}"/></td></tr>
+      <tr><td><pre>&amp;#36;{dj.version}</pre></td><td><c:out value="${dj.version}"/></td></tr>
+      <tr><td><pre>&amp;#36;{dj.vendor}</pre></td><td><c:out value="${dj.vendor}"/></td></tr>
+      <tr><td><pre>&amp;#36;{dj.context}</pre></td><td><c:out value="${dj.context}"/></td></tr>
+      <tr><td><pre>&amp;#36;{dj.config}</pre></td><td><c:out value="${dj.config}"/></td></tr>
+      <tr><td><pre>&amp;#36;{dj.application}</pre></td><td><c:out value="${dj.application}"/></td></tr>
+      <tr><td><pre>&amp;#36;{dj.application.applicationId}</pre></td><td><c:out value="${dj.application.applicationId}"/></td></tr>
+    </tbody>
+  </table>
+</body>
+</html>
+</jsp:root>

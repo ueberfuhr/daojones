@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema elementFormDefault="qualified" version="1.0"
+  targetNamespace="http://www.ars.de/daojones/2.0/connections" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:dj="http://www.ars.de/daojones/2.0/connections">
+
+  <xs:element name="configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="import" type="dj:ImportDeclaration"
+          minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="credential" type="dj:Credential"
+          minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="connection" type="dj:Connection"
+          minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="ImportDeclaration">
+    <xs:attribute name="file" type="xs:string" use="required" />
+  </xs:complexType>
+
+
+
+  <xs:complexType name="Credential">
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="property" type="dj:Property"
+        minOccurs="0" maxOccurs="unbounded"></xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" />
+    <xs:attribute name="type" type="dj:CredentialType" use="optional"
+      default="static">
+      <xs:annotation>
+        <xs:documentation>The type of the callback handler. Default
+          value is "static", which means that you specify "username" and
+          "password" as embedded properties within this configuration,
+          Another pre-defined value is "generic". In this case, you
+          declare a "class" property that points to the implementation
+          class of a callback handler. Further properties can be
+          specified to inject values to the callback handler's
+          properties.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Connection">
+    <xs:sequence>
+      <xs:element name="cache" type="dj:Cache" minOccurs="0" />
+      <xs:element name="description" type="xs:string"
+        minOccurs="0" />
+      <xs:element name="database" type="xs:string" minOccurs="0" />
+      <xs:element name="for-class" type="xs:string"
+        minOccurs="0" maxOccurs="unbounded" />
+      <xs:choice minOccurs="0" maxOccurs="1">
+        <xs:element name="credential" type="dj:Credential"
+          minOccurs="1" maxOccurs="1"></xs:element>
+        <xs:element name="credential-reference" type="dj:CredentialReference"
+          minOccurs="1" maxOccurs="1" />
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="optional" />
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="type" type="xs:string" />
+    <xs:attribute name="default" type="xs:boolean" use="optional"
+      default="false" />
+    <xs:attribute name="maximum-results" type="xs:int" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="Cache">
+    <xs:sequence>
+      <xs:element name="property" type="dj:Property"
+        minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="type" type="xs:string" use="required" />
+
+  </xs:complexType>
+
+  <xs:complexType name="Property">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="CredentialReference">
+    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+
+  <xs:simpleType name="CredentialType">
+    <xs:union memberTypes="xs:string">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="static" />
+          <xs:enumeration value="generic" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+</xs:schema>
+

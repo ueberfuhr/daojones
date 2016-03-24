@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://www.ars.de/daojones/2.0/connections">
+
+  <connection default="true" type="de.ars.daojones.drivers.notes"
+    name="DaoJones Test Database">
+    <database><![CDATA[notes:///C1257C0100400C32?version=1.1&type=replica]]></database>
+  </connection>
+
+</configuration>

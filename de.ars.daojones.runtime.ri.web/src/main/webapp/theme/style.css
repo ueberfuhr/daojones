@@ -1,0 +1,75 @@
+body {
+  font-family: 'Verdana';
+  padding-top: 70pt;
+  background-image: url("logo.gif");
+  background-repeat: no-repeat;
+  background-position: 5pt 5pt;
+  font-size: 0.9em;
+}
+
+h1 {
+  font-size: 1.4em;
+}
+
+h2 {
+  font-size: 0.7em;
+  font-weight: normal;
+  font-style: italic;
+  margin-top: 0;
+  width: 100%;
+  border-bottom: 1pt solid gray;
+  margin-bottom: 2em;
+}
+
+ul.menu li {
+  list-style-type: circle;
+  margin-top: 0.2em;
+}
+
+table {
+  border: 1pt solid gray;
+}
+
+td, th {
+  padding: 5pt;
+  padding-right: 10pt;
+  text-align: left;
+  margin: 0pt;
+  border: none;
+}
+
+th {
+  border-bottom: 2pt dotted gray;
+}
+
+tbody tr:hover, tbody tr:hover td {
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+form {
+  font-size: 0.9em;
+  padding: 10pt;
+  background-color: #f8f8f8;
+}
+
+form div, form p {
+  display: block;
+  
+}
+
+form label {
+  float: left; 
+  width: 20em; 
+  padding: 0; 
+  margin: 8px 5px 0 0;
+  text-align: left;
+  border-bottom: 1pt dotted #c8c8c8; 
+}
+
+form select, form input {
+  margin: 5px 5px 0 0;
+}
+form select {
+  margin-bottom: 5pt;
+}

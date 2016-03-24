@@ -1,0 +1,4 @@
+de.ars.daojones.internal.drivers.notes.annotations.AuthorsAndReadersAnnotationHandler
+de.ars.daojones.internal.drivers.notes.annotations.RichTextAnnotationHandler
+de.ars.daojones.internal.drivers.notes.annotations.MIMEEntityAnnotationHandler
+de.ars.daojones.internal.drivers.notes.annotations.DocumentMappedAnnotationHandler

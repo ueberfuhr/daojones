@@ -1,0 +1,22 @@
+# Single Objects
+de.ars.daojones.internal.drivers.notes.datahandler.StringDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.CharacterDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.BooleanDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.NumberDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.DateDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.EnumDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.IdentificatorDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.ResourceDataHandler
+# Arrays
+de.ars.daojones.internal.drivers.notes.datahandler.StringArrayDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.CharacterArrayDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.BooleanArrayDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.NumberArrayDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.DateArrayDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.EnumArrayDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.IdentificatorArrayDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.ResourceArrayDataHandler
+# Custom Types
+de.ars.daojones.internal.drivers.notes.datahandler.StatusDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.PrincipalDataHandler
+de.ars.daojones.internal.drivers.notes.datahandler.PrincipalArrayDataHandler

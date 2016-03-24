@@ -1,0 +1,43 @@
+DaoJones
+========
+
+ Access databases with an object-oriented mapping that is not restricted to relational databases.
+
+---
+
+<h4>Object-2-Database-Mapping</h4>
+
+![Object-2-Database-Mapping](images/carousel_mapping.png)
+
+Annotate your bean classes to map fields, method parameters or return values to database entries.
+
+<h4>The team</h4>
+
+![DaoJones Team Member](images/carousel_team.png)
+
+Nice developers ;-)
+
+
+---
+
+Download
+--------
+
+  You can find the artifacts on the [Download page](./download.html "Open download page").
+  If you use Maven to manage your projects, please see the [Maven instructions](./maven.html "Open Maven instructions").
+
+[ ![Link to download page](images/download-btn-01.png "Download Page") ](./download.html "Open download page")
+
+
+Browse Repository
+-----------------
+
+  All artifacts are stored within a [Maven Repository](./${project-site-repo} "Open Maven Repository") that
+  you can use to resolve the dependencies to the DaoJones libraries.
+
+Read Documentation
+------------------
+
+  To get started with DaoJones or to find detailed information, you can read
+  the [extensive documentation](./${file-dj-docs-unzipped}/index.html "Open Documentation as website").
+  It''s also available as [PDF file](./${file-dj-docs-pdf} "Open Documentation as PDF file").

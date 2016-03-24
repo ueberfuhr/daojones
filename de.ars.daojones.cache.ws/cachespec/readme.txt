@@ -1,0 +1,1 @@
+Datei cachespec.xml in das Webmodul unter WEB-INF oder direkt ins Properties-Verzeichnis des Application Servers positionieren

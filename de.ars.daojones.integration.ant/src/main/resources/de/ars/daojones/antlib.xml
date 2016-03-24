@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<antlib>
+  <taskdef name="dj-scan-bean-model"
+    classname="de.ars.daojones.internal.integration.ant.ScanBeanModelTask" />
+</antlib>

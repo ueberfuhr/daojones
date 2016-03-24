@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<umlnotation:UMLDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.3/Umlnotation" xmi:id="_YzZTcGPXEeOAVuW7U7k8lQ" type="Class" name="DaoJonesEnviroment.dnx">
+  <eAnnotations xmi:id="_YzZ6gGPXEeOAVuW7U7k8lQ" source="com.ibm.xtools.common.ui.reduction.editingCapabilities">
+    <details xmi:id="_YzZ6gWPXEeOAVuW7U7k8lQ" key="com.ibm.xtools.activities.javaVisualizerActivity" value="1"/>
+    <details xmi:id="_YzZ6gmPXEeOAVuW7U7k8lQ" key="com.ibm.xtools.viz.java.webservice.capability" value="1"/>
+  </eAnnotations>
+  <children xmi:type="umlnotation:UMLClassifierShape" xmi:id="_aOG98GPXEeOAVuW7U7k8lQ" fontName="Segoe UI" fontHeight="8" showListSignature="true" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label" useClassifierShape="true">
+    <children xmi:type="notation:DecorationNode" xmi:id="_aO8rcGPXEeOAVuW7U7k8lQ" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_aO8rcWPXEeOAVuW7U7k8lQ" width="530" height="530"/>
+    </children>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_aO8rcmPXEeOAVuW7U7k8lQ" type="Stereotype"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_aO-goGPXEeOAVuW7U7k8lQ" type="Kind"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_aO_HsGPXEeOAVuW7U7k8lQ" type="Name"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_aO_HsWPXEeOAVuW7U7k8lQ" type="Parent"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_aO_uwGPXEeOAVuW7U7k8lQ" visible="false" type="AttributeCompartment"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_aPFOUGPXEeOAVuW7U7k8lQ" type="OperationCompartment"/>
+    <children xmi:type="notation:SemanticListCompartment" xmi:id="_aPGccGPXEeOAVuW7U7k8lQ" visible="false" type="SignalCompartment"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=DaoJonesEnvironment%5Bjcu%5Ename=DaoJonesEnvironment.java%5Bjpack%5Ename=de.ars.daojones.integration.web%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.integration.web%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aOG98WPXEeOAVuW7U7k8lQ" x="8763" y="3429"/>
+  </children>
+  <children xmi:type="umlnotation:UMLShape" xmi:id="_eL_IwGPXEeOAVuW7U7k8lQ" fontName="Segoe UI" fontHeight="8" showListSignature="true" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
+    <children xmi:type="notation:DecorationNode" xmi:id="_eMF2cGPXEeOAVuW7U7k8lQ" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_eMF2cWPXEeOAVuW7U7k8lQ" width="1320" height="1320"/>
+    </children>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_eMGdgGPXEeOAVuW7U7k8lQ" type="Stereotype"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_eMHEkGPXEeOAVuW7U7k8lQ" type="Name"/>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_eMHEkWPXEeOAVuW7U7k8lQ" type="Parent"/>
+    <children xmi:type="notation:ListCompartment" xmi:id="_eMHroGPXEeOAVuW7U7k8lQ" visible="false" type="ANNOTATION_COMPARTMENT"/>
+    <children xmi:type="notation:ListCompartment" xmi:id="_eML9EGPXEeOAVuW7U7k8lQ" visible="false" type="ANNOTATED_ATTRIBUTE_COMPARTMENT"/>
+    <children xmi:type="notation:ListCompartment" xmi:id="_eMMkIGPXEeOAVuW7U7k8lQ" type="ANNOTATED_OPERATION_COMPARTMENT" filtering="Manual">
+      <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=WebApplication%5Esign=()V%5Bjsrctype%5Ename=WebApplication%5Bjcu%5Ename=WebApplication.java%5Bjpack%5Ename=de.ars.daojones.integration.web%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.integration.web%5D%5D%5D%5D%5D$uml.Operation"/>
+    </children>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=WebApplication%5Bjcu%5Ename=WebApplication.java%5Bjpack%5Ename=de.ars.daojones.integration.web%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.integration.web%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eL_IwWPXEeOAVuW7U7k8lQ" x="508" y="3429"/>
+  </children>
+  <element xsi:nil="true"/>
+  <edges xmi:type="umlnotation:UMLConnector" xmi:id="_eQPWoGPXEeOAVuW7U7k8lQ" source="_eL_IwGPXEeOAVuW7U7k8lQ" target="_aOG98GPXEeOAVuW7U7k8lQ" fontName="Segoe UI" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
+    <children xmi:type="notation:DecorationNode" xmi:id="_eQRy4GPXEeOAVuW7U7k8lQ" visible="false" type="KindLabel">
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_eQRy4mPXEeOAVuW7U7k8lQ" type="Stereotype"/>
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_eQRy5GPXEeOAVuW7U7k8lQ" type="Kind"/>
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_eQRy42PXEeOAVuW7U7k8lQ" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eQRy4WPXEeOAVuW7U7k8lQ" y="-186"/>
+    </children>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=WebApplication%5Bjcu%5Ename=WebApplication.java%5Bjpack%5Ename=de.ars.daojones.integration.web%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.integration.web%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=DaoJonesEnvironment%5Bjcu%5Ename=DaoJonesEnvironment.java%5Bjpack%5Ename=de.ars.daojones.integration.web%5Bjsrcroot%5Esrcfolder=src/main/java%5Bproject%5Eid=de.ars.daojones.integration.web%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_eQPWoWPXEeOAVuW7U7k8lQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+</umlnotation:UMLDiagram>

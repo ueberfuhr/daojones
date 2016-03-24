@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.ars.de/daojones/2.0/testmodel" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:dj="http://www.ars.de/daojones/2.0/testmodel">
+
+    <annotation>
+    	<documentation>The database model that is used for testing DaoJones beans and configurations.</documentation></annotation>
+    <element name="model" type="dj:Model"></element>
+
+    <complexType name="Model">
+    	<sequence>
+    		<element name="datasource" type="dj:DataSource" minOccurs="0" maxOccurs="unbounded">
+    			<annotation>
+    				<documentation>The data source provides dummy data. It can be one of table or view.</documentation>
+    			</annotation></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="DataSource">
+    	<sequence>
+    		<element name="entry" type="dj:Entry" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    	<attribute name="type" use="optional" default="table">
+    		<simpleType>
+    			<restriction base="string">
+    				<enumeration value="table"></enumeration>
+    				<enumeration value="view"></enumeration>
+    			</restriction>
+    		</simpleType>
+    	</attribute>
+    	<attribute name="name" type="string" use="required"></attribute>
+    </complexType>
+
+    <complexType name="Entry">
+    	<sequence>
+    		<element name="property" type="dj:Property" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    	<attribute name="id" type="ID" use="required"></attribute>
+    </complexType>
+
+    <complexType name="Property">
+    	<attribute name="name" type="string" use="required"></attribute>
+    	<attribute name="value" type="string" use="required"></attribute>
+    </complexType>
+</schema>

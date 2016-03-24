@@ -1,0 +1,48 @@
+ -----
+ Ant Integration
+ -----
+ -----
+
+Ant Integration
+
+  Building projects that use DaoJones does not require any additional step.
+  Nevertheless, the DaoJones Ant Plugin provides a task <dj-scan-bean-model> that scans your project's compiled classes for bean model annotations and stores the derived model into an XML file, which is then packaged together with your application.
+  At your application's runtime, this model file is read out by the <AnnotationBeanConfigurationProvider> instead of scanning the bytecode again. The advantages:
+
+  * Your application starts up faster.
+  
+  * Classloading issues can be avoided at special runtimes with isolated classloaders (e.g. OSGi).
+  
+  * DaoJones does not require bytecode analyzing frameworks and all of their dependencies anymore at runtime.
+
+  []
+
+  
+
+[images/daojones-dependencies.png] DaoJones Dependencies
+  
+  \
+  Just invoke the ant task like shown below:
+  
++---------------------
+<taskdef resource="de/ars/daojones/antlib.xml" classpathref="path-to-daojones-libraries" />
+
+<target name="scan-bean-models">
+  <dj-scan-bean-model bytecodeDirectory="bin" targetDirectory="bin" />
+</target>
++---------------------
+
+  If the scanned bytecode is dependent from any other classes, embed a path element into the task:
+  
++---------------------
+<taskdef resource="de/ars/daojones/antlib.xml" classpathref="path-to-daojones-libraries" />
+
+<target name="scan-bean-models">
+  <dj-scan-bean-model bytecodeDirectory="bin" targetDirectory="bin">
+    <path>
+      <pathelement path="path-to-dependencies" />
+    </path>
+  </dj-scan-bean-model>
+</target>
++---------------------
+ 

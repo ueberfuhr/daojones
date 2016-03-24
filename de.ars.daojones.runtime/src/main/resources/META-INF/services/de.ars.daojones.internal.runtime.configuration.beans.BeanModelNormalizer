@@ -1,0 +1,5 @@
+de.ars.daojones.internal.runtime.configuration.beans.TypeMappingNormalizer
+de.ars.daojones.internal.runtime.configuration.beans.DeclaringBeanNormalizer
+de.ars.daojones.internal.runtime.configuration.beans.InvocableElementNormalizer
+de.ars.daojones.internal.runtime.configuration.beans.GeneratedFieldMappingValueNormalizer
+de.ars.daojones.internal.runtime.configuration.beans.FieldMappingRefNormalizer

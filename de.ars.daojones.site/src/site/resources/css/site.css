@@ -1,0 +1,14 @@
+/* Do not customize too much - the theme could be switched. */
+a[name] {
+  display: none;
+}
+h4 {
+  font-weight: bold;
+}
+/* Download Page */
+.page-download table tr td { 
+  width: 15%;
+}
+.page-download table tr td:first-child { 
+  width: 50%;
+}

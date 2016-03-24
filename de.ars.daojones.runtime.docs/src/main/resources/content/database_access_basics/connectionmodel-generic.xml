@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://www.ars.de/daojones/2.0/connections">
+
+  <connection id="memo" name="Email Inbox" factory="de.ars.daojones.drivers.notes">
+    <database><![CDATA[notes:///C1547121FC3A2141?version=1.1&type=replica&server=acme.com]]></database>
+    <credential type="generic">
+      <property name="class" value="your.callbackhandler.implementation.Class"/>
+    </credential>
+    <for-class>de.ars.daojones.example.mails.Memo</for-class>
+  </connection>
+
+</configuration>

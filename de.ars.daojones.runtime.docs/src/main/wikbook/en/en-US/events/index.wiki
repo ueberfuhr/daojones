@@ -1,0 +1,12 @@
+= Event Handling {{anchor id=events /}} =
+
+{{caution}}
+**__TODOs:__**
+* Connection Event Listener ist spärlich, besser
+** Event bei CRUD-Operationen einer Connection
+** Event beim Erzeugen, Öffnen und Schließen einer Connection
+** Event bei Änderungen am Datenmodell
+* Connection Events
+* Model Events (see TODO ConfigurationModelManager)
+* Interface für Beans -> onUpdate, onDelete, afterRead... (@PostConstruct)
+{{/caution}}

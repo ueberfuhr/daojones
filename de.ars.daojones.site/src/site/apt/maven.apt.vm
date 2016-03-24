@@ -1,0 +1,69 @@
+ -----
+ Maven Instructions
+ -----
+ -----
+
+Maven Instructions
+
+  DaoJones provides a Maven plugin to extend the build of your projects and archetypes to create projects from scratch.
+  You can find them in the {{{./${project-site-repo}} Maven Repository }}. Details about dependencies to the DaoJones libraries are available on the 
+  {{{./download.html} Download Page }}.
+
+* DaoJones Maven Plugin
+
+  Building projects that use DaoJones does not require any additional step.
+  Nevertheless, the DaoJones Maven Plugin provides a goal <scan-bean-model> that scans your project's compiled classes for bean model annotations and stores the derived model into an XML file, which is then packaged together with your application.
+  At your application's runtime, this model file is read out by the <AnnotationBeanConfigurationProvider> instead of scanning the bytecode again. The advantages:
+
+  * Your application starts up faster.
+  
+  * Classloading issues can be avoided at special runtimes with isolated classloaders (e.g. OSGi).
+  
+  * DaoJones does not require bytecode analyzing frameworks and all of their dependencies anymore at runtime.
+
+  []
+
+  
+
+[images/daojones-dependencies.png] DaoJones Dependencies
+  
+  \
+  Just put the following lines into your POM's build section:
+  
++---------------------
+<plugin>
+  <groupId>de.ars.daojones.maven.plugins</groupId>
+  <artifactId>daojones-maven-plugin</artifactId>
+  <version>${project.version}</version>
+  <executions>
+    <execution>
+      <goals>
+        <goal>scan-bean-model</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
++---------------------
+  
+  
+  
+
+* DaoJones Archetype for simple Java projects
+
+  Use the archetype <<<de.ars.daojones.maven.archetypes\ :\ daojones-java-archetype\ :\ ${project.version}>>> to generate projects with
+  
+  * an annotated example bean
+  
+  * a controller that accesses the database with a sample query
+  
+  * a main class that initializes the DaoJones context
+  
+  * an empty <<<daojones-beans.xml>>> and <<<daojones-connections.xml>>> file
+  
+  * a pom that contains the <<<daojones-maven-plugin>>> entry with the <<<scan-bean-model>>> goal
+  
+  * a JUnit test class to test the controller with a test model
+  
+  []
+  
+[images/daojones-archetype-sample.png] DaoJones Sample Project

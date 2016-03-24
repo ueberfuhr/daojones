@@ -1,0 +1,230 @@
+= Database Access (Basics) =
+
+This chapter describes the first steps for implementing a DaoJones based application.
+
+== Setting up the environment ==
+
+Before you can access the database, you need to set up your environment.
+{{important}}The following description only deals with a simple Java SE environment. Further steps can be neccessary when running your application in another environment. See the chapter [["Integration into Java Environments">>#integration]] for further details.{{/important}}
+
+1. **Classpath Configuration**: Aside from the DaoJones runtime, the database drivers need to be in the application's classpath. If a driver registers itself using the Java ServiceLoader API, no further steps for registration are neccessary.
+1. **Connection Configuration**: It is recommended to do this using an XML file. See the example below. The XML file should be in the application's classpath.
+{{xml}}<wikbook:include href="content/database_access_basics/connectionmodel.xml"/>{{/xml}}
+{{note}}
+The example shows a static kind of credential, where username and password are placed into the XML. If you need any dynamic way of finding a credential (e.g. to use a token or to request the user to input the credentials), implement a custom ##javax.security.auth.callback.CallbackHandler## and use it as shown in the example below.
+{{xml}}<wikbook:include href="content/database_access_basics/connectionmodel-generic.xml"/>{{/xml}}
+{{/note}}
+
+1. ** Application Initialization**: In an unmanaged environment, you need to create the //DaoJonesContext// and read the connection manually. This is done with the following steps:
+11. Create an instance of //DaoJonesContextFactory//.
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#createContext() {1}}{{/java}}
+11. Add a //ConfigurationSource// for reading bean models to the //DaoJonesContextFactory//. The example uses annotations to map the elements of the bean types to the database.
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#createContext() {2}}{{/java}}
+11. Add a //ConfigurationSource// for reading connection models to the //DaoJonesContextFactory//. The example uses an XML-file-based configuration.
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#createContext() {3}}{{/java}}
+11. Create the //DaoJonesContext//. The configurations are read and the context is configured. Then get the //Application// object and the connection.
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#createContext() {4}}{{/java}}
+
+== Define the mapping ==
+
+The easiest way to define a mapping is to use annotations directly within the Java code. The following examples uses this way.
+The only requirement is a ##META-INF/daojones-beans.xml## file within the project.
+It is also possible to use an XML-file-based mapping (see chapter [["Bean Model">>#concepts_bean_model]]). This could be an option, if
+* You don't want classpath dependencies to DaoJones annotations within your beans.
+* You need to define a mapping of a bean that is part of an external library.
+* You need to define multiple mappings of your beans. In this case, use multiple applications (//Application//). 
+Of course, you can use both possibilities in combination.
+
+=== Type Mapping ===
+At first, you map the bean type to a table (Lotus Notes: //Document//) or to a view. Use the ##@DataSource## annotation to declare the name of the table or view.
+The ##@DataSource## annotation is optional. If there isn't any annotation, the bean type is mapped to a table that has the simple class name of the bean type.
+Here are some examples
+
+* A mapping to the table //Memo//. In this example, you could remove the ##@DataSource## annotation because the bean type has the same simple name like the table.
+{{java}}
+@DataSource( "Memo" )
+public class Memo {
+  // ...
+}
+{{/java}} 
+* A mapping to a view //Memos//:
+{{java}}
+@DataSource( value = "Memo", type = DataSourceType.VIEW )
+public class Memo {
+  // ...
+}
+{{/java}} 
+* A mapping to a view //Memo//, which has the same name like the bean type:
+{{java}}
+@DataSource( type = DataSourceType.VIEW )
+public class Memo {
+  // ...
+}
+{{/java}} 
+
+=== Field Mapping ===
+
+You can declare a mapping to a column of a table or view by using the ##@Field## annotation. There are multiple types of elements that can be mapped to a database field:
+* **Fields** are injected while reading from the database. They are read out while storing values into the database.
+{{java}}
+  // field mapping to a field with a same name
+  @Field
+  private String firstName;
+{{/java}}
+{{java}}
+  // field mapping to a field with a different name
+  @Field( "given" )
+  private String firstName;
+{{/java}}
+* **Method parameters** are injected while reading from the database. The method then is invoked with the parameter values. It is possible to use multiple annotated parameters for a single method. There is no ordering of method invocations.
+{{java}}
+  public void setFirstName( @Field( "firstName" ) final String firstName ) {
+    // ...
+  }
+{{/java}}
+  Of course, this is not limited to setter methods with a single parameter.
+{{java}}
+  public void init( @Field( "firstName" ) final String firstName, 
+                    @Field( "lastName" )  final String lastName ) {
+    // ...
+  }
+{{/java}}
+* **Constructor parameters** are treated similarly with the exception of the time and the multiplicity. There can be only one constructor with annotated parameters. If there isn't any constructor with annotated parameters, the default constructor must be provided.
+{{java}}
+  public Person( @Field( "firstName" ) final String firstName ) {
+    // ...
+  }
+{{/java}}
+* **Method results** are read out while storing values into the database. The method then is invoked. Currently, such methods must not have any parameters.
+{{java}}
+  @Field( "firstName" )
+  public String getFirstName() {
+    // ...
+  }
+{{/java}}
+* If you have two methods (one for reading, one for writing a value), you can refer the field mapping by using the ##@FieldRef## annotation.
+{{java}}
+  public void setFirstName( @Field( value="firstName", id="fn" ) final String firstName ) {
+    // ...
+  }
+  @FieldRef( "fn" )
+  public String getFirstName() {
+    // ...
+  }
+{{/java}}
+
+{{important}} The name of the field should always be specified for method parameters and results. The ##@Field## annotation declares default values for them, but they can only be derived from the method's name and the index (not the name!) of the parameter. For details, see the Javadocs of the ##@Field## annotation.{{/important}}
+
+== CRUD operations ==
+
+The //Connection// interface defines the CRUD operations with a vararg parameter, i.e. you can execute these operations with multiple beans of the same type with a single invocation.
+{{note}}A CRUD operation is not executed as a transaction. DaoJones currently does not support transactions.{{/note}}
+
+* **CREATE**
+Just create an instance of your bean and invoke the ##update()## method.
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#crud(de.ars.daojones.runtime.connections.Connection) {1}}{{/java}}
+* **READ**
+DaoJones provides a sophisticated query mechanism. For detailed information see chapter [["Queries">>#database_access_basics_queries]].
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#crud(de.ars.daojones.runtime.connections.Connection) {2}}{{/java}}
+* **UPDATE**
+If you invoke the ##update()## method on a bean that you read from the database before, it is updated.
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#crud(de.ars.daojones.runtime.connections.Connection) {3}}{{/java}}
+* **DELETE**
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#crud(de.ars.daojones.runtime.connections.Connection) {4}}{{/java}}
+or shorter (to avoid loading objects from the database) - for detailed information see chapter [["Queries">>#database_access_basics_queries]].
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#crud(de.ars.daojones.runtime.connections.Connection) {5}}{{/java}}
+
+{{important}}If you want to write to the database by invoking the ##update()## or ##delete()## method, it is neccessary for the runtime to identify the objects within the database. See chapter [["Bean Identification">>#database_access_basics_identification]] for detailed information.{{/important}}
+
+== Queries {{anchor id=database_access_basics_queries /}} ==
+One important feature of DaoJones is its Query API. This API allows to create database queries based on the bean mappings and with the help of Java interfaces and classes.
+You do not have to build a query string, you create a //Query// object. Syntax errors are prevented by the Java compiler.
+
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#query1(de.ars.daojones.runtime.connections.Connection) {1}}{{/java}}
+
+=== Reading the results ===
+
+The result object implements the ##Iterable## interface and can be read out with a simple ##for## loop.
+This follows the lazy-initialization pattern, i.e. that the information is loaded during iterating through the results.
+
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#query1(de.ars.daojones.runtime.connections.Connection) {2}}{{/java}}
+
+It is also possible to get all objects loaded immediately into a list. Be aware that this can have effect to the performance or memory allocation of your application.
+
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#query1(de.ars.daojones.runtime.connections.Connection) {3,4}}{{/java}}
+
+{{note}}
+The result object also implements the ##Closeable## interface and can be used with the try-with-resource statement that was introduced with Java 7.
+{{/note}}
+
+=== Query Parameters ===
+
+The //Query// class allows further query parameters like the maximum count of results or the super types of the bean type that should be loaded from the database.
+This can be done with a single line of code by the usage of //Chained Calls//.
+If not specified, the maximum number of results is ##Integer.MAX_VALUE## and all subclasses of the bean type are loaded.
+
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#query2(de.ars.daojones.runtime.query.SearchCriterion) {1}}{{/java}}
+
+=== Search Criteria ===
+
+Search criteria are query parameters that select database entries that match a given rule. DaoJones defines a ##SearchCriterion## interface and provides implementations of the most common criteria.
+
+[[image:images/content/database_access_basics/searchcriteria.png||title="Pre-defined search criteria" align="center" html:scale="100" fo:width="10mm"]]
+
+* //Tautology// is a criterion that is always ##true##. You can use this criterion to avoid ##null## values and to combine it with other criteria.
+* //Negation// is a criterion that switches another criterion as a ##not## operator does.
+* //LogicalCombination// is a combination of 2 criteria using an ##and## or ##or##. There are utility methods that allow to combine more than 2 criteria, but those helper methods create multiple logical combinations.
+* //IsEmpty// and //FieldComparison// address a single field within the database. //IsEmpty// matches in case of an empty field, i.e. a ##null## value, an empty string, an empty collection or an empty array. //FieldComparison// is a very flexible criterion that allows to compare a single field value. Comparisons are possible for strings, numbers, dates, booleans and collections.
+
+{{note}}
+It is possible to implement custom search criteria and to extend the //FieldComparison// criterion by custom comparisons (see Section [["Custom Search Criteria">>#database_access_advanced_custom_search_criteria]]).
+{{/note}}
+
+You can create instances of this classes directly or you can use the ##SearchCriterionBuilder## classes that provides some static helper methods to create search criteria with a chained call.
+{{java}}
+    import static de.ars.daojones.runtime.query.SearchCriterionBuilder.*;
+    // ...
+{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#searchCriterionBuilder() {1}}
+{{/java}}
+
+You can use a search criterion to test conditions on a bean that was already loaded from the database. Therefore, you can use the ##matches## method. You have to retrieve the ##ApplicationContext## from the ##Connectionprovider## because the bean mapping is dependent from it.
+
+{{java}}
+{@include de.ars.daojones.runtime.docs.database_access_basics.CodeSnippets#matches(de.ars.daojones.runtime.context.ApplicationContext,de.ars.daojones.runtime.docs.database_access_basics.Memo) {1}}
+{{/java}}
+
+And the Search Criteria API implements the Visitor Pattern to step through a search criterion's structure.
+You can build very complex search criteria by combining simple criteria by the usage of the //LogicalCombination//.
+It will result in a kind of tree structure where one node can contain one or two childs. Then, it can be helpful to use the Visitor Pattern to deal with this structure in a generic way.
+
+{{java}}
+    criterion.accept( new SearchCriterionVisitor() {
+
+      @Override
+      public boolean preVisit( final SearchCriterion criterion ) {
+        // ... do something with the criterion
+        return true; // use false to cancel visiting children
+      }
+      
+    });
+{{/java}}
+
+== Bean Identification {{anchor id=database_access_basics_identification /}} ==
+To modify database entries, it is neccessary for DaoJones to find the corresponding entry of a single bean within the database. Therefore, the concept of //Bean Identification// was introduced.
+Beans, that are used to modify entries within the database, must provide an internal field that holds an identificator for the bean. This identificator is set by the database driver when the bean is loaded from the database or saved for the first time. It is read out by the driver during an invocation of ##update()## or ##delete()##.
+This field must meet some requirements:
+* It can be of any visibility scope. Getter or setter method is not used by the driver and therefore not neccessary.
+* It must not be ##final## and cannot be injected as a method or constructor parameter. If beans are replicated or cached, it should not be ##transient## or ##@XmlTransient##.
+* It can be declared by any super type of the bean, so it is possible to have a common super type for all beans providing such an id field.
+* It must be of a type that allows the assignment of an object of type ##Identificator##, so allowed types are
+** ##de.ars.daojones.runtime.beans.identification.Identificator##
+** ##java.io.Serializable##
+** ##java.lang.Object##
+* It can also be declared of type ##java.lang.String## to get a string representation of the identificator. The bean then is limited to the usage within one application, i.e. it can be mapped to a single database element. If you want to read objects from one table or view and store them into another one (including the same database or different databases), this might not fit your requirements.
+* It must be annotated with ##@Id##. (or - within an XML file - declared by the ##<id-field>## tag)
+
+{{java}}{@include de.ars.daojones.runtime.docs.database_access_basics.Training}{{/java}}
+
+It is possible to use one bean within multiple applications, where different connections are configured. You can read the bean from a database within the first application (where an identifcator is set for this application) und store it to the database within the second application. Be aware that it then is handled as a new object that leads to the creation of an entry within the database.
+
+{{note}}For customization of the default bean identification behaviour, see chapter [["Custom Bean Identification">>#database_access_advanced_custom_identification]].{{/note}}

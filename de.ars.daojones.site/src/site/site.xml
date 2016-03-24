@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="ARS DaoJones" xmlns="http://maven.apache.org/DECORATION/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+  <!-- <bannerLeft> <name>DaoJones</name> <src>images/daojones.jpg</src> 
+    <alt>DaoJones</alt> </bannerLeft> <bannerRight> <src>images/ars-logo.gif</src> 
+    <alt>ARS Logo</alt> <href>http://www.ars.de/</href> </bannerRight> -->
+  <skin>
+    <groupId>lt.velykis.maven.skins</groupId>
+    <artifactId>reflow-maven-skin</artifactId>
+    <version>1.0.0</version>
+  </skin>
+
+  <body>
+    <links>
+      <item name="Bugtracking (Jazz)"
+        href="https://clm.ars.de/jazz/web/projects/ARS%20DaoJones/" />
+      <item name="Build Server (Jenkins)"
+        href="http://builder2:8080/view/20%20ARS/view/Projekte/job/ARS_DaoJones/" />
+      <item name="Maven Repository" href="./repo" />
+      <item name="Eclipse/P2 Repository" href="./p2" />
+    </links>
+
+    <menu name="Main" >
+      <item name="Download" href="download.html" />
+      <item name="Maven Instructions" href="maven.html" />
+      <item name="Ant Integration" href="ant.html" />
+      <item name="User Documentation (HTML)" href="./${file-dj-docs-unzipped}/index.html" />
+      <item name="User Documentation (PDF)" href="./${file-dj-docs-pdf}" />
+    </menu>
+
+    <menu name="Environment" >
+      <item name="Bugtracking (Jazz)"
+        href="https://clm.ars.de/jazz/web/projects/ARS%20DaoJones/" />
+      <item name="Build Server (Jenkins)"
+        href="http://builder2:8080/view/20%20ARS/view/Projekte/job/ARS_DaoJones/" />
+      <item name="Maven Repository" href="./repo" />
+    </menu>
+
+  </body>
+
+  <custom>
+    <reflowSkin>
+      <!-- see http://bootswatch.com -->
+      <theme>bootswatch-cosmo</theme>
+      <highlightJs>true</highlightJs>
+      <brand>
+        <name>DaoJones</name>
+        <href>index.html</href>
+      </brand>
+      <slogan>Accessing databases the easy way</slogan>
+      <titleTemplate>%2$s | %1$s</titleTemplate>
+      <toc>top</toc>
+      <topNav></topNav>
+      <bottomNav>
+        <column>Main</column>
+        <column>Environment</column>
+      </bottomNav>
+      <bottomDescription>
+        Accessing non-relational databases is possible
+        with only some lines of code.
+      </bottomDescription>
+      <pages>
+        <index>
+          <shortTitle>Home</shortTitle>
+          <breadcrumbs>false</breadcrumbs>
+          <toc>true</toc>
+          <sections>
+            <body />
+            <carousel />
+            <!-- <body /> <sidebar /> <thumbs>2</thumbs> -->
+            <columns>3</columns>
+          </sections>
+        </index>
+        <contribute>
+          <breadcrumbs>false</breadcrumbs>
+        </contribute>
+        <developer-info>
+          <toc>sidebar</toc>
+        </developer-info>
+      </pages>
+    </reflowSkin>
+  </custom>
+
+</project>

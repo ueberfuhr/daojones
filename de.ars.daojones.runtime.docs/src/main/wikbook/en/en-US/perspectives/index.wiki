@@ -1,0 +1,6 @@
+= Perspectives =
+
+{{caution}}
+**__TODOs:__**
+* Dependency Injection?? Integration of DI frameworks
+{{/caution}}

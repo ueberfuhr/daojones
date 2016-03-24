@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans-config xmlns="http://www.ars.de/daojones/2.0/beans">
+  <!-- must be in classpath to get classes scanned for annotations -->
+</beans-config>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="de.ars.daojones.integration.equinox.factories">
+      <connection-factory
+            class="de.ars.daojones.drivers.notes.NotesConnectionFactory"
+            id="de.ars.daojones.drivers.notes"
+            name="IBM Lotus Notes"
+            description="A document-based, distributed database system. Connections can be set up using a local client installation or a Lotus Domino server.">
+      </connection-factory>
+   </extension>
+   <extension
+         point="de.ars.daojones.integration.eclipse.databasePathEditors">
+      <editor
+            class="de.ars.daojones.internal.drivers.notes.integration.eclipse.NotesDatabasePathEditor"
+            connection-factory="de.ars.daojones.drivers.notes">
+      </editor>
+   </extension>
+
+</plugin>

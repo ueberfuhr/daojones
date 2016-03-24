@@ -1,0 +1,17 @@
+= Introduction =
+
+DaoJones is designed for accessing databases by mapping Java objects to database entities. As distinguished from JDBC or JPA, DaoJones is not restricted to relational databases.
+
+== History ==
+
+The project was initially founded in 2007 as part of the [[ARS Website>>http://www.ars.de/]] project. The main purpose at that time was to encapsulate accesses to the website database - which is a Notes database - in a separate layer to make the business entities independent from the Notes Java API. This allowed to implement thread safety at a central position and to make this available for the whole application.
+
+By now, DaoJones is used by multiple ARS-internal projects (e.g. the  //Unterlagengenerierung// ) and by currently a single customer project too.
+
+The name //DaoJones// is derived from the abbreviation //DAO//, which is used for //Data Access Objects//, a design pattern used for persistence implementations. The term is not used anymore, it was replaced by a simple POJO, briefly called //bean//.
+
+{{note}}Although it allows to use different database drivers, currently there is only one driver implementation to access Notes databases. Further drivers must yet be implemented.{{/note}}
+
+== Intention ==
+
+The framework is intented to be used by Java applications to map business entities to databases, no matter what kind of database (relational, document-based, object-based, file-based) is used at runtime. The database can be replaced without any changes within the application code. The developer can handle the concepts and terms of DaoJones and does not have to get familiar with database-specific concepts and terms.

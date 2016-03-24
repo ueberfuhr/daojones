@@ -1,0 +1,7 @@
+de.ars.daojones.internal.drivers.notes.search.encoders.BooleanEncoder
+de.ars.daojones.internal.drivers.notes.search.encoders.CharacterEncoder
+de.ars.daojones.internal.drivers.notes.search.encoders.StringEncoder
+de.ars.daojones.internal.drivers.notes.search.encoders.NumberEncoder
+de.ars.daojones.internal.drivers.notes.search.encoders.DateEncoder
+de.ars.daojones.internal.drivers.notes.search.encoders.CollectionEncoder
+de.ars.daojones.internal.drivers.notes.search.encoders.PrincipalEncoder

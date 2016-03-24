@@ -1,0 +1,5 @@
+de.ars.daojones.internal.drivers.notes.search.builders.criteria.FieldComparisonTemplate
+de.ars.daojones.internal.drivers.notes.search.builders.criteria.IsEmptyTemplate
+de.ars.daojones.internal.drivers.notes.search.builders.criteria.LogicalCombinationTemplate
+de.ars.daojones.internal.drivers.notes.search.builders.criteria.NegationTemplate
+de.ars.daojones.internal.drivers.notes.search.builders.criteria.TautologyTemplate

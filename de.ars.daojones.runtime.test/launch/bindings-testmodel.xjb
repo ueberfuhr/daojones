@@ -1,0 +1,37 @@
+<bindings version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+  extensionBindingPrefixes="xjc">
+  <globalBindings>
+    <xjc:serializable uid="1" />
+    <xjc:javaType name="java.lang.String" xmlType="xs:string"
+      adapter="de.ars.daojones.internal.runtime.test.data.StringTrimAdapter" />
+  </globalBindings>
+  <bindings
+    schemaLocation="../src/main/resources/META-INF/schemas/daojones-2.0-testmodel.xsd">
+    <bindings
+      node="//xs:complexType[@name='Model']//xs:element[@name='datasource']">
+      <property name="dataSources" />
+    </bindings>
+    <bindings
+      node="//xs:complexType[@name='DataSource']/xs:attribute[@name='type']/xs:simpleType">
+      <typesafeEnumClass name="DataSourceType" />
+    </bindings>
+    <bindings
+      node="//xs:complexType[@name='DataSource']//xs:element[@name='entry']">
+      <property name="entries" />
+    </bindings>
+    <bindings
+      node="//xs:complexType[@name='Entry']//xs:element[@name='property']">
+      <property name="properties" />
+    </bindings>
+    <bindings
+      node="//xs:complexType[@name='Property']//xs:attribute[@name='value']">
+      <property>
+        <baseType>
+          <xjc:javaType name="java.lang.Object"
+            adapter="de.ars.daojones.internal.runtime.test.data.PropertyValueAdapter" />
+        </baseType>
+      </property>
+    </bindings>
+  </bindings>
+</bindings>

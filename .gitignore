@@ -20,3 +20,14 @@ classes/
 build/
 bin/
 classes/
+.jazz5/
+.metadata/
+*.class
+.jazzignore
+.classpath
+.settings/
+.gradle/
+.apt_generated/
+build/
+bin/
+classes/
