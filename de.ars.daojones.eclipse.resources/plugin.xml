@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="nature"
+         name="DaoJones Project Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="de.ars.daojones.eclipse.resources.internal.ProjectNature">
+         </run>
+      </runtime>
+   </extension>
+</plugin>

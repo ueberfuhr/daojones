@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test Driver and Utilities for DaoJones runtime
+Bundle-SymbolicName: de.ars.daojones.runtime.test
+Bundle-Version: 0.9.0.qualifier
+Bundle-Activator: de.ars.daojones.runtime.test.TestPlugin
+Bundle-Vendor: ARS Computer und Consulting GmbH
+Require-Bundle: org.eclipse.core.runtime,
+ de.ars.daojones.runtime;bundle-version="0.9.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: de.ars.daojones.runtime.test,
+ de.ars.daojones.runtime.test.driver

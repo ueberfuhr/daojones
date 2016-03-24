@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DaoJones Development Kit
+Bundle-SymbolicName: de.ars.daojones.sdk.codegen;singleton:=true
+Bundle-Version: 0.9.0.qualifier
+Bundle-Vendor: Ralf Zahn (ARS Computer & Consulting GmbH)
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: de.ars.daojones.runtime;bundle-version="0.9.0"
+Export-Package: de.ars.daojones.sdk.codegen.generators,
+ de.ars.daojones.sdk.codegen.model

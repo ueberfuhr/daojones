@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DaoJones Driver for Lotus Notes
+Bundle-SymbolicName: de.ars.daojones.drivers.notes;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Ralf Zahn (ARS Computer & Consulting GmbH)
+Fragment-Host: de.ars.daojones.runtime;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: de.ars.daojones.drivers.notes
+Import-Package: lotus.domino,
+ lotus.domino.cso,
+ lotus.domino.local

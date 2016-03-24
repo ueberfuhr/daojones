@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="connectionsfileprovider" name="provider" schema="schema/connectionsfileprovider.exsd"/>
+   <extension
+         point="de.ars.equinox.utilities.bridges">
+      <bridge
+            class="de.ars.eclipse.ui.util.DefaultJavaElementProvider"
+            id="de.ars.eclipse.ui.util.IJavaElementProvider">
+      </bridge>
+   </extension>
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="de.ars.daojones.eclipse.rcp.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="de.ars.daojones.eclipse.ui.application"
+            name="DaoJones RCP">
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerActionBinding
+            viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension
+                  pattern="de.ars.daojones.eclipse.ui.commands.changeNature.*">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="de.ars.daojones.eclipse.ui.editor.connection.ConnectionsEditor"
+            default="true"
+            filenames="connections.xml"
+            icon="icons/connect.png"
+            id="de.ars.daojones.eclipse.ui.editors.connections"
+            name="Connections Editor">
+         <contentTypeBinding
+               contentTypeId="de.ars.daojones.eclipse.contentType.xml.connection">
+         </contentTypeBinding>
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors.templates">
+      <template
+            autoinsert="true"
+            contextTypeId="java"
+            description="Adds a bean property in form of a getter and setter to the bean."
+            id="de.ars.daojones.eclipse.ui.template1"
+            name="DaoJones Getter And Setter">
+         <pattern>${columnI:import(de.ars.daojones.annotations.Column)}${accessstrategyI:import(de.ars.daojones.annotations.AccessStrategy)}${policyI:import(de.ars.daojones.annotations.StrategyPolicy)}
+/**
+ * Returns the ${Field}.
+ * @return the ${Field}
+ */
+@Column(${column})
+@AccessStrategy(StrategyPolicy.IMMEDIATELY)
+public abstract ${type} get${Field}();
+/**
+ * Sets the ${Field}.
+ * @param p${Field} the ${Field}
+ */
+public abstract void set${Field}(${type} p${Field});
+         </pattern>
+      </template>
+      <template
+            autoinsert="true"
+            contextTypeId="java"
+            description="Adds a bean property in form of a getter and setter to the bean. A FieldAccessException is added to the throws-declaration."
+            id="de.ars.daojones.eclipse.ui.template2"
+            name="DaoJones Getter And Setter (with exception)">
+         <pattern>${columnI:import(de.ars.daojones.annotations.Column)}${accessstrategyI:import(de.ars.daojones.annotations.AccessStrategy)}${policyI:import(de.ars.daojones.annotations.StrategyPolicy)}${exceptionI:import(de.ars.daojones.FieldAccessException)}
+/**
+ * Returns the ${Field}.
+ * @return the ${Field}
+ */
+@Column(${column})
+@AccessStrategy(StrategyPolicy.IMMEDIATELY)
+public abstract ${type} get${Field}() throws FieldAccessException;
+/**
+ * Sets the ${Field}.
+ * @param p${Field} the ${Field}
+ */
+public abstract void set${Field}(${type} p${Field}) throws FieldAccessException;
+         </pattern>
+      </template>
+   </extension>
+   <extension
+         id="projectNatureImages"
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/chart_line.png"
+            id="de.ars.daojones.eclipse.ui.natureImage"
+            natureId="de.ars.daojones.eclipse.jdt.nature">
+      </image>
+      <image
+            icon="icons/chart_line.png"
+            id="de.ars.daojones.eclipse.ui.natureImage"
+            natureId="de.ars.daojones.eclipse.resources.nature">
+      </image>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="de.ars.daojones.eclipse.ui.preferences.WorkbenchPreferencePage"
+            id="de.ars.daojones.eclipse.ui.preferences"
+            name="DaoJones">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="de.ars.daojones.eclipse.ui.preferences.ProjectPropertiesOverviewPage"
+            icon="icons/chart_line.png"
+            id="de.ars.daojones.eclipse.ui.project.properties"
+            name="DaoJones">
+         <enabledWhen>
+            <reference
+                  definitionId="de.ars.daojones.eclipse.definitions.nature.enabled">
+            </reference>
+         </enabledWhen>
+      </page>
+   </extension>
+   <extension
+         id="newWizards"
+         name="DaoJones New Wizards"
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="de.ars.daojones.eclipse.ui.category"
+            name="DaoJones">
+      </category>
+      <wizard
+            canFinishEarly="false"
+            category="de.ars.daojones.eclipse.ui.category"
+            class="de.ars.daojones.eclipse.ui.wizards.NewConnectionConfigurationFileWizard"
+            hasPages="true"
+            icon="icons/connect.png"
+            id="de.ars.daojones.eclipse.ui.wizards.connectionsfile"
+            name="DaoJones Connection Configuration File"
+            project="false">
+      </wizard>
+   </extension>
+</plugin>

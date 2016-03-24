@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.0/notation" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.2/Umlnotation" xmi:id="_S1ChgDc2Ed23kJDtgwLZvA" type="Class" name="searchcriterion.dnx">
+  <children xmi:id="_W5fOZzc2Ed23kJDtgwLZvA">
+    <children xmi:id="_W5fOajc2Ed23kJDtgwLZvA" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_W5fOazc2Ed23kJDtgwLZvA" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_W5fObDc2Ed23kJDtgwLZvA" type="Stereotype"/>
+    <children xmi:id="_W5fObTc2Ed23kJDtgwLZvA" type="Name"/>
+    <children xmi:id="_W5fObjc2Ed23kJDtgwLZvA" type="Parent"/>
+    <children xmi:id="_W5fObzc2Ed23kJDtgwLZvA" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5fOcDc2Ed23kJDtgwLZvA"/>
+    </children>
+    <children xmi:id="_W5fOcTc2Ed23kJDtgwLZvA" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5fOcjc2Ed23kJDtgwLZvA" filtering="Manual">
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=toQuery%5Esign=(QTemplateManager;)QString;%5Bjsrctype%5Ename=IsEmptySearchCriterion%5Bjcu%5Ename=IsEmptySearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=hashCode%5Esign=()I%5Bjsrctype%5Ename=IsEmptySearchCriterion%5Bjcu%5Ename=IsEmptySearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=equals%5Esign=(QObject;)Z%5Bjsrctype%5Ename=IsEmptySearchCriterion%5Bjcu%5Ename=IsEmptySearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+      </styles>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_W5fOaDc2Ed23kJDtgwLZvA" showListSignature="true" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=IsEmptySearchCriterion%5Bjcu%5Ename=IsEmptySearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_W5fOaTc2Ed23kJDtgwLZvA" x="15533" y="14899"/>
+  </children>
+  <children xmi:id="_W5fOczc2Ed23kJDtgwLZvA">
+    <children xmi:id="_W5oYUDc2Ed23kJDtgwLZvA" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_W5oYUTc2Ed23kJDtgwLZvA" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_W5oYUjc2Ed23kJDtgwLZvA" type="Stereotype"/>
+    <children xmi:id="_W5oYUzc2Ed23kJDtgwLZvA" type="Name"/>
+    <children xmi:id="_W5oYVDc2Ed23kJDtgwLZvA" type="Parent"/>
+    <children xmi:id="_W5oYVTc2Ed23kJDtgwLZvA" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5oYVjc2Ed23kJDtgwLZvA"/>
+    </children>
+    <children xmi:id="_W5oYVzc2Ed23kJDtgwLZvA" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5oYWDc2Ed23kJDtgwLZvA" filtering="Manual">
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=toQuery%5Esign=(QTemplateManager;)QString;%5Bjsrctype%5Ename=NegativeSearchCriterion%5Bjcu%5Ename=NegativeSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=hashCode%5Esign=()I%5Bjsrctype%5Ename=NegativeSearchCriterion%5Bjcu%5Ename=NegativeSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=equals%5Esign=(QObject;)Z%5Bjsrctype%5Ename=NegativeSearchCriterion%5Bjcu%5Ename=NegativeSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+      </styles>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_W5fOdDc2Ed23kJDtgwLZvA" showListSignature="true" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=NegativeSearchCriterion%5Bjcu%5Ename=NegativeSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_W5fOdTc2Ed23kJDtgwLZvA" x="24459" y="14211"/>
+  </children>
+  <children xmi:id="_W5oYWTc2Ed23kJDtgwLZvA">
+    <children xmi:id="_W5oYXDc2Ed23kJDtgwLZvA" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_W5oYXTc2Ed23kJDtgwLZvA" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_W5oYXjc2Ed23kJDtgwLZvA" type="Stereotype"/>
+    <children xmi:id="_W5oYXzc2Ed23kJDtgwLZvA" type="Name"/>
+    <children xmi:id="_W5oYYDc2Ed23kJDtgwLZvA" type="Parent"/>
+    <children xmi:id="_W5oYYTc2Ed23kJDtgwLZvA" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5oYYjc2Ed23kJDtgwLZvA"/>
+    </children>
+    <children xmi:id="_W5oYYzc2Ed23kJDtgwLZvA" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5oYZDc2Ed23kJDtgwLZvA" filtering="Manual">
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=toQuery%5Esign=(QTemplateManager;)QString;%5Bjsrctype%5Ename=LogicalSearchCriterion%5Bjcu%5Ename=LogicalSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=toSearchCriterion%5Esign=(IQLogicalCombination;%255bQSearchCriterion;)QSearchCriterion;%5Bjsrctype%5Ename=LogicalSearchCriterion%5Bjcu%5Ename=LogicalSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=hashCode%5Esign=()I%5Bjsrctype%5Ename=LogicalSearchCriterion%5Bjcu%5Ename=LogicalSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=equals%5Esign=(QObject;)Z%5Bjsrctype%5Ename=LogicalSearchCriterion%5Bjcu%5Ename=LogicalSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+      </styles>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_W5oYWjc2Ed23kJDtgwLZvA" showListSignature="true" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=LogicalSearchCriterion%5Bjcu%5Ename=LogicalSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_W5oYWzc2Ed23kJDtgwLZvA" x="13314" y="7291"/>
+  </children>
+  <children xmi:id="_W5oYZTc2Ed23kJDtgwLZvA">
+    <children xmi:id="_W5oYaDc2Ed23kJDtgwLZvA" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_W5oYaTc2Ed23kJDtgwLZvA" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_W5oYajc2Ed23kJDtgwLZvA" type="Stereotype"/>
+    <children xmi:id="_W5oYazc2Ed23kJDtgwLZvA" type="Name"/>
+    <children xmi:id="_W5oYbDc2Ed23kJDtgwLZvA" type="Parent"/>
+    <children xmi:id="_W5oYbTc2Ed23kJDtgwLZvA" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5oYbjc2Ed23kJDtgwLZvA"/>
+    </children>
+    <children xmi:id="_W5oYbzc2Ed23kJDtgwLZvA" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5oYcDc2Ed23kJDtgwLZvA" filtering="Manual">
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getFieldName%5Esign=()QString;%5Bjsrctype%5Ename=FieldSearchCriterion%5Bjcu%5Ename=FieldSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getComparison%5Esign=()QComparison%3CQT;%3E;%5Bjsrctype%5Ename=FieldSearchCriterion%5Bjcu%5Ename=FieldSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getValue%5Esign=()QT;%5Bjsrctype%5Ename=FieldSearchCriterion%5Bjcu%5Ename=FieldSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=hashCode%5Esign=()I%5Bjsrctype%5Ename=FieldSearchCriterion%5Bjcu%5Ename=FieldSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=equals%5Esign=(QObject;)Z%5Bjsrctype%5Ename=FieldSearchCriterion%5Bjcu%5Ename=FieldSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=toQuery%5Esign=(QTemplateManager;)QString;%5Bjsrctype%5Ename=FieldSearchCriterion%5Bjcu%5Ename=FieldSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+      </styles>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_W5oYZjc2Ed23kJDtgwLZvA" showListSignature="true" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=FieldSearchCriterion%5Bjcu%5Ename=FieldSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_W5oYZzc2Ed23kJDtgwLZvA" x="25043" y="9510"/>
+  </children>
+  <children xmi:id="_W5oYcTc2Ed23kJDtgwLZvA">
+    <children xmi:id="_W5oYdDc2Ed23kJDtgwLZvA" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_W5oYdTc2Ed23kJDtgwLZvA" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_W5oYdjc2Ed23kJDtgwLZvA" type="Stereotype"/>
+    <children xmi:id="_W5oYdzc2Ed23kJDtgwLZvA" type="Name"/>
+    <children xmi:id="_W5oYeDc2Ed23kJDtgwLZvA" type="Parent"/>
+    <children xmi:id="_W5oYeTc2Ed23kJDtgwLZvA" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5oYejc2Ed23kJDtgwLZvA"/>
+    </children>
+    <children xmi:id="_W5oYezc2Ed23kJDtgwLZvA" visible="false" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5oYfDc2Ed23kJDtgwLZvA" filtering="Manual">
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=toQuery%5Esign=(QTemplateManager;)QString;%5Bjsrctype%5Ename=TautologySearchCriterion%5Bjcu%5Ename=TautologySearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=hashCode%5Esign=()I%5Bjsrctype%5Ename=TautologySearchCriterion%5Bjcu%5Ename=TautologySearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=equals%5Esign=(QObject;)Z%5Bjsrctype%5Ename=TautologySearchCriterion%5Bjcu%5Ename=TautologySearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+      </styles>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_W5oYcjc2Ed23kJDtgwLZvA" showListSignature="true" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=TautologySearchCriterion%5Bjcu%5Ename=TautologySearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_W5oYczc2Ed23kJDtgwLZvA" x="13631" y="10461"/>
+  </children>
+  <children xmi:id="_W5oYfTc2Ed23kJDtgwLZvA">
+    <children xmi:id="_W5oYgDc2Ed23kJDtgwLZvA" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_W5oYgTc2Ed23kJDtgwLZvA" width="530" height="530"/>
+    </children>
+    <children xmi:id="_W5oYgjc2Ed23kJDtgwLZvA" type="Stereotype"/>
+    <children xmi:id="_W5oYgzc2Ed23kJDtgwLZvA" type="Kind"/>
+    <children xmi:id="_W5oYhDc2Ed23kJDtgwLZvA" type="Name"/>
+    <children xmi:id="_W5oYhTc2Ed23kJDtgwLZvA" type="Parent"/>
+    <children xmi:id="_W5oYhjc2Ed23kJDtgwLZvA" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5oYhzc2Ed23kJDtgwLZvA"/>
+    </children>
+    <children xmi:id="_W5oYiDc2Ed23kJDtgwLZvA" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5oYiTc2Ed23kJDtgwLZvA" filtering="Automatic" filteringKeys="private,package,protected"/>
+    </children>
+    <children xmi:id="_W5oYijc2Ed23kJDtgwLZvA" visible="false" type="SignalCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_W5oYizc2Ed23kJDtgwLZvA"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_W5oYfjc2Ed23kJDtgwLZvA" showListSignature="true" showStereotype="Label" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=SearchCriterion%5Bjcu%5Ename=SearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_W5oYfzc2Ed23kJDtgwLZvA" x="18703" y="12046"/>
+  </children>
+  <styles xmi:type="umlnotation:UMLDiagramStyle" xmi:id="_S1ChgTc2Ed23kJDtgwLZvA"/>
+  <element xsi:nil="true"/>
+  <edges xmi:id="_XDxLxDc2Ed23kJDtgwLZvA" source="_W5fOZzc2Ed23kJDtgwLZvA" target="_W5oYfTc2Ed23kJDtgwLZvA">
+    <children xmi:id="_XD6VsDc2Ed23kJDtgwLZvA" type="NameLabel">
+      <children xmi:id="_XD6Vsjc2Ed23kJDtgwLZvA" type="Stereotype"/>
+      <children xmi:id="_XD6Vszc2Ed23kJDtgwLZvA" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XD6VsTc2Ed23kJDtgwLZvA" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_XDxLxTc2Ed23kJDtgwLZvA" showStereotype="Text"/>
+    <element xmi:type="uml:InterfaceRealization" href="mmi:///#jimpl%5Bjsrctype%5Ename=IsEmptySearchCriterion%5Bjcu%5Ename=IsEmptySearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=SearchCriterion%5Bjcu%5Ename=SearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.InterfaceRealization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_XDxLxjc2Ed23kJDtgwLZvA" points="[-13, -2461, -13, 2514]$[-13, -4049, -13, 926]"/>
+  </edges>
+  <edges xmi:id="_XD6VvDc2Ed23kJDtgwLZvA" source="_W5fOczc2Ed23kJDtgwLZvA" target="_W5oYfTc2Ed23kJDtgwLZvA">
+    <children xmi:id="_XD6Vvzc2Ed23kJDtgwLZvA" type="NameLabel">
+      <children xmi:id="_XD6VwTc2Ed23kJDtgwLZvA" type="Stereotype"/>
+      <children xmi:id="_XD6Vwjc2Ed23kJDtgwLZvA" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XD6VwDc2Ed23kJDtgwLZvA" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_XD6VvTc2Ed23kJDtgwLZvA" showStereotype="Text"/>
+    <element xmi:type="uml:InterfaceRealization" href="mmi:///#jimpl%5Bjsrctype%5Ename=NegativeSearchCriterion%5Bjcu%5Ename=NegativeSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=SearchCriterion%5Bjcu%5Ename=SearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.InterfaceRealization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_XD6Vvjc2Ed23kJDtgwLZvA" points="[-1, -2461, 7236, 2514]$[-7250, -4049, -13, 926]"/>
+  </edges>
+  <edges xmi:id="_XD6Vwzc2Ed23kJDtgwLZvA" source="_W5oYWTc2Ed23kJDtgwLZvA" target="_W5oYfTc2Ed23kJDtgwLZvA">
+    <children xmi:id="_XD6Vxjc2Ed23kJDtgwLZvA" type="NameLabel">
+      <children xmi:id="_XD6VyDc2Ed23kJDtgwLZvA" type="Stereotype"/>
+      <children xmi:id="_XD6VyTc2Ed23kJDtgwLZvA" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XD6Vxzc2Ed23kJDtgwLZvA" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_XD6VxDc2Ed23kJDtgwLZvA" showStereotype="Text"/>
+    <element xmi:type="uml:InterfaceRealization" href="mmi:///#jimpl%5Bjsrctype%5Ename=LogicalSearchCriterion%5Bjcu%5Ename=LogicalSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=SearchCriterion%5Bjcu%5Ename=SearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.InterfaceRealization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_XD6VxTc2Ed23kJDtgwLZvA" points="[-13, -2461, -6998, 2514]$[6972, -4049, -13, 926]"/>
+  </edges>
+  <edges xmi:id="_XD6V2jc2Ed23kJDtgwLZvA" source="_W5oYZTc2Ed23kJDtgwLZvA" target="_W5oYfTc2Ed23kJDtgwLZvA">
+    <children xmi:id="_XD6V3Tc2Ed23kJDtgwLZvA" type="NameLabel">
+      <children xmi:id="_XD6V3zc2Ed23kJDtgwLZvA" type="Stereotype"/>
+      <children xmi:id="_XD6V4Dc2Ed23kJDtgwLZvA" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XD6V3jc2Ed23kJDtgwLZvA" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_XD6V2zc2Ed23kJDtgwLZvA" showStereotype="Text"/>
+    <element xmi:type="uml:InterfaceRealization" href="mmi:///#jimpl%5Bjsrctype%5Ename=FieldSearchCriterion%5Bjcu%5Ename=FieldSearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=SearchCriterion%5Bjcu%5Ename=SearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.InterfaceRealization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_XD6V3Dc2Ed23kJDtgwLZvA" points="[-1, 3267, -2342, -2514]$[2328, 4855, -13, -926]"/>
+  </edges>
+  <edges xmi:id="_XD6V8Tc2Ed23kJDtgwLZvA" source="_W5oYcTc2Ed23kJDtgwLZvA" target="_W5oYfTc2Ed23kJDtgwLZvA">
+    <children xmi:id="_XD6V9Dc2Ed23kJDtgwLZvA" type="NameLabel">
+      <children xmi:id="_XD6V9jc2Ed23kJDtgwLZvA" type="Stereotype"/>
+      <children xmi:id="_XD6V9zc2Ed23kJDtgwLZvA" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XD6V9Tc2Ed23kJDtgwLZvA" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_XD6V8jc2Ed23kJDtgwLZvA" showStereotype="Text"/>
+    <element xmi:type="uml:InterfaceRealization" href="mmi:///#jimpl%5Bjsrctype%5Ename=TautologySearchCriterion%5Bjcu%5Ename=TautologySearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=SearchCriterion%5Bjcu%5Ename=SearchCriterion.java%5Bjpack%5Ename=de.ars.daojones.runtime.search%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.InterfaceRealization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_XD6V8zc2Ed23kJDtgwLZvA" points="[-502, -1164, 2223, 5266]$[-2407, -5662, 318, 768]"/>
+  </edges>
+</notation:Diagram>

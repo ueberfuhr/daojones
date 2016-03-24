@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="de.ars.daojones.eclipse.connectionfactories">
+      <factory
+            class="de.ars.daojones.drivers.notes.NotesConnectionFactory"
+            description="Builds a DaoJones Connection for accessing a local or remote Notes database."
+            id="de.ars.daojones.drivers.notes.connectionfactory"
+            name="Notes Connection Factory">
+      </factory>
+   </extension>
+
+</plugin>

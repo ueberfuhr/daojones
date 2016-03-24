@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Create Task">
+   <intro>
+      <description>
+         In this step you create a Task document in the database.
+      </description>
+   </intro>
+   <item
+         title="Create a Task instance.">
+      <description>
+         Insert the following lines into your main method between the try-finally block:<br/>
+---------------------------------------------------------<br/>
+// Get connection for Task handling<br/>
+final Connection&lt;Task&gt; con = Connection.get(ctx, Task.class);<br/>
+// Create Task instance<br/>
+final Task task = con.create();<br/>
+task.setSubject(&quot;DaoJones Hello World!&quot;);<br/>
+con.update(task);<br/>
+      </description>
+   </item>
+   <item
+         title="Test application">
+      <description>
+         Before you can run your application, you have to set up a launch configuration. The DaoJones runtime that is in your Build Path does not include the Notes driver implementation and the Notes API. You have to include these libraries manually into the classpath.<br/>
+<br/>
+Right-click on the <b>Main</b> class and select <b>Run As...</b> &gt; <b>Run Configurations...</b>. Switch to the <b>ClassPath</b> tab and add the Notes driver JAR that is in your Eclipse plug-ins directory. (de.ars.daojones.drivers.notes). Also add the Notes.jar that is shipped with your local Notes client.<br/>
+Start your application and look into your Notes client if a Task was created successfully.
+      </description>
+   </item>
+</cheatsheet>

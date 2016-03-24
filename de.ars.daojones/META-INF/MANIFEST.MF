@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DaoJones Runtime
+Bundle-SymbolicName: de.ars.daojones.runtime;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Ralf Zahn (ARS Computer & Consulting GmbH)
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: de.ars.daojones,
+ de.ars.daojones.annotations,
+ de.ars.daojones.annotations.model,
+ de.ars.daojones.beans.model,
+ de.ars.daojones.beans.model.impl,
+ de.ars.daojones.beans.model.impl.reflect,
+ de.ars.daojones.cache,
+ de.ars.daojones.cli,
+ de.ars.daojones.connections,
+ de.ars.daojones.connections.model,
+ de.ars.daojones.connections.model.io,
+ de.ars.daojones.events,
+ de.ars.daojones.runtime,
+ de.ars.daojones.runtime.query,
+ de.ars.daojones.runtime.search
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.4.0"
+Bundle-Activator: de.ars.daojones.internal.Activator
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: lib/jaxb-api-2.0.jar,
+ lib/org/apache/velocity/1.6.3/velocity-1.6.3.jar,
+ lib/org/jboss/javassist/3.11/javassist-3.11.jar
+

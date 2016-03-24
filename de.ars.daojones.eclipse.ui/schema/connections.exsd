@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="de.ars.daojones.eclipse.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="de.ars.daojones.eclipse.ui" id="connections" name="Connections Configuration Point"/>
+      </appinfo>
+      <documentation>
+         Connections Configuration
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice minOccurs="1" maxOccurs="unbounded">
+            <element ref="connection"/>
+            <element ref="connectionfile"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connection">
+      <annotation>
+         <documentation>
+            A Connection to a database.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="connectionpool" minOccurs="0" maxOccurs="1"/>
+            <element ref="cache" minOccurs="0" maxOccurs="1"/>
+            <element ref="limitation" minOccurs="0" maxOccurs="1"/>
+            <element ref="forClass" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  Only a name for showing data in the UI.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  Just for showing information in the UI.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="default" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Use this flag to indicate whether a connection is the default one or not. You should not mark more than one connection as default because there can only one connection registered in DaoJones.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="factory" type="string" use="required">
+            <annotation>
+               <documentation>
+                  An implementation of a ConnectionFactory that is able to create the connection instance.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="de.ars.daojones.eclipse.ui.connectionfactories/factory/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="host" type="string">
+            <annotation>
+               <documentation>
+                  The host of the database server. If you do not specify a host, the database is local.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="credential" type="string">
+            <annotation>
+               <documentation>
+                  A credential for the connection. If you do not specify a credential, you can only access to unsecured databases.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="de.ars.daojones.eclipse.ui.connectioncredentials/credential/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="database" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The (file) name of the database.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connectionpool">
+      <complexType>
+         <attribute name="minCount" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  The minimum count of connections that should be used for connection pooling.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="maxCount" type="string" use="default" value="10">
+            <annotation>
+               <documentation>
+                  The maximum count of connections that should be used for connection pooling.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="cache">
+      <annotation>
+         <documentation>
+            A cache that should be used for the connection.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="interval" type="string" use="default" value="-1">
+            <annotation>
+               <documentation>
+                  The time that an element loaded from the database should be valid in the cache. Use a number &lt;=0 to avoid expiration of cached elements.
+Use w for weeks, d for days, h for hours, m for minutes, s for seconds, ms for milliseconds.
+If you do not set a time unit, the value is interpreted as seconds.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="limitation">
+      <annotation>
+         <documentation>
+            A limitation to the conneciton
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="maxResults" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  The maximum number of elements that should be read from a query. Use this for testing purposes or for connections that should only give one result, e.g. a configuration connection.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="forClass">
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A Dao class that can be handled by this connection.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":de.ars.daojones.runtime.Dao"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connectionfile">
+      <complexType>
+         <attribute name="filename" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The XML file containing a connection configuration.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         1.0
+      </documentation>
+   </annotation>
+
+
+
+
+
+</schema>

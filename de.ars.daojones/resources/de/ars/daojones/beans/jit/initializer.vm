@@ -1,0 +1,39 @@
+#set($strategy = $property.Strategy)
+#if($util.isEmpty($strategy))
+  #set($strategy = $bean.Strategy)
+#end
+{
+#foreach($property in $bean.Properties)
+  #set($nonGenericType = $util.toNonGenericType($property.Type))
+  #set($objectType = $util.toObjectType($nonGenericType))
+  #if($strategy == "IMMEDIATELY")
+    try {
+      final String columnName = "$property.Column.Value";
+      #if($util.isEmpty($property.Column.Selector))
+        final de.ars.daojones.annotations.ColumnSelector selector = null;
+      #else
+        final de.ars.daojones.annotations.ColumnSelector selector = new ${property.Column.Selector.Name}();
+      #end
+			      delegate.setImmediatelyField(
+			        columnName, 
+			        selector,
+			        #{if}($util.isEmpty($property.Transformer))${objectType}.class#{else}(Class<?>)${property.Transformer}.class.getMethod("getDatabaseType").invoke(${property.Transformer}.class.newInstance())#{end});
+    } catch (java.lang.Throwable t) {
+			      java.util.logging.Logger.getLogger("$util.loggerName(${bean})").log(
+			        java.util.logging.Level.WARNING, 
+			        "Unable to register property \"${property.Name}\" as an immediately loaded property!", 
+			        t
+			      );
+		    }
+  #end
+#end
+    try {
+      this.delegate.reloadFields();
+    } catch (de.ars.daojones.FieldAccessException e) {
+      java.util.logging.Logger.getLogger("$util.loggerName(${bean})").log(
+        java.util.logging.Level.WARNING, 
+        "Unable to load fields immediately for bean of type \"${bean.PackageName}.$bean.Name\"!",
+        e
+      );
+    }
+}

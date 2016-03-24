@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Configure DaoJones connections">
+   <intro>
+      <description>
+         <b>Body</b>
+      </description>
+   </intro>
+   <item
+         title="Create configuration file">
+      <description>
+         Select the &quot;src&quot; source folder of the project.Then right-click and select <b>New</b> &gt; <b>Other...</b>. Select <b>DaoJones</b> &gt; <b>DaoJonesConnection Configuration File</b> and click <b>Next</b>.<br/>
+Enter &quot;taskexample&quot; in the <b>File name</b> input field and click <b>Finish</b>. The Connections Editor appears.<br/>
+<br/>
+In the Connections Editor click the &quot;New Connection&quot; button on the right-top of the connections section. In the details pane, enter the following values:<br/>
+ - <b>Title</b>: Email Database<br/>
+ - <b>Use this connection per default</b>: true<br/>
+ - <b>Vendor</b>: Notes Connection Factory<br/>
+ - <b>Database</b>: &lt;The path to your local mail database&gt;<br/>
+Because you use the local Notes client, you do not have to specify host and credentials.
+Click <b>Test connection from this machine</b> to verify your input.<br/>
+Save and close the file.
+      </description>
+   </item>
+   <item
+         title="Create Main class">
+      <description>
+         Create a new Java class <b>de.ars.taskexample.Main</b> and copy the following main method into your class:<br/>
+----------------------------------------------------<br/>
+	public static void main(String[] args) throws ConnectionBuildException,<br/>
+			IOException, DataAccessException {<br/>
+		// Use single context<br/>
+		final ApplicationContext ctx = ApplicationContext.getDefault();<br/>
+		// Load XML configuration<br/>
+		final IConnectionConfigurationBundle bundle = new<br/> XMLConfigurationBundle(<br/>
+				&quot;/taskexample&quot;, Main.class);<br/>
+		ctx.createConnections(bundle.getConfiguration());<br/>
+		try {<br/>
+			// Add the following access code here<br/>
+<br/>
+		} finally {<br/>
+			ctx.destroy();<br/>
+		}<br/>
+	}<br/>
+      </description>
+   </item>
+</cheatsheet>

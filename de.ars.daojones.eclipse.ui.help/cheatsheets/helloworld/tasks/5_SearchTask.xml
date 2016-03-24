@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Search task">
+   <intro>
+      <description>
+         In this exercise, you will learn how to execute queries to find documents in the database.
+      </description>
+   </intro>
+   <item
+         skip="true"
+         title="Comment the Task creating lines">
+      <description>
+         To avoid creating multiple Task documents during testing, comment the respective lines in the main method. Leave the connection fetching line.
+      </description>
+   </item>
+   <item
+         title="Execute the query">
+      <description>
+         DaoJones provides a search API to find documents in the database. You do not need to create any formula language.<br/>
+Copy the following lines into the try-catch block within the main method:<br/>
+-----------------------------------<br/>
+final FieldSearchCriterion&lt;String&gt; sc = new FieldSearchCriterion&lt;String&gt;(&quot;subject&quot;, StringComparison.STARTSWITH_IGNORECASE, &quot;DaoJones&quot;);<br/>
+final Task task = con.find(sc);<br/>
+System.out.println(task.getSubject());
+      </description>
+   </item>
+   <item
+         title="Test the application">
+      <description>
+         Run the launch configuration that you set up before. Find the subject of the task in the console.
+      </description>
+   </item>
+</cheatsheet>

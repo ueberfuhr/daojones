@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="de.ars.daojones.eclipse.sdk"
+      label="DaoJones Development Kit for Eclipse JDT"
+      version="0.9.0.qualifier"
+      provider-name="Ralf Zahn (ARS Computer &amp; Consulting GmbH)"
+      plugin="de.ars.daojones.eclipse.jdt.ui">
+
+   <description>
+      This feature contains plug-ins that are necessary to create applications using DaoJones. It contains a builder creating bean code and some tools supporting developers creating DaoJones artifacts.
+   </description>
+
+   <copyright>
+      ARS Computer &amp; Consulting GmbH
+   </copyright>
+
+   <license>
+      You are not allowed to use this product without consent of ARS Computer &amp; Consulting GmbH Munich/Germany.
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.core.expressions" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="de.ars.daojones.runtime" version="0.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="de.ars.daojones.eclipse" version="0.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="de.ars.daojones.sdk.codegen" version="0.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.text" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="de.ars.equinox.utilities" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="de.ars.equinox.utilities.rcp" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.forms" version="3.3.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.console"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.jface.text" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.ui" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="de.ars.daojones.eclipse.ui" version="0.9.0" match="greaterOrEqual"/>
+      <import plugin="de.ars.daojones.eclipse.jdt" version="0.9.0" match="greaterOrEqual"/>
+      <import plugin="de.ars.equinox.utilities.ui" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.eclipse.ui.ide" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.cheatsheets"/>
+      <import plugin="org.eclipse.core.databinding" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.databinding.beans" version="1.1.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="de.ars.daojones.eclipse"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.daojones.eclipse.jdt"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.daojones.eclipse.jdt.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.daojones.eclipse.sdk.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.daojones.eclipse.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.daojones.eclipse.ui.help"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.daojones.sdk.codegen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.equinox.utilities"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.equinox.utilities.rcp"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.equinox.utilities.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.daojones.sdk.codegen.velocity"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.daojones.drivers.notes"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="de.ars.daojones.eclipse.resources"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

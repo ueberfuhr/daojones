@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.ars.daojones</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<name>DaoJones Cache Implementation for WebSphere DynaCache
+	</name>
+	<version>6.1.0</version>
+	<packaging>${packaging}</packaging>
+	<description>DaoJones Cache Implementation for WebSphere
+		DynaCache</description>
+	<parent>
+		<artifactId>JavaEclipse</artifactId>
+		<groupId>de.ars.utilities.mvn</groupId>
+		<version>5</version>
+	</parent>
+	<organization>
+		<name>ARS Computer und Consulting GmbH</name>
+		<url>http://www.ars.de</url>
+	</organization>
+	<build>
+		<finalName>${project.artifactId}-${project.version}.${buildNumber}
+		</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin
+				</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>noosgi</id>
+			<build>
+				<finalName>${project.artifactId}-${project.version}</finalName>
+			</build>
+			<dependencies>
+				<dependency>
+					<groupId>de.ars.daojones</groupId>
+					<artifactId>daojones-runtime</artifactId>
+					<version>1.0.0</version>
+				</dependency>
+			</dependencies>
+			<properties>
+				<packaging>jar</packaging>
+				<artifactId>daojones-dynacache</artifactId>
+			</properties>
+		</profile>
+	</profiles>
+	<dependencies>
+		<dependency>
+			<groupId>com.ibm.ws</groupId>
+			<artifactId>com.ibm.ws.runtime</artifactId>
+			<version>6.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<properties>
+		<packaging>eclipse-plugin</packaging>
+		<artifactId>de.ars.daojones.cache.com.ibm.ws.dynacache
+		</artifactId>
+	</properties>
+</project>

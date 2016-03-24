@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Velocity Implementation of the DaoJones Bean Generator
+Bundle-SymbolicName: de.ars.daojones.sdk.codegen.velocity
+Bundle-Version: 0.9.0.qualifier
+Bundle-Vendor: ARS Computer und Consulting GmbH
+Fragment-Host: de.ars.daojones.sdk.codegen;bundle-version="0.9.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/velocity-1.6.2-dep.jar,
+ .

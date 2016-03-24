@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.ars.de/daojones/connections/" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.ars.de/daojones/connections/">
+
+	<element name="configuration">
+		<complexType>
+            <annotation>
+            	<documentation>A connection that handles a set of object types. Including caching and connection pooling.</documentation>
+            </annotation>
+            <sequence>
+				<!-- IMPORT DECLARATIONS -->
+				<element name="import" minOccurs="0" maxOccurs="unbounded">
+                    <annotation>
+                    	<documentation>Use this to import elements of another connection configuration. Local elements will overwrite the imported ones.</documentation>
+                    </annotation>
+                    <complexType>
+						<attribute name="file" type="anyURI"/>
+					</complexType>
+				</element>
+				<!-- CREDENTIALS -->
+				<element name="credential" minOccurs="0" maxOccurs="unbounded" type="tns:Credential">
+                    <annotation>
+                    	<documentation>Globally declared credential that can be referenced by connections.</documentation>
+                    </annotation>
+				</element>
+				<!-- CONNECTIONS -->
+				<element name="connection" minOccurs="0" maxOccurs="unbounded">
+                    <annotation>
+                    	<documentation>A connection to a database with special services like connection pooling or caching.</documentation>
+                    </annotation>
+                    <complexType>
+                    	<sequence>
+                    		<element name="description" type="string" minOccurs="0" maxOccurs="1"></element>
+                            <element name="host" minOccurs="0" maxOccurs="1" nillable="false" type="string">
+                    			<annotation>
+                    				<documentation>
+                    					The name or IP address of the
+                    					host where to find the database.
+                    					Do not specify a host for local
+                    					database access.
+                    				</documentation>
+                    			</annotation>
+                    		</element>
+                            <element name="database" minOccurs="1"
+                    			maxOccurs="1" nillable="false" type="string">
+                    			<annotation>
+                    				<documentation>
+                    					The database that this
+                    					connection should access with
+                    					the given credentials.
+                    				</documentation>
+                    			</annotation>
+                    		</element>                    		<choice minOccurs="0" maxOccurs="1">
+                                <element name="credential" minOccurs="1" maxOccurs="1" type="tns:Credential">
+                    				<annotation>
+                    					<documentation>
+                    						A credential for secured
+                    						databases.
+                    					</documentation>
+                    				</annotation>
+                    			</element>
+                                <element name="credentialref" type="string" minOccurs="1" maxOccurs="1">
+                    			</element>
+                            </choice>
+                            <element name="forClass" minOccurs="0"
+                    			maxOccurs="unbounded" type="string">
+                    			<annotation>
+                    				<documentation>
+                    					A set of java class names of the
+                    					objects that this connection
+                    					should handle. The connection is
+                    					also responsible for the
+                    					subclasses.
+                    				</documentation>
+                    			</annotation>
+                    		</element>
+                    		<element name="connectionpool"
+                    			type="tns:Interval" minOccurs="0"
+                    			maxOccurs="1">
+                    			<annotation>
+                    				<documentation>
+                    					Specify a connection pool to
+                    					limit the count of connection
+                    					instances.
+                    				</documentation>
+                    			</annotation>
+                    		</element>
+                    	</sequence>
+                    	<attribute name="name" type="string"
+                    		use="required">
+                    		<annotation>
+                    			<documentation>
+                    				The name of the connection used in
+                    				the UI.
+                    			</documentation>
+                    		</annotation>
+                    	</attribute>
+                        <attribute name="factory" use="required" type="QName">
+                    		<annotation>
+                    			<documentation>
+                    				The name of the java class that is
+                    				responsible to create a connection
+                    				instance. The class must provide a
+                    				default constructor and must
+                    				implement the interface
+                    				'de.ars.daojones.connections.ConnectionFactory'.
+                    			</documentation>
+                    		</annotation>
+                    	</attribute>
+                        <attribute name="default" type="boolean" default="false" use="optional">
+                    		<annotation>
+                    			<documentation>
+                    				A flag indicating that the
+                    				connection should be used when
+                    				another connection for a special
+                    				class could not be found.
+                    			</documentation>
+                    		</annotation>
+                    	</attribute>
+                        <attribute name="cached" type="boolean"
+                    		use="optional" default="false">
+                    		<annotation>
+                    			<documentation>
+                    				A flag indicating, if a cache should
+                    				be used for the object that the
+                    				connection handles.
+                    			</documentation>
+                    		</annotation>
+                    	</attribute>
+                    	<attribute name="cacheExpiration"
+                    		type="tns:Natural" use="optional">
+                    		<annotation>
+                    			<documentation>
+                    				The count of milliseconds after a
+                    				value expires in the cache. If the
+                    				entry in the cache is older than the
+                    				expiration period allows, it is
+                    				refreshed.
+                    			</documentation>
+                    		</annotation>
+                    	</attribute>
+                    	<attribute name="maxResults" type="tns:Natural"
+                    		use="optional" default="2147483647">
+                    		<annotation>
+                    			<documentation>The maximum count of results that this connection returns. You can use this for testing purposes.
+The maximum value that you can specify is 2147483647.
+                    			</documentation>
+                    		</annotation>
+                    	</attribute>
+
+                    </complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<complexType name="Credential">
+		<sequence>
+			<element name="username" type="string" minOccurs="1"
+				maxOccurs="1">
+				<annotation>
+					<documentation>The username.</documentation>
+				</annotation>
+			</element>
+			<element name="password" type="string" minOccurs="1"
+				maxOccurs="1">
+				<annotation>
+					<documentation>The password.</documentation>
+				</annotation>
+			</element>
+
+		</sequence>
+		<attribute name="type" type="string" use="required"
+			fixed="UserPassword">
+			<annotation>
+				<documentation>
+					This is used for extension coming later. At the
+					moment, you have to specify 'UserPassword'.
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="id" type="string" use="optional">
+			<annotation>
+				<documentation>Use the id in globally defined credentials that they can be referred in connection definitions.</documentation>
+			</annotation></attribute>
+	</complexType>
+
+	<complexType name="Interval">
+		<attribute name="minimum" type="tns:Natural" use="optional" default="1">
+			<annotation>
+				<documentation>The minimum count.</documentation>
+			</annotation></attribute>
+		<attribute name="maximum" type="tns:Natural" use="optional" default="10">
+			<annotation>
+				<documentation>The maximum count.</documentation>
+			</annotation></attribute>
+	</complexType>
+
+	<simpleType name="Natural">
+		<restriction base="int">
+
+			<minInclusive value="0"></minInclusive>
+
+		</restriction>
+	</simpleType>
+
+</schema>

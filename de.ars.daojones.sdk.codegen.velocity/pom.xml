@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.ars.daojones</groupId>
+	<artifactId>de.ars.daojones.sdk.codegen.velocity</artifactId>
+	<version>0.9.0.qualifier</version>
+	<packaging>eclipse-plugin</packaging>
+	<build>
+		<resources>
+			<resource>
+				<directory>templates</directory>
+			</resource>
+		</resources>
+	</build>
+</project>

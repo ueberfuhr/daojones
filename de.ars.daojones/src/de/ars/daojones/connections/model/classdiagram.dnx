@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.0/notation" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.2/Umlnotation" xmi:id="_lyu4kFvrEd2uM96oLkrgxA" type="Class" name="classdiagram.dnx">
+  <children xmi:id="_nDy30FvrEd2uM96oLkrgxA">
+    <children xmi:id="_nEPjwFvrEd2uM96oLkrgxA" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_nEPjwVvrEd2uM96oLkrgxA" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_nEPjwlvrEd2uM96oLkrgxA" type="Stereotype"/>
+    <children xmi:id="_nEPjw1vrEd2uM96oLkrgxA" type="Name"/>
+    <children xmi:id="_nEPjxFvrEd2uM96oLkrgxA" type="Parent"/>
+    <children xmi:id="_nEPjxVvrEd2uM96oLkrgxA" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_nEPjxlvrEd2uM96oLkrgxA" filtering="Manual">
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_NAME%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_DESCRIPTION%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_FACTORY%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_HOST%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_DATABASE%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_CREDENTIAL%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_CACHED%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_DEFAULT%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_CACHEINTERVAL%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_MINCONNECTIONS%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_MAXCONNECTIONS%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_MAXRESULTS%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=DEFAULT_FORCLASSES%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+      </styles>
+    </children>
+    <children xmi:id="_nEPjx1vrEd2uM96oLkrgxA" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_nEPjyFvrEd2uM96oLkrgxA" filtering="Manual">
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=Connection%5Esign=(QConnection;)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getName%5Esign=()QString;%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setName%5Esign=(QString;)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getDescription%5Esign=()QString;%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setDescription%5Esign=(QString;)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getFactoryClass%5Esign=()QString;%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setFactoryClass%5Esign=(QString;)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getHost%5Esign=()QString;%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setHost%5Esign=(QString;)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getDatabase%5Esign=()QString;%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setDatabase%5Esign=(QString;)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getCredential%5Esign=()QCredential;%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setCredential%5Esign=(QCredential;)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=isDefault%5Esign=()Z%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setDefault%5Esign=(Z)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=isCached%5Esign=()Z%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setCached%5Esign=(Z)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getCacheInterval%5Esign=()J%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setCacheInterval%5Esign=(J)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getMinConnections%5Esign=()I%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setMinConnections%5Esign=(I)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getMaxConnections%5Esign=()I%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setMaxConnections%5Esign=(I)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getMaxResults%5Esign=()I%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setMaxResults%5Esign=(I)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getForClasses%5Esign=()QSet%3CQString;%3E;%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=addForClass%5Esign=(QString;)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=removeForClass%5Esign=(QString;)V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=clearForClasses%5Esign=()V%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+      </styles>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_nDy30VvrEd2uM96oLkrgxA" showListSignature="true" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nDy30lvrEd2uM96oLkrgxA" x="8876" y="10144"/>
+  </children>
+  <children xmi:id="_nhdEMFvrEd2uM96oLkrgxA">
+    <children xmi:id="_nhdEM1vrEd2uM96oLkrgxA" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_nhdENFvrEd2uM96oLkrgxA" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_nhdENVvrEd2uM96oLkrgxA" type="Stereotype"/>
+    <children xmi:id="_nhdENlvrEd2uM96oLkrgxA" type="Name"/>
+    <children xmi:id="_nhdEN1vrEd2uM96oLkrgxA" type="Parent"/>
+    <children xmi:id="_nhdEOFvrEd2uM96oLkrgxA" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_nhdEOVvrEd2uM96oLkrgxA" filtering="Manual">
+        <filteredObjects xmi:type="uml:Property" href="mmi:///#jfield%5Ename=serialVersionUID%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Property"/>
+      </styles>
+    </children>
+    <children xmi:id="_nhdEOlvrEd2uM96oLkrgxA" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_nhdEO1vrEd2uM96oLkrgxA" filtering="Manual" sorting="Manual">
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=equals%5Esign=(QObject;)Z%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=hashCode%5Esign=()I%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=add%5Esign=(IQConnection;)V%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <sortedObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=clear%5Esign=()V%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <sortedObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=isEmpty%5Esign=()Z%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <sortedObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=size%5Esign=()I%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <sortedObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=add%5Esign=(QConnection;)Z%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <sortedObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=get%5Esign=(I)QConnection;%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <sortedObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=iterator%5Esign=()QIterator%3CQConnection;%3E;%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <sortedObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=remove%5Esign=(QObject;)Z%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <sortedObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=indexOf%5Esign=(QObject;)I%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <sortedObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=equals%5Esign=(QObject;)Z%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <sortedObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=hashCode%5Esign=()I%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+        <sortedObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=add%5Esign=(IQConnection;)V%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Operation"/>
+      </styles>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_nhdEMVvrEd2uM96oLkrgxA" showListSignature="true" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nhdEMlvrEd2uM96oLkrgxA" x="9510" y="3804"/>
+  </children>
+  <children xmi:id="_oQYmwFvrEd2uM96oLkrgxA">
+    <children xmi:id="_oQYmw1vrEd2uM96oLkrgxA" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_oQYmxFvrEd2uM96oLkrgxA" width="530" height="530"/>
+    </children>
+    <children xmi:id="_oQYmxVvrEd2uM96oLkrgxA" type="Stereotype"/>
+    <children xmi:id="_oQYmxlvrEd2uM96oLkrgxA" type="Kind"/>
+    <children xmi:id="_oQYmx1vrEd2uM96oLkrgxA" type="Name"/>
+    <children xmi:id="_oQYmyFvrEd2uM96oLkrgxA" type="Parent"/>
+    <children xmi:id="_oQYmyVvrEd2uM96oLkrgxA" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_oQYmylvrEd2uM96oLkrgxA"/>
+    </children>
+    <children xmi:id="_oQiXwFvrEd2uM96oLkrgxA" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_oQiXwVvrEd2uM96oLkrgxA"/>
+    </children>
+    <children xmi:id="_oQiXwlvrEd2uM96oLkrgxA" visible="false" type="SignalCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_oQiXw1vrEd2uM96oLkrgxA"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_oQYmwVvrEd2uM96oLkrgxA" showListSignature="true" showStereotype="Label" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=ConnectionConfigurationBundle%5Bjcu%5Ename=ConnectionConfigurationBundle.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oQYmwlvrEd2uM96oLkrgxA" x="23141" y="5389"/>
+  </children>
+  <children xmi:id="_oqUJsFvrEd2uM96oLkrgxA">
+    <children xmi:id="_oqUJs1vrEd2uM96oLkrgxA" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_oqUJtFvrEd2uM96oLkrgxA" width="530" height="530"/>
+    </children>
+    <children xmi:id="_oqUJtVvrEd2uM96oLkrgxA" type="Stereotype"/>
+    <children xmi:id="_oqUJtlvrEd2uM96oLkrgxA" type="Kind"/>
+    <children xmi:id="_oqUJt1vrEd2uM96oLkrgxA" type="Name"/>
+    <children xmi:id="_oqUJuFvrEd2uM96oLkrgxA" type="Parent"/>
+    <children xmi:id="_oqUJuVvrEd2uM96oLkrgxA" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_oqUJulvrEd2uM96oLkrgxA"/>
+    </children>
+    <children xmi:id="_oqUJu1vrEd2uM96oLkrgxA" visible="false" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_oqUJvFvrEd2uM96oLkrgxA"/>
+    </children>
+    <children xmi:id="_oqUJvVvrEd2uM96oLkrgxA" visible="false" type="SignalCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_oqUJvlvrEd2uM96oLkrgxA"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_oqUJsVvrEd2uM96oLkrgxA" showListSignature="true" showStereotype="Label" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=Credential%5Bjcu%5Ename=Credential.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oqUJslvrEd2uM96oLkrgxA" x="25043" y="10144"/>
+  </children>
+  <children xmi:id="_o-SOkFvrEd2uM96oLkrgxA">
+    <children xmi:id="_o-SOk1vrEd2uM96oLkrgxA" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_o-SOlFvrEd2uM96oLkrgxA" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_o-SOlVvrEd2uM96oLkrgxA" type="Stereotype"/>
+    <children xmi:id="_o-SOllvrEd2uM96oLkrgxA" type="Name"/>
+    <children xmi:id="_o-SOl1vrEd2uM96oLkrgxA" type="Parent"/>
+    <children xmi:id="_o-SOmFvrEd2uM96oLkrgxA" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_o-SOmVvrEd2uM96oLkrgxA"/>
+    </children>
+    <children xmi:id="_o-SOmlvrEd2uM96oLkrgxA" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_o-SOm1vrEd2uM96oLkrgxA"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_o-SOkVvrEd2uM96oLkrgxA" showListSignature="true" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=UserPasswordCredential%5Bjcu%5Ename=UserPasswordCredential.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_o-SOklvrEd2uM96oLkrgxA" x="24092" y="12363"/>
+  </children>
+  <styles xmi:type="umlnotation:UMLDiagramStyle" xmi:id="_lyu4kVvrEd2uM96oLkrgxA"/>
+  <element xsi:nil="true"/>
+  <edges xmi:id="_nkIkwFvrEd2uM96oLkrgxA" source="_nhdEMFvrEd2uM96oLkrgxA" target="_nDy30FvrEd2uM96oLkrgxA">
+    <children xmi:id="_nkbfsFvrEd2uM96oLkrgxA" type="KindLabel">
+      <children xmi:id="_nkbfslvrEd2uM96oLkrgxA" type="Stereotype"/>
+      <children xmi:id="_nkbftFvrEd2uM96oLkrgxA" type="Kind"/>
+      <children xmi:id="_nkbfs1vrEd2uM96oLkrgxA" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nkbfsVvrEd2uM96oLkrgxA" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_nkIkwVvrEd2uM96oLkrgxA" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_nkIkwlvrEd2uM96oLkrgxA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_oRI0sFvrEd2uM96oLkrgxA" source="_oQYmwFvrEd2uM96oLkrgxA" target="_nhdEMFvrEd2uM96oLkrgxA">
+    <children xmi:id="_oRI0s1vrEd2uM96oLkrgxA" type="KindLabel">
+      <children xmi:id="_oRI0tVvrEd2uM96oLkrgxA" type="Stereotype"/>
+      <children xmi:id="_oRI0t1vrEd2uM96oLkrgxA" type="Kind"/>
+      <children xmi:id="_oRI0tlvrEd2uM96oLkrgxA" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oRI0tFvrEd2uM96oLkrgxA" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_oRI0sVvrEd2uM96oLkrgxA" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=ConnectionConfigurationBundle%5Bjcu%5Ename=ConnectionConfigurationBundle.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=ConnectionConfiguration%5Bjcu%5Ename=ConnectionConfiguration.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_oRI0slvrEd2uM96oLkrgxA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_oqnEoFvrEd2uM96oLkrgxA" source="_nDy30FvrEd2uM96oLkrgxA" target="_oqUJsFvrEd2uM96oLkrgxA">
+    <children xmi:id="_oqnEo1vrEd2uM96oLkrgxA" type="KindLabel">
+      <children xmi:id="_oqnEpVvrEd2uM96oLkrgxA" type="Stereotype"/>
+      <children xmi:id="_oqnEp1vrEd2uM96oLkrgxA" type="Kind"/>
+      <children xmi:id="_oqnEplvrEd2uM96oLkrgxA" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oqnEpFvrEd2uM96oLkrgxA" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_oqnEoVvrEd2uM96oLkrgxA" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=Connection%5Bjcu%5Ename=Connection.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Credential%5Bjcu%5Ename=Credential.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_oqnEolvrEd2uM96oLkrgxA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_o_ehYVvrEd2uM96oLkrgxA" source="_o-SOkFvrEd2uM96oLkrgxA" target="_oqUJsFvrEd2uM96oLkrgxA">
+    <children xmi:id="_o_ehZFvrEd2uM96oLkrgxA" type="NameLabel">
+      <children xmi:id="_o_ehZlvrEd2uM96oLkrgxA" type="Stereotype"/>
+      <children xmi:id="_o_ehZ1vrEd2uM96oLkrgxA" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_o_ehZVvrEd2uM96oLkrgxA" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_o_ehYlvrEd2uM96oLkrgxA" showStereotype="Text"/>
+    <element xmi:type="uml:InterfaceRealization" href="mmi:///#jimpl%5Bjsrctype%5Ename=UserPasswordCredential%5Bjcu%5Ename=UserPasswordCredential.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Credential%5Bjcu%5Ename=Credential.java%5Bjpack%5Ename=de.ars.daojones.connections.model%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=DaoJonesProject%5D%5D%5D%5D%5D$uml.InterfaceRealization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_o_ehY1vrEd2uM96oLkrgxA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+</notation:Diagram>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <cheatsheet
+            category="de.ars.daojones.eclipse.ui.help.category"
+            composite="true"
+            contentFile="cheatsheets/helloworld/helloworld.xml"
+            id="de.ars.daojones.eclipse.ui.help.cheatsheet1"
+            name="Create a Hello World Application">
+      </cheatsheet>
+      <category
+            id="de.ars.daojones.eclipse.ui.help.category"
+            name="DaoJones">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            description="This category contains cheat sheet specific commands."
+            id="de.ars.daojones.eclipse.ui.help.category.cs"
+            name="DaoJones CheatSheets">
+      </category>
+      <command
+            categoryId="de.ars.daojones.eclipse.ui.help.category.cs"
+            defaultHandler="de.ars.daojones.eclipse.ui.help.commands.cs.RunShellCommand"
+            description="Runs a shell command."
+            id="de.ars.daojones.eclipse.ui.help.commands.cs.common.runShellCommand"
+            name="Run Shell Command">
+         <commandParameter
+               id="command"
+               name="Command"
+               optional="false">
+         </commandParameter>
+      </command>
+      <command
+            categoryId="de.ars.daojones.eclipse.ui.help.category.cs"
+            defaultHandler="de.ars.daojones.eclipse.ui.help.commands.cs.OpenWizard"
+            description="Opens a wizard."
+            id="de.ars.daojones.eclipse.ui.help.commands.cs.common.openWizard"
+            name="Open Wizard">
+         <commandParameter
+               id="wizardId"
+               name="Wizard ID"
+               optional="false">
+         </commandParameter>
+         <commandParameter
+               id="wizardType"
+               name="Type"
+               optional="false"
+               values="de.ars.daojones.eclipse.ui.help.commands.cs.OpenWizardTypeParameterValues">
+         </commandParameter>
+      </command>
+   </extension>
+
+</plugin>

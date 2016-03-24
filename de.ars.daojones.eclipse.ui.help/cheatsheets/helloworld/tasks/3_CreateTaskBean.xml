@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Create Task bean">
+   <intro>
+      <description>
+         In this exercise, you will create the DaoJones bean to access Task documents in the database in an object-relational style.
+      </description>
+   </intro>
+   <item
+         title="Create DaoJones Bean">
+      <description>
+         Select the &quot;de.ars.taskexample&quot; package and right-click. Select <b>New</b> &gt; <b>Other...</b>. In the dialog window, select <b>DaoJones</b> &gt; <b>DaoJones Bean</b>. Enter &quot;Task&quot; in the class name field and click <b>Finish</b>.
+      </description>
+   </item>
+   <item
+         skip="true"
+         title="Map the Task bean to the Task documents in the database">
+      <description>
+         Per default, DaoJones maps the name of the class to the type of document in the database. In this case, this would be correct, because tasks in the Notes mail database have the Form=&quot;Task&quot; attribute.<br/>
+To map the Task documents explicitely, add the <b>@DataSource</b> annotation containing the value &quot;Task&quot; to the class.
+      </description>
+   </item>
+   <item
+         title="Create getters and setters">
+      <description>
+         To read and write the document fields, you have to create annotated getters and setters. In the Java editor of the Task class, set your cursor into the class, enter &quot;Dao&quot; and press CTRL+SPACE.<br/>
+Choose the &quot;DaoJones Getter And Setter&quot; opion and press ENTER. Replace the following template variables. You can switch between the variables by using TAB or SHIFT+TAB (backwards).<br/>
+ - <b>Field</b>: Subject<br/>
+ - <b>column</b>: &quot;Subject&quot;<br/>
+ - <b>type</b>: String<br/>
+      </description>
+   </item>
+</cheatsheet>

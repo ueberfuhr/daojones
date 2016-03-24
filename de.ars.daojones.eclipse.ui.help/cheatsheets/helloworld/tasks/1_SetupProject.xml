@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Set up DaoJones Project">
+   <intro>
+      <description>
+         In this step, you will create a project containing the DaoJones runtime.
+      </description>
+   </intro>
+   <item
+         title="Create Java project">
+      <description>
+         Switch to the <b>Java Perspective</b>.
+Select <b>File</b> &gt; <b>New</b> &gt; <b>Java Project</b>. Enter &quot;TaskExample&quot; in the <b>Name</b> field. Leave the default settings and click <b>Finish</b>.
+      </description>
+      <command
+            required="false"
+            serialization="de.ars.daojones.eclipse.ui.help.commands.cs.common.openWizard(wizardId=org.eclipse.jdt.ui.wizards.JavaProjectWizard,wizardType=org.eclipse.ui.newWizards)"/>
+   </item>
+   <item
+         title="Add DaoJones Project Nature">
+      <description>
+         To include the DaoJones runtime into the Build Path and create some necessary project resources, right-click on the project and select <b>DaoJones</b> &gt; <b>Enable DaoJones Project Nature</b>.<br/>
+Disable the view filter <b>DaoJones Artifacts</b> to see the changes that were made to the project.
+      </description>
+   </item>
+   <item
+         skip="true"
+         title="Configure workspace settings">
+      <description>
+         In the <b>Window</b> menu, select <b>Preferences</b>. In the dialog, search for the path <b>DaoJones</b> &gt; <b>Workbench</b>. If you do not want the DaoJones console to appear, deselect the <b>Show when Bean Builder is running</b> option.
+      </description>
+   </item>
+</cheatsheet>
