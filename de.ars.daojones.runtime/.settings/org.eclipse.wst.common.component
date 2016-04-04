@@ -7,6 +7,5 @@
         <wb-resource deploy-path="/" source-path="/src/main/scan/java"/>
         <wb-resource deploy-path="/" source-path="/src/main/scan/resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/generated"/>
-        <wb-resource deploy-path="/" source-path="/src/test/java"/>
     </wb-module>
 </project-modules>

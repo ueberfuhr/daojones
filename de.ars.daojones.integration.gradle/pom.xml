@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>de.ars.daojones.gradle.plugins</groupId>
+  <artifactId>daojones-gradle-plugin</artifactId>
+  <packaging>jar</packaging>
+
+  <name>DaoJones Gradle Plugin</name>
+
+  <parent>
+    <groupId>de.ars.daojones</groupId>
+    <artifactId>daojones-java</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+  </parent>
+
+  <repositories>
+    <repository>
+      <id>Spring Source Libs</id>
+      <url>http://repo.springsource.org/libs-release-remote/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.gradle</groupId>
+      <artifactId>gradle-core</artifactId>
+      <version>2.4</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+      <version>2.3.10</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones</groupId>
+      <artifactId>daojones-runtime</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>

@@ -313,13 +313,11 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   @Override
   public NotesDatabasePath clone() {
-    final NotesDatabasePath result = new NotesDatabasePath();
-    result.authority = authority;
-    result.database = database;
-    result.server = server;
-    result.type = type;
-    result.version = version;
-    return result;
+    try {
+      return ( NotesDatabasePath ) super.clone();
+    } catch ( final CloneNotSupportedException e ) {
+      throw new AssertionError(); // should not occur
+    }
   }
 
   /**

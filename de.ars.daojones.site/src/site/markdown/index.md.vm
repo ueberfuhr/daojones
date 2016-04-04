@@ -24,7 +24,8 @@ Download
 --------
 
   You can find the artifacts on the [Download page](./download.html "Open download page").
-  If you use Maven to manage your projects, please see the [Maven instructions](./maven.html "Open Maven instructions").
+  If you use Maven for build automation, please see the [Maven instructions](./maven.html "Open Maven instructions").
+  If you use Gradle for build automation, please see the [Gradle instructions](./gradle.html "Open Gradle instructions").
 
 [ ![Link to download page](images/download-btn-01.png "Download Page") ](./download.html "Open download page")
 

@@ -228,9 +228,12 @@ public class DocumentQueryAssistant extends AbstractQueryAssistant {
       final long timestampEnd = System.currentTimeMillis();
       DocumentQueryAssistant.logger.log( loggingLevel, "findById.time", timestampEnd - timestampBegin, null != doc ? 1
               : 0, null != doc ? doc.getItemValueString( "Form" ) : "-", null != doc ? doc.getUniversalID() : "-" );
-
-      final BeanModel beanModel = context.get( getDatasource( doc ), DataSourceType.TABLE );
-      return new DocumentDatabaseEntry( doc, beanModel, this, context.getNotesEventHandlerProvider() );
+      if ( null == doc ) {
+        return null;
+      } else {
+        final BeanModel beanModel = context.get( getDatasource( doc ), DataSourceType.TABLE );
+        return new DocumentDatabaseEntry( doc, beanModel, this, context.getNotesEventHandlerProvider() );
+      }
     } catch ( final IOException e ) {
       throw new DataAccessException( e );
     }

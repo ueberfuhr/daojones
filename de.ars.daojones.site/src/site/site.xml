@@ -24,6 +24,7 @@
     <menu name="Main" >
       <item name="Download" href="download.html" />
       <item name="Maven Instructions" href="maven.html" />
+      <item name="Gradle Instructions" href="gradle.html" />
       <item name="Ant Integration" href="ant.html" />
       <item name="User Documentation (HTML)" href="./${file-dj-docs-unzipped}/index.html" />
       <item name="User Documentation (PDF)" href="./${file-dj-docs-pdf}" />

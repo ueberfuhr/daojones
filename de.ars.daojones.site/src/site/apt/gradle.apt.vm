@@ -1,0 +1,49 @@
+ -----
+ Gradle Instructions
+ -----
+ -----
+
+Gradle Instructions
+
+  DaoJones provides a Gradle plugin to extend the build of your projects.
+  You can find it in the {{{./${project-site-repo}} Maven Repository }}. Details about dependencies to the DaoJones libraries are available on the 
+  {{{./download.html} Download Page }}.
+
+* DaoJones Gradle Plugin
+
+  Building projects that use DaoJones does not require any additional step.
+  Nevertheless, the DaoJones Gradle Plugin provides a task <scanBeanModel> that scans your project's compiled classes for bean model annotations and stores the derived model into an XML file, which is then packaged together with your application.
+  At your application's runtime, this model file is read out by the <AnnotationBeanConfigurationProvider> instead of scanning the bytecode again. The advantages:
+
+  * Your application starts up faster.
+  
+  * Classloading issues can be avoided at special runtimes with isolated classloaders (e.g. OSGi).
+  
+  * DaoJones does not require bytecode analyzing frameworks and all of their dependencies anymore at runtime.
+
+  []
+
+  
+
+[images/daojones-dependencies.png] DaoJones Dependencies
+  
+  \
+  Just put the following lines into your build.gradle file:
+  
++---------------------
+apply plugin: 'java'
+apply plugin: 'daojones'
+
+buildscript {
+	repositories {
+		/* Configure the repository that provides the DaoJones libraries. */
+		maven {
+			url = '<Link to the Maven Repository>'
+		}
+	}
+	dependencies {
+		classpath 'de.ars.daojones.gradle.plugins:daojones-gradle-plugin:2.+'
+	}
+}
+
++---------------------

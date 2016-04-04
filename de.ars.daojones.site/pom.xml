@@ -284,6 +284,22 @@
     </dependency>
 
     <dependency>
+      <groupId>de.ars.daojones.gradle.plugins</groupId>
+      <artifactId>daojones-gradle-plugin</artifactId>
+      <version>${daojones.version}</version>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.ars.daojones.gradle.plugins</groupId>
+      <artifactId>daojones-gradle-plugin</artifactId>
+      <version>${daojones.version}</version>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
       <groupId>de.ars.daojones.ant.plugins</groupId>
       <artifactId>daojones-ant-plugin</artifactId>
       <version>${daojones.version}</version>
@@ -360,7 +376,7 @@
               <goal>copy-dependencies</goal>
             </goals>
             <configuration>
-              <includeGroupIds>de.ars.daojones,de.ars.daojones.maven.plugins,de.ars.daojones.maven.archetypes</includeGroupIds>
+              <includeGroupIds>de.ars.daojones,de.ars.daojones.maven.plugins,de.ars.daojones.gradle.plugins,de.ars.daojones.maven.archetypes</includeGroupIds>
               <addParentPoms>true</addParentPoms>
               <excludeTransitive>true</excludeTransitive>
               <useRepositoryLayout>true</useRepositoryLayout>
@@ -466,8 +482,14 @@
     <file-dj-integration-web-binaries>${project.site.repo.dj}/daojones-integration-web/${daojones.version}/daojones-integration-web-${daojones.version}.jar</file-dj-integration-web-binaries>
     <file-dj-integration-web-sources>${project.site.repo.dj}/daojones-integration-web/${daojones.version}/daojones-integration-web-${daojones.version}-sources.jar</file-dj-integration-web-sources>
 
+    <file-dj-integration-maven-binaries>${project.site.repo.dj}/maven/plugins/daojones-maven-plugin/${daojones.version}/daojones-maven-plugin-${daojones.version}.jar</file-dj-integration-maven-binaries>
+    <file-dj-integration-maven-sources>${project.site.repo.dj}/maven/plugins/daojones-maven-plugin/${daojones.version}/daojones-maven-plugin-${daojones.version}-sources.jar</file-dj-integration-maven-sources>
+
     <file-dj-integration-ant-binaries>${project.site.repo.dj}/ant/plugins/daojones-ant-plugin/${daojones.version}/daojones-ant-plugin-${daojones.version}.jar</file-dj-integration-ant-binaries>
     <file-dj-integration-ant-sources>${project.site.repo.dj}/ant/plugins/daojones-ant-plugin/${daojones.version}/daojones-ant-plugin-${daojones.version}-sources.jar</file-dj-integration-ant-sources>
+
+    <file-dj-integration-gradle-binaries>${project.site.repo.dj}/gradle/plugins/daojones-gradle-plugin/${daojones.version}/daojones-gradle-plugin-${daojones.version}.jar</file-dj-integration-gradle-binaries>
+    <file-dj-integration-gradle-sources>${project.site.repo.dj}/gradle/plugins/daojones-gradle-plugin/${daojones.version}/daojones-gradle-plugin-${daojones.version}-sources.jar</file-dj-integration-gradle-sources>
 
     <file-dj-docs-zipped>${project.site.repo.dj}/daojones-docs/${daojones.version}/daojones-docs-${daojones.version}-html.zip</file-dj-docs-zipped>
     <file-dj-docs-unzipped>view/daojones-docs-${daojones.version}</file-dj-docs-unzipped>

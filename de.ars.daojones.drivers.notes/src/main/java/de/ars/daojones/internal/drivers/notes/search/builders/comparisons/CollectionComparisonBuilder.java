@@ -7,26 +7,27 @@ import de.ars.daojones.drivers.notes.search.QueryLanguageException;
 import de.ars.daojones.drivers.notes.search.SearchType;
 import de.ars.daojones.internal.drivers.notes.utilities.Messages;
 import de.ars.daojones.runtime.query.CollectionComparison;
+import de.ars.daojones.runtime.query.Comparison;
 import de.ars.daojones.runtime.query.FieldComparison;
 
-@SuppressWarnings( "rawtypes" )
-public class CollectionComparisonBuilder extends AbstractComparisonBuilder<Collection> {
+public class CollectionComparisonBuilder extends AbstractComparisonBuilder<Collection<?>> {
 
   private static final Messages bundle = Messages.create( "search.builders.comparisons" );
 
   @Override
-  public Class<? extends CollectionComparison> getKeyType() {
+  public Class<? extends Comparison<Collection<?>>> getKeyType() {
     return CollectionComparison.class;
   }
 
+  @SuppressWarnings( { "rawtypes", "unchecked" } )
   @Override
-  public Class<? extends Collection> getFieldType() {
-    return Collection.class;
+  public Class<? extends Collection<?>> getFieldType() {
+    return ( Class ) Collection.class;
   }
 
   @Override
-  protected String getKey( final ComparisonContext<Collection> context ) throws QueryLanguageException {
-    final QueryContext<FieldComparison<Collection>> qc = context.getQueryContext();
+  protected String getKey( final ComparisonContext<Collection<?>> context ) throws QueryLanguageException {
+    final QueryContext<FieldComparison<Collection<?>>> qc = context.getQueryContext();
     final CollectionComparison comparison = ( CollectionComparison ) qc.getCriterion().getComparison();
     if ( SearchType.FT_SEARCH == qc.getSearchType() ) {
       throw new QueryLanguageException( qc.getCriterion(), qc.getModel(),

@@ -19,8 +19,8 @@ import lotus.domino.NotesException;
 import lotus.domino.RichTextItem;
 import lotus.domino.Session;
 import lotus.domino.Stream;
-import de.ars.daojones.drivers.notes.NotesDriverConfiguration;
 import de.ars.daojones.drivers.notes.DataHandlerException;
+import de.ars.daojones.drivers.notes.NotesDriverConfiguration;
 import de.ars.daojones.drivers.notes.annotations.MIMEEntityType;
 import de.ars.daojones.internal.drivers.notes.NotesStream;
 import de.ars.daojones.internal.drivers.notes.utilities.Messages;
@@ -64,11 +64,19 @@ public class ResourceDataHandler extends InternalAbstractDataHandler<Resource, O
     } else {
       // Write to temporary file -> file must have name of original resource
       final File tmp = File.createTempFile( "attachment", "" );
-      if ( !tmp.delete() ) {
-        throw new IOException( ResourceDataHandler.bundle.get( "error.tmpfile.delete", tmp.getAbsolutePath() ) );
+      try {
+        if ( !tmp.delete() ) {
+          throw new IOException( ResourceDataHandler.bundle.get( "error.tmpfile.delete", tmp.getAbsolutePath() ) );
+        }
+      } catch ( final SecurityException e ) {
+        throw new IOException( ResourceDataHandler.bundle.get( "error.tmpfile.delete", tmp.getAbsolutePath() ), e );
       }
-      if ( !tmp.mkdir() ) {
-        throw new IOException( ResourceDataHandler.bundle.get( "error.tmpfile.mkdir", tmp.getAbsolutePath() ) );
+      try {
+        if ( !tmp.mkdir() ) {
+          throw new IOException( ResourceDataHandler.bundle.get( "error.tmpfile.mkdir", tmp.getAbsolutePath() ) );
+        }
+      } catch ( final SecurityException e ) {
+        throw new IOException( ResourceDataHandler.bundle.get( "error.tmpfile.mkdir", tmp.getAbsolutePath() ), e );
       }
       try {
         final File tmpFile = new File( tmp, attachmentName );
