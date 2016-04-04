@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.ibm.lotus.domino</groupId>
+  <artifactId>NotesAPIBundle</artifactId>
+  <version>8.5.2</version>
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <!-- Notes.jar must be available under this coordinates -->
+      <groupId>com.ibm.lotus.domino</groupId>
+      <!-- unfortunately must be a static value -->
+      <artifactId>NotesAPI</artifactId>
+      <version>${project.version}</version>
+      <!-- Do not be transitive -->
+      <optional>true</optional>
+      <!-- Do not use system scope because of resolving issues with DaoJones 
+        Site build -->
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.4.0</version>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <goals>
+              <goal>bundle</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <instructions>
+            <!-- without ";inline=true" because of signed JAR (checksums 
+              get lost otherwise) -->
+            <Embed-Dependency>*</Embed-Dependency>
+            <Embed-Directory>OSGI-INF/lib</Embed-Directory>
+            <!-- Headers -->
+            <Export-Package>lotus.domino;version="${project.version}",lotus.domino.cso;version="${project.version}",lotus.domino.local;version="${project.version}",lotus.domino.util;version="${project.version}",lotus.notes;version="${project.version}"</Export-Package>
+            <Import-Package>*;resolution:=optional</Import-Package>
+            <Bundle-Vendor>IBM</Bundle-Vendor>
+            <Bundle-Name>Notes API Plug-in</Bundle-Name>
+            <Bundle-SymbolicName>com.ibm.notes.java.api</Bundle-SymbolicName>
+            <Bundle-RequiredExecutionEnvironment>J2SE-1.3</Bundle-RequiredExecutionEnvironment>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

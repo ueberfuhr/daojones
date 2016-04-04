@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><?pde version="3.8"?><target name="DaoJones Eclipse Integration" sequenceNumber="40">
+<locations>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<repository location="http://download.eclipse.org/releases/kepler/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.rcp.source.feature.group" version="4.3.2.v20140221-1700"/>
+<unit id="org.eclipse.rcp.feature.group" version="4.3.2.v20140221-1700"/>
+<unit id="org.eclipse.equinox.sdk.feature.group" version="3.9.0.v20140221-1852"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.3"/>
+</location>
+<location path="${workspace_loc:/Build/dependencies/notes-api/target}" type="Directory"/>
+<location path="${workspace_loc:/de.ars.daojones.runtime/target}" type="Directory"/>
+<location path="${workspace_loc:/de.ars.daojones.drivers.notes/target}" type="Directory"/>
+</locations>
+<environment>
+<arch>x86</arch>
+</environment>
+<targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+</target>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.ars</groupId>
+  <artifactId>ars-project</artifactId>
+  <name>Parent POM for ARS Projects</name>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <organization>
+    <name>ARS Computer und Consulting GmbH</name>
+    <url>http://www.ars.de/</url>
+  </organization>
+  <description>Sets the company name and website url.</description>
+  <profiles>
+<!--     <profile>
+      <id>artifactory</id>
+      <activation>
+        <property>
+          <name>!skip-artifactory</name>
+        </property>
+      </activation>
+      <repositories>
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>repo</name>
+          <url>http://buildart.ars.de:8081/artifactory/repo</url>
+        </repository>
+        <repository>
+          <snapshots />
+          <id>snapshots</id>
+          <name>repo</name>
+          <url>http://buildart.ars.de:8081/artifactory/repo</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>repo</name>
+          <url>http://buildart.ars.de:8081/artifactory/repo</url>
+        </pluginRepository>
+        <pluginRepository>
+          <snapshots />
+          <id>snapshots</id>
+          <name>repo</name>
+          <url>http://buildart.ars.de:8081/artifactory/repo</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile> -->
+  </profiles>
+</project>
