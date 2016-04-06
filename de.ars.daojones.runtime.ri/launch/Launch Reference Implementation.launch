@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <booleanAttribute key="com.ibm.debug.breakpoints.java.appendFile" value="false"/>
 <stringAttribute key="com.ibm.debug.breakpoints.java.traceFilename" value="${workspace_loc}\${launch_config_name}_${launch_timestamp}.log"/>
 <booleanAttribute key="com.ibm.debug.breakpoints.java.traceToConsole" value="true"/>

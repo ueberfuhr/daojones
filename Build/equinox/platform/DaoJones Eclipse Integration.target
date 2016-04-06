@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><?pde version="3.8"?><target name="DaoJones Eclipse Integration" sequenceNumber="40">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?><target name="DaoJones Eclipse Integration" sequenceNumber="40">
 <locations>
 <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <repository location="http://download.eclipse.org/releases/kepler/"/>

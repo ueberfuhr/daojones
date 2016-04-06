@@ -41,6 +41,8 @@ public class ScanBeanModelTask extends DefaultTask {
     try {
       final ScanBeanModel command = new ScanBeanModel();
       // set bytecode directory
+      project.getBuildDir()
+      project.
       // TODO command.setBytecodeDirectory(new File(project.getBuild().getOutputDirectory()));
       // set the target directory (the same)
       // TODO command.setTargetDirectory(new File(project.getBuild().getOutputDirectory()));
@@ -66,5 +68,4 @@ public class ScanBeanModelTask extends DefaultTask {
       throw new TaskExecutionException(this, e);
     }
   }
-
 }

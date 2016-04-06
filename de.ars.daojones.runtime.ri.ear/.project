@@ -3,6 +3,8 @@
 	<name>de.ars.daojones.runtime.ri.ear</name>
 	<comment></comment>
 	<projects>
+		<project>de.ars.daojones.integration.ejb</project>
+		<project>de.ars.daojones.runtime.docs</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -11,10 +11,16 @@ import org.gradle.api.Project;
  */
 public class GradlePlugin implements Plugin<Project> {
 
+  private static final Messages bundle = Messages.create("GradlePlugin");
+
   @Override
   public void apply(final Project project) {
-    project.getTasks().create("scanBeanModel", ScanBeanModelTask.class);
+    if (project.getPlugins().hasPlugin("java")) {
+      project.getTasks().create("scanBeanModel", ScanBeanModelTask.class);
+    } else {
+      project.getLogger().warn(GradlePlugin.bundle.get("warn.java.missing"));
+    }
     // TODO insert into Java cycle
+    // TODO get compile dependencies
   }
-
 }
