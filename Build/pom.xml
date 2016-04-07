@@ -111,7 +111,9 @@
         <!-- Maven integration -->
         <module>../de.ars.daojones.integration.maven</module>
         <!-- Gradle integration -->
+        <!-- Built by Gradle
         <module>../de.ars.daojones.integration.gradle</module>
+         -->
         <!-- Ant integration -->
         <module>../de.ars.daojones.integration.ant</module>
         <!-- Extensions -->
@@ -141,7 +143,9 @@
         <!-- Maven integration -->
         <module>../de.ars.daojones.integration.maven</module>
         <!-- Gradle integration -->
+        <!-- Built by Gradle
         <module>../de.ars.daojones.integration.gradle</module>
+         -->
         <!-- Ant integration -->
         <module>../de.ars.daojones.integration.ant</module>
         <!-- Extensions -->

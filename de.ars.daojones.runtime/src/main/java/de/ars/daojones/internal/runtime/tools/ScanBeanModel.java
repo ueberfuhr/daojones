@@ -21,7 +21,7 @@ import de.ars.daojones.runtime.context.DaoJonesContextFactory;
 /**
  * The command that scans a classpath for annotated bean classes and creates a
  * bean model XML file.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2014
  * @since 2.0
  */
@@ -96,8 +96,8 @@ public class ScanBeanModel {
   public void execute() throws Exception {
     // directory must exist
     if ( getBytecodeDirectory().exists() && getBytecodeDirectory().isDirectory() ) {
-      final URLClassLoader dependenciesClassLoader = new URLClassLoader( new URL[] { getBytecodeDirectory().toURI()
-              .toURL() }, this.dependenciesClassLoader );
+      final URLClassLoader dependenciesClassLoader = new URLClassLoader(
+              new URL[] { getBytecodeDirectory().toURI().toURL() }, this.dependenciesClassLoader );
       ScanBeanModel.logger.log( Level.INFO, "info.scan.dir", getBytecodeDirectory().getAbsolutePath(),
               toString( dependenciesClassLoader.getResources( "." ) ) );
       try {
@@ -111,9 +111,9 @@ public class ScanBeanModel {
         final File alternativeConfigFile = new File( targetDirectory,
                 AnnotationBeanConfigurationSource.ALTERNATE_CONFIG_FILE );
         final File alternativeConfigDirectory = alternativeConfigFile.getParentFile();
-        if ( !alternativeConfigDirectory.exists() && !alternativeConfigDirectory.mkdir() ) {
-          throw new IOException( ScanBeanModel.logger.get( "error.makeTarget",
-                  alternativeConfigDirectory.getAbsolutePath() ) );
+        if ( !alternativeConfigDirectory.exists() && !alternativeConfigDirectory.mkdirs() ) {
+          throw new IOException(
+                  ScanBeanModel.logger.get( "error.makeTarget", alternativeConfigDirectory.getAbsolutePath() ) );
         }
         if ( alternativeConfigFile.exists() ) {
           if ( !alternativeConfigFile.delete() ) {
@@ -121,6 +121,7 @@ public class ScanBeanModel {
                     alternativeConfigFile.getAbsolutePath() );
           }
         }
+        @SuppressWarnings( "resource" ) // do not close it!
         final XmlBeanConfigurationSource xbcp = new XmlBeanConfigurationSource( ScanBeanModel.APP_ID,
                 alternativeConfigFile.toURI().toURL() );
         xbcp.writeRootElement( bc );

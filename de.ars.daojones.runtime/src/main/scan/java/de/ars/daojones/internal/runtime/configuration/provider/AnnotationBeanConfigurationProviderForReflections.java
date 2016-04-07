@@ -55,7 +55,7 @@ import de.ars.daojones.runtime.configuration.provider.FieldAnnotationHandler;
 /**
  * Avoid loading this class in a static way, because it depends from the Google
  * Reflections API.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2014
  * @since 2.0
  */
@@ -81,15 +81,15 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
    * Returns the Reflections instance. This method initializes the reflections
    * lazily and caches it into an internal field. Calling this method multiple
    * times will result in the same Reflections instance.
-   * 
+   *
    * @return the Reflections instance
    */
   protected final Reflections getReflections() {
     synchronized ( this ) {
       if ( null == reflections ) {
         reflections = ReflectionsHelper.createReflections( resourceBases, dependenciesClassLoader,
-                new FieldAnnotationsScanner(), new MethodAnnotationsScanner(),
-                new MethodParametersAnnotationsScanner(), new TypeAnnotationsScanner() );
+                new FieldAnnotationsScanner(), new MethodAnnotationsScanner(), new MethodParametersAnnotationsScanner(),
+                new TypeAnnotationsScanner() );
       }
       return reflections;
     }
@@ -170,9 +170,10 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
         }
         final de.ars.daojones.runtime.configuration.beans.Method methodModel = findMethod( beans, method, of );
         if ( method.getReturnType().equals( Void.TYPE ) ) {
-          throw new ConfigurationException( AnnotationBeanConfigurationProviderForReflections.logger.get(
-                  "scan.error.method.void", BeanConfiguration.class.getSimpleName(), method.getDeclaringClass()
-                          .getName(), method.getName(), Arrays.toString( method.getParameterTypes() ) ) );
+          throw new ConfigurationException(
+                  AnnotationBeanConfigurationProviderForReflections.logger.get( "scan.error.method.void",
+                          BeanConfiguration.class.getSimpleName(), method.getDeclaringClass().getName(),
+                          method.getName(), Arrays.toString( method.getParameterTypes() ) ) );
         }
         methodModel.setResult( createMethodResult( method, of ) );
       }
@@ -180,8 +181,8 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
       // after Reading methods e.g. for evaluating methods with both annotated result and parameters
       final Set<String> annotatedParameters = reflections.getStore().get( MethodParametersAnnotationsScanner.class,
               Field.class.getName() );
-      annotatedParameters.addAll( reflections.getStore().get( MethodParametersAnnotationsScanner.class,
-              FieldRef.class.getName() ) );
+      annotatedParameters.addAll(
+              reflections.getStore().get( MethodParametersAnnotationsScanner.class, FieldRef.class.getName() ) );
       for ( final String descriptor : annotatedParameters ) {
         final Parameter parameter = MethodParametersAnnotationsScanner.getParameterFromDescriptor( descriptor,
                 dependenciesClassLoader );
@@ -190,12 +191,12 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
           final int index = parameter.getParameterIndex();
           if ( AnnotationBeanConfigurationProviderForReflections.logger
                   .isLoggable( AnnotationBeanConfigurationProviderForReflections.level ) ) {
-            AnnotationBeanConfigurationProviderForReflections.logger
-                    .log( AnnotationBeanConfigurationProviderForReflections.level, "scan.process.parameter",
-                            BeanConfiguration.class.getSimpleName(), constructor.getDeclaringClass().getName(),
-                            AnnotationBeanConfigurationProviderForReflections.logger.get( "constructor.name" ), Arrays
-                                    .toString( constructor.getParameterTypes() ), NumberFormat.getNumberInstance()
-                                    .format( index ) );
+            AnnotationBeanConfigurationProviderForReflections.logger.log(
+                    AnnotationBeanConfigurationProviderForReflections.level, "scan.process.parameter",
+                    BeanConfiguration.class.getSimpleName(), constructor.getDeclaringClass().getName(),
+                    AnnotationBeanConfigurationProviderForReflections.logger.get( "constructor.name" ),
+                    Arrays.toString( constructor.getParameterTypes() ),
+                    NumberFormat.getNumberInstance().format( index ) );
           }
           final de.ars.daojones.runtime.configuration.beans.Constructor constructorModel = findConstructor( beans,
                   constructor, of );
@@ -213,10 +214,10 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
           }
           final de.ars.daojones.runtime.configuration.beans.Method methodModel = findMethod( beans, method, of );
           if ( null != methodModel.getResult() ) {
-            throw new ConfigurationException( AnnotationBeanConfigurationProviderForReflections.logger.get(
-                    "scan.error.method.annotations", BeanConfiguration.class.getSimpleName(), method
-                            .getDeclaringClass().getName(), method.getName(), Arrays.toString( method
-                            .getParameterTypes() ) ) );
+            throw new ConfigurationException(
+                    AnnotationBeanConfigurationProviderForReflections.logger.get( "scan.error.method.annotations",
+                            BeanConfiguration.class.getSimpleName(), method.getDeclaringClass().getName(),
+                            method.getName(), Arrays.toString( method.getParameterTypes() ) ) );
           }
           mapFieldMappedParameter( methodModel.getParameters().get( index ), method.getParameterAnnotations()[index],
                   method.getDeclaringClass(), of );
@@ -225,8 +226,8 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
       // Validation at the end
       fieldRefIds.removeAll( fieldIds );
       if ( !fieldRefIds.isEmpty() ) {
-        throw new ConfigurationException( AnnotationBeanConfigurationProviderForReflections.logger.get(
-                "scan.error.unresolved.idrefs", BeanConfiguration.class.getSimpleName(), fieldRefIds ) );
+        throw new ConfigurationException( AnnotationBeanConfigurationProviderForReflections.logger
+                .get( "scan.error.unresolved.idrefs", BeanConfiguration.class.getSimpleName(), fieldRefIds ) );
       }
       beanConfiguration.getBeans().addAll( beans.values() );
       return Arrays.asList( beanConfiguration );
@@ -244,7 +245,7 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
 
   /**
    * Creates a bean model.
-   * 
+   *
    * @param beanType
    *          the bean type
    * @param of
@@ -261,7 +262,7 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
 
   /**
    * Maps a data source to a bean.
-   * 
+   *
    * @param bean
    *          the bean
    * @param dsAnnotation
@@ -282,7 +283,7 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
 
   /**
    * Creates the bean identificator.
-   * 
+   *
    * @param annotation
    *          the {@link IdentifiedBy} annotation
    * @return the bean identificator
@@ -303,7 +304,7 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
 
   /**
    * Maps a field to a field mapped element.
-   * 
+   *
    * @param model
    *          the field mapped element
    * @param element
@@ -334,6 +335,7 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
       // read out further annotations (not field!)
       final ServiceLoader<FieldAnnotationHandler> handlers = ServiceLoader.load( FieldAnnotationHandler.class,
               dependenciesClassLoader );
+      handlers.iterator();
       for ( final FieldAnnotationHandler handler : handlers ) {
         handler.handle( element, model );
       }
@@ -343,7 +345,7 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
 
   /**
    * Maps a field reference to a field mapped element.
-   * 
+   *
    * @param model
    *          the field mapped element
    * @param element
@@ -368,7 +370,7 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
 
   /**
    * Creates a field model.
-   * 
+   *
    * @param field
    *          the field
    * @param of
@@ -388,7 +390,7 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
 
   /**
    * Creates an id field.
-   * 
+   *
    * @param name
    *          the value of the id field
    * @return the id field
@@ -407,7 +409,8 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
     return methodResult;
   }
 
-  protected LocalConverter createLocalConverter( final Class<? extends Converter> converterType, final ObjectFactory of ) {
+  protected LocalConverter createLocalConverter( final Class<? extends Converter> converterType,
+          final ObjectFactory of ) {
     final LocalConverter result = of.createLocalConverter();
     result.setInstanceProvider( new InstanceByClassProvider<Converter>( converterType ) );
     return result;
@@ -485,7 +488,8 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
     return result;
   }
 
-  private de.ars.daojones.runtime.configuration.beans.Method createMethod( final Method method, final ObjectFactory of ) {
+  private de.ars.daojones.runtime.configuration.beans.Method createMethod( final Method method,
+          final ObjectFactory of ) {
     final de.ars.daojones.runtime.configuration.beans.Method result = of.createMethod();
     result.setName( method.getName() );
     assignParameterTypes( result.getParameters(), method.getParameterTypes(), of );
@@ -519,8 +523,8 @@ public class AnnotationBeanConfigurationProviderForReflections implements Config
       final List<MethodParameter> is = result.getParameters();
       final Class<?>[] should = constructor.getParameterTypes();
       if ( !isEqual( is, should ) ) {
-        throw new ConfigurationException( AnnotationBeanConfigurationProviderForReflections.logger.get(
-                "scan.error.constructor.multiple", BeanConfiguration.class.getSimpleName(), c.getName() ) );
+        throw new ConfigurationException( AnnotationBeanConfigurationProviderForReflections.logger
+                .get( "scan.error.constructor.multiple", BeanConfiguration.class.getSimpleName(), c.getName() ) );
       }
     }
     return result;
