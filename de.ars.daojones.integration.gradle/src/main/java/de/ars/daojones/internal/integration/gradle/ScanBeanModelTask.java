@@ -1,18 +1,19 @@
 package de.ars.daojones.internal.integration.gradle;
 
+import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Collection;
-import java.util.Set;
 
 import org.gradle.api.DefaultTask;
 import org.gradle.api.UnknownDomainObjectException;
 import org.gradle.api.artifacts.Configuration;
+import org.gradle.api.artifacts.Dependency;
 import org.gradle.api.artifacts.ResolveException;
-import org.gradle.api.artifacts.ResolvedArtifact;
 import org.gradle.api.artifacts.ResolvedConfiguration;
 import org.gradle.api.artifacts.UnknownConfigurationException;
 import org.gradle.api.plugins.JavaPlugin;
+import org.gradle.api.specs.Spec;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.TaskExecutionException;
 import org.gradle.jvm.JvmBinarySpec;
@@ -34,20 +35,26 @@ public class ScanBeanModelTask extends DefaultTask {
   /**
    * Resolves the compile dependencies of the project.
    *
-   * @return the compile dependencies
+   * @return the resolved files
    * @throws UnknownConfigurationException
    *           if the project hasn't any compile configuration (that is
    *           typically assigned by the java plugin)
    * @throws ResolveException
    *           if the dependencies of the project could not be resolved
    */
-  protected Collection<ResolvedArtifact> resolveCompileDependencies()
-          throws UnknownConfigurationException, ResolveException {
+  protected Collection<File> resolveCompileDependencies() throws UnknownConfigurationException, ResolveException {
     final Configuration compile = getProject().getConfigurations().getByName( JavaPlugin.COMPILE_CONFIGURATION_NAME );
     final ResolvedConfiguration resolvedConfiguration = compile.getResolvedConfiguration();
     resolvedConfiguration.rethrowFailure();
-    final Set<ResolvedArtifact> artifacts = resolvedConfiguration.getResolvedArtifacts();
-    return artifacts;
+    final Collection<File> result = resolvedConfiguration.getFiles( new Spec<Dependency>() {
+
+      @Override
+      public boolean isSatisfiedBy( final Dependency dep ) {
+        return true;
+      }
+
+    } );
+    return result;
   }
 
   /**
@@ -78,12 +85,12 @@ public class ScanBeanModelTask extends DefaultTask {
       // set target directory to create XML file (build/resources/main by default)
       command.setTargetDirectory( binarySpec.getResourcesDir() );
       // dependency-resolving class loader must contain all project dependencies with compile scope
-      final Collection<ResolvedArtifact> compileDependencies = resolveCompileDependencies();
+      final Collection<File> compileDependencies = resolveCompileDependencies();
       final StringBuilder sbDebug = new StringBuilder();
       final URL[] classpathElementUrls = new URL[compileDependencies.size()];
       int idx = 0;
-      for ( final ResolvedArtifact artifact : compileDependencies ) {
-        classpathElementUrls[idx] = artifact.getFile().toURI().toURL();
+      for ( final File artifact : compileDependencies ) {
+        classpathElementUrls[idx] = artifact.toURI().toURL();
         sbDebug.append( '\n' );
         sbDebug.append( classpathElementUrls[idx] );
         idx++;
