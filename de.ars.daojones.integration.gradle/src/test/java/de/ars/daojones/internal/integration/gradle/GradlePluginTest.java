@@ -14,6 +14,7 @@ import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.tasks.TaskContainer;
 import org.gradle.testfixtures.ProjectBuilder;
 import org.hamcrest.Matchers;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -23,9 +24,15 @@ public class GradlePluginTest {
   @Rule
   public ExpectedException ex = ExpectedException.none();
 
+  private Project project;
+
+  @Before
+  public void setup() {
+    project = ProjectBuilder.builder().build();
+  }
+
   @Test
   public void testTaskScanBeanModelTaskConfiguration() {
-    final Project project = ProjectBuilder.builder().build();
     project.getPlugins().apply( "java" );
     final Plugin<?> plugin = project.getPlugins().apply( "daojones" );
     assertThat( plugin, is( instanceOf( GradlePlugin.class ) ) );
@@ -41,7 +48,6 @@ public class GradlePluginTest {
 
   @Test
   public void testTaskNotAddedWithoutJavaPlugin() {
-    final Project project = ProjectBuilder.builder().build();
     project.getPlugins().apply( "daojones" );
     ex.expect( UnknownTaskException.class );
     project.getTasks().getByName( GradlePlugin.SCAN_BEAN_MODEL_TASK_NAME );

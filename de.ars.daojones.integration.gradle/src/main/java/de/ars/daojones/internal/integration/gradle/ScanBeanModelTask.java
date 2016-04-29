@@ -13,12 +13,13 @@ import org.gradle.api.artifacts.ResolveException;
 import org.gradle.api.artifacts.ResolvedConfiguration;
 import org.gradle.api.artifacts.UnknownConfigurationException;
 import org.gradle.api.plugins.JavaPlugin;
+import org.gradle.api.plugins.JavaPluginConvention;
 import org.gradle.api.specs.Spec;
+import org.gradle.api.tasks.SourceSet;
+import org.gradle.api.tasks.SourceSetContainer;
+import org.gradle.api.tasks.SourceSetOutput;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.TaskExecutionException;
-import org.gradle.jvm.JvmBinarySpec;
-import org.gradle.platform.base.BinaryContainer;
-import org.gradle.platform.base.BinarySpec;
 
 import de.ars.daojones.internal.runtime.tools.ScanBeanModel;
 
@@ -58,32 +59,29 @@ public class ScanBeanModelTask extends DefaultTask {
   }
 
   /**
-   * Finds the JVM binary spec.
+   * Finds the main source set.
    *
-   * @return the JVM binary spec
+   * @return the main source set
    * @throws UnknownDomainObjectException
-   *           if the project hasn't any binary spec
+   *           if the project hasn't any main source set
    */
-  protected JvmBinarySpec getJvmBinarySpec() throws UnknownDomainObjectException {
-    final BinaryContainer bc = getProject().getExtensions().getByType( BinaryContainer.class );
-    final BinarySpec mainSpec = bc.get( "mainClasses" );
-    if ( mainSpec instanceof JvmBinarySpec ) {
-      return ( JvmBinarySpec ) mainSpec;
-    } else {
-      throw new UnknownDomainObjectException( ScanBeanModelTask.bundle.get( "error.jvmBinarySpec.wrongType",
-              JvmBinarySpec.class.getName(), mainSpec.getClass().getName() ) );
-    }
+  protected SourceSetOutput getMainSourceSet() throws UnknownDomainObjectException {
+    final JavaPluginConvention javaConvention = getProject().getConvention().getPlugin( JavaPluginConvention.class );
+    final SourceSetContainer sourceSets = javaConvention.getSourceSets();
+    final SourceSet mainSourceSet = sourceSets.getByName( SourceSet.MAIN_SOURCE_SET_NAME );
+    final SourceSetOutput mainOutput = mainSourceSet.getOutput();
+    return mainOutput;
   }
 
   @TaskAction
   public void scan() {
     try {
       final ScanBeanModel command = new ScanBeanModel();
-      final JvmBinarySpec binarySpec = getJvmBinarySpec();
+      final SourceSetOutput main = getMainSourceSet();
       // set bytecode directory to scan for annotations (build/classes/main by default)
-      command.setBytecodeDirectory( binarySpec.getClassesDir() );
+      command.setBytecodeDirectory( main.getClassesDir() );
       // set target directory to create XML file (build/resources/main by default)
-      command.setTargetDirectory( binarySpec.getResourcesDir() );
+      command.setTargetDirectory( main.getResourcesDir() );
       // dependency-resolving class loader must contain all project dependencies with compile scope
       final Collection<File> compileDependencies = resolveCompileDependencies();
       final StringBuilder sbDebug = new StringBuilder();
@@ -105,4 +103,5 @@ public class ScanBeanModelTask extends DefaultTask {
       throw new TaskExecutionException( this, e );
     }
   }
+
 }
