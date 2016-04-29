@@ -15,7 +15,6 @@
 	<classpathentry kind="src" path="src/main/scan/resources"/>
 	<classpathentry kind="src" path="src/main/ext/java"/>
 	<classpathentry kind="src" path="src/main/ext/resources"/>
-	<classpathentry kind="src" path="src/main/osgi/java"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>

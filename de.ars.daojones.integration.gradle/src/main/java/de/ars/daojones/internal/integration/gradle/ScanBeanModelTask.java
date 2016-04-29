@@ -66,7 +66,7 @@ public class ScanBeanModelTask extends DefaultTask {
    */
   protected JvmBinarySpec getJvmBinarySpec() throws UnknownDomainObjectException {
     final BinaryContainer bc = getProject().getExtensions().getByType( BinaryContainer.class );
-    final BinarySpec mainSpec = bc.getByName( "mainClasses" );
+    final BinarySpec mainSpec = bc.get( "mainClasses" );
     if ( mainSpec instanceof JvmBinarySpec ) {
       return ( JvmBinarySpec ) mainSpec;
     } else {
