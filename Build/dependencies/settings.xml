@@ -1,0 +1,39 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      https://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <interactiveMode>true</interactiveMode>
+  <usePluginRegistry>false</usePluginRegistry>
+  <offline>false</offline>
+  <servers>
+    <server>
+      <id>ars-int-release-local</id>
+      <username>deployer</username>
+      <password>password</password>
+    </server>
+    <server>
+      <id>ars-ext-release-local</id>
+      <username>deployer</username>
+      <password>password</password>
+    </server>
+  </servers>
+  <profiles>
+    <profile>
+      <id>default</id>
+      <repositories>
+        <repository>
+          <id>ars-int-release-local</id>
+          <name>ars-int-release-local</name>
+          <url>http://buildart.ars.de:8081/artifactory/ars-int-release-local</url>
+        </repository>
+        <repository>
+          <id>ars-ext-release-local</id>
+          <name>ars-ext-release-local</name>
+          <url>http://buildart.ars.de:8081/artifactory/ars-ext-release-local</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
+</settings>

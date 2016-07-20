@@ -12,6 +12,30 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     <url>http://www.ars.de/</url>
   </organization>
   <description>Sets the company name and website url.</description>
+  <repositories>
+    <repository>
+      <id>ars-ext-release-local</id>
+      <name>ars-ext-release-local</name>
+      <url>http://buildart.ars.de:8081/artifactory/ars-ext-release-local</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>ars-int-release-local</id>
+      <name>ars-int-release-local</name>
+      <url>http://buildart.ars.de:8081/artifactory/ars-int-release-local</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
   <profiles>
 <!--     <profile>
       <id>artifactory</id>
