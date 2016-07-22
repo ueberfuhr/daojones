@@ -11,6 +11,13 @@
     <name>ARS Computer und Consulting GmbH</name>
     <url>http://www.ars.de/</url>
   </organization>
+  <distributionManagement>
+    <repository>
+      <id>ars-int-release-local</id>
+      <name>ars-int-release-local</name>
+      <url>http://buildart.ars.de:8081/artifactory/ars-int-release-local</url>
+    </repository>
+  </distributionManagement>
   <build>
     <pluginManagement>
       <plugins>
