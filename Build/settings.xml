@@ -22,7 +22,7 @@
     <profile>
       <id>artifactory-repositories</id>
       <properties>
-      <repos.base>http://buildart.ars.de:8081/artifactory</repos.base>
+        <repos.base>http://buildart.ars.de:8081/artifactory</repos.base>
       </properties>
       <repositories>
         <repository>
@@ -39,6 +39,6 @@
     </profile>
   </profiles>
   <activeProfiles>
-    artifactory-repositories
+    <activeProfile>artifactory-repositories</activeProfile>
   </activeProfiles>
 </settings>
