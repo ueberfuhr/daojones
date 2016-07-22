@@ -16,13 +16,8 @@
       <id>ars-int-release-local</id>
       <name>ars-int-release-local</name>
       <url>http://buildart.ars.de:8081/artifactory/ars-int-release-local</url>
-    </repository>
-    <snapshotRepository>
-      <id>ars-int-release-local</id>
-      <name>ars-int-release-local</name>
-      <url>http://buildart.ars.de:8081/artifactory/ars-int-release-local</url>
       <uniqueVersion>false</uniqueVersion>
-    </snapshotRepository>
+    </repository>
   </distributionManagement>
   <build>
     <pluginManagement>
