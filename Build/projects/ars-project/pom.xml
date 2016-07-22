@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.ars.daojones</groupId>
   <artifactId>ars-project</artifactId>
@@ -11,71 +11,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     <name>ARS Computer und Consulting GmbH</name>
     <url>http://www.ars.de/</url>
   </organization>
-  <description>Sets the company name and website url.</description>
-  <repositories>
-    <repository>
-      <id>ars-ext-release-local</id>
-      <name>ars-ext-release-local</name>
-      <url>http://buildart.ars.de:8081/artifactory/ars-ext-release-local</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
+  <description>Common settings for ARS projects.</description>
+  <distributionManagement>
     <repository>
       <id>ars-int-release-local</id>
       <name>ars-int-release-local</name>
-      <url>http://buildart.ars.de:8081/artifactory/ars-int-release-local</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
+      <url>${repos.base}/ars-int-release-local</url>
     </repository>
-  </repositories>
-  <profiles>
-<!--     <profile>
-      <id>artifactory</id>
-      <activation>
-        <property>
-          <name>!skip-artifactory</name>
-        </property>
-      </activation>
-      <repositories>
-        <repository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>central</id>
-          <name>repo</name>
-          <url>http://buildart.ars.de:8081/artifactory/repo</url>
-        </repository>
-        <repository>
-          <snapshots />
-          <id>snapshots</id>
-          <name>repo</name>
-          <url>http://buildart.ars.de:8081/artifactory/repo</url>
-        </repository>
-      </repositories>
-      <pluginRepositories>
-        <pluginRepository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>central</id>
-          <name>repo</name>
-          <url>http://buildart.ars.de:8081/artifactory/repo</url>
-        </pluginRepository>
-        <pluginRepository>
-          <snapshots />
-          <id>snapshots</id>
-          <name>repo</name>
-          <url>http://buildart.ars.de:8081/artifactory/repo</url>
-        </pluginRepository>
-      </pluginRepositories>
-    </profile> -->
-  </profiles>
+  </distributionManagement>
 </project>

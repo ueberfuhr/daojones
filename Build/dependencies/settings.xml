@@ -20,20 +20,25 @@
   </servers>
   <profiles>
     <profile>
-      <id>default</id>
+      <id>artifactory-repositories</id>
+      <properties>
+      <repos.base>http://buildart.ars.de:8081/artifactory</repos.base>
+      </properties>
       <repositories>
         <repository>
           <id>ars-int-release-local</id>
           <name>ars-int-release-local</name>
-          <url>http://buildart.ars.de:8081/artifactory/ars-int-release-local</url>
+          <url>${repos.base}/ars-int-release-local</url>
         </repository>
         <repository>
           <id>ars-ext-release-local</id>
           <name>ars-ext-release-local</name>
-          <url>http://buildart.ars.de:8081/artifactory/ars-ext-release-local</url>
+          <url>${repos.base}/ars-ext-release-local</url>
         </repository>
       </repositories>
     </profile>
   </profiles>
-
+  <activeProfiles>
+    artifactory-repositories
+  </activeProfiles>
 </settings>
