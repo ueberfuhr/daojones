@@ -49,6 +49,7 @@ publishing {
 		jars(MavenPublication) {
 			from components.java
 			artifact sourceJar
+			artifactId 'daojones-gradle-plugin'
 			pom.withXml {
 			  asNode().appendNode('description', 'Gradle Plugin for DaoJones projects.')
 			}
