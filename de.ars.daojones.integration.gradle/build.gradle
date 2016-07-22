@@ -14,7 +14,13 @@ jar {
 }
 
 repositories {
+    maven {
+        url "http://buildart.ars.de:8081/artifactory/ars-int-release-local"
+    }
     mavenCentral()
+    maven {
+        url "http://buildart.ars.de:8081/artifactory/ars-ext-release-local"
+    }
     mavenLocal()
 }
 
@@ -31,3 +37,11 @@ configure(install.repositories.mavenInstaller) {
 	pom.artifactId = 'daojones-gradle-plugin'
 }
 
+publishing {
+    repositories {
+        maven {
+            url "http://buildart.ars.de:8081/artifactory/ars-int-release-local"
+            credentials("deployer","password")
+        }
+    }
+}
