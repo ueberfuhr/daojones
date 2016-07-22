@@ -5,7 +5,7 @@
   <artifactId>pmd-configuration</artifactId>
   <name>PMD Configuration for ARS Projects</name>
   <parent>
-    <groupId>de.ars</groupId>
+    <groupId>de.ars.daojones</groupId>
     <artifactId>ars-project</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
