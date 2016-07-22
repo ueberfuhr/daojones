@@ -16,7 +16,7 @@
     <repository>
       <id>ars-int-release-local</id>
       <name>ars-int-release-local</name>
-      <url>${repos.base}/ars-int-release-local</url>
+      <url>http://buildart.ars.de:8081/artifactory/ars-int-release-local</url>
     </repository>
   </distributionManagement>
 </project>
