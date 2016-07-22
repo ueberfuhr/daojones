@@ -38,7 +38,22 @@ configure(install.repositories.mavenInstaller) {
 	pom.artifactId = 'daojones-gradle-plugin'
 }
 
+
+task sourceJar(type: Jar) {
+  from sourceSets.main.allJava
+  classifier "sources"
+}
+
 publishing {
+    publications {
+        jars(MavenPublication) {
+            from components.java
+            artifact sourceJar
+            pom.withXml {
+              asNode().appendNode('description', 'Gradle Plugin for DaoJones projects.')
+            }
+       }
+    }
     repositories {
         maven {
             url "http://buildart.ars.de:8081/artifactory/ars-int-release-local"
