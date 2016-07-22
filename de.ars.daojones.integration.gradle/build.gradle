@@ -42,7 +42,11 @@ publishing {
     repositories {
         maven {
             url "http://buildart.ars.de:8081/artifactory/ars-int-release-local"
-            credentials("deployer","password")
+            credentials {
+                username = "deployer"
+                password = "password"
+            }
+            name = "ars-int-release-local"
         }
     }
 }
