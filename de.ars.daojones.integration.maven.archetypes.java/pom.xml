@@ -7,6 +7,11 @@
   <artifactId>daojones-java</artifactId>
   <version>2.0.0-SNAPSHOT</version>
   <name>Archetype for simple DaoJones Java project</name>
+  <parent>
+    <groupId>de.ars.daojones</groupId>
+    <artifactId>ars-project</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
   <properties>
     <daojones.version>2.0.0-SNAPSHOT</daojones.version>
   </properties>
