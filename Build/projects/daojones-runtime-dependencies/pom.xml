@@ -8,6 +8,11 @@
   <packaging>pom</packaging>
   <name>POM including all dependencies for DaoJones Runtime</name>
   <description>This includes the optional dependencies like the classpath scanning libraries too.</description>
+  <parent>
+    <groupId>de.ars.daojones</groupId>
+    <artifactId>ars-project</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
   <dependencies>
     <dependency>
       <groupId>de.ars.daojones</groupId>
