@@ -18,7 +18,9 @@ repositories {
 	maven {
 		url "http://buildart.ars.de:8081/artifactory/ars-int-release-local"
 	}
-	mavenCentral()
+	maven {
+		url "http://buildart.ars.de:8081/artifactory/repo1"
+	}
 	maven {
 		url "http://buildart.ars.de:8081/artifactory/ars-ext-release-local"
 	}
