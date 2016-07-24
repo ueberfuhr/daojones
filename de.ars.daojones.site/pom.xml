@@ -290,6 +290,14 @@
       <!-- make it non-transitive -->
       <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>de.ars.daojones.gradle.plugins</groupId>
+      <artifactId>daojones-gradle-plugin</artifactId>
+      <version>${daojones.version}</version>
+      <classifier>sources</classifier>
+      <!-- make it non-transitive -->
+      <optional>true</optional>
+    </dependency>
 
     <dependency>
       <groupId>de.ars.daojones.ant.plugins</groupId>
