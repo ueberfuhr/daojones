@@ -18,6 +18,14 @@
       <password>password</password>
     </server>
   </servers>
+  <mirrors>
+    <mirror>
+      <id>repo1-mirror</id>
+      <name>ARS Central Repository Mirror</name>
+      <url>http://buildart.ars.de:8081/artifactory/repo1</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
   <profiles>
     <profile>
       <id>artifactory-repositories</id>
@@ -27,22 +35,21 @@
           <name>ars-int-release-local</name>
           <url>http://buildart.ars.de:8081/artifactory/ars-int-release-local
           </url>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>daily</updatePolicy>
+          </snapshots>
         </repository>
         <repository>
           <id>ars-ext-release-local</id>
           <name>ars-ext-release-local</name>
           <url>http://buildart.ars.de:8081/artifactory/ars-ext-release-local
           </url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
         </repository>
       </repositories>
-      <mirrors>
-        <mirror>
-          <id>repo1-mirror</id>
-          <name>ARS Central Repository Mirror</name>
-          <url>http://buildart.ars.de:8081/artifactory/repo1</url>
-          <mirrorOf>central</mirrorOf>
-        </mirror>
-      </mirrors>
     </profile>
   </profiles>
   <activeProfiles>
