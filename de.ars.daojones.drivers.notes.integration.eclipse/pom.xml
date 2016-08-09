@@ -23,6 +23,17 @@
       <artifactId>daojones-notes</artifactId>
       <version>${project.version}</version>
       <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>com.ibm.lotus.domino</groupId>
+          <artifactId>NotesAPI</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.lotus.domino</groupId>
+      <artifactId>NotesAPIBundle</artifactId>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>
