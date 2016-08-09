@@ -49,6 +49,11 @@
         <artifactId>NotesAPI</artifactId>
         <version>8.5.2</version>
       </dependency>
+      <dependency>
+        <groupId>com.ibm.lotus.domino</groupId>
+        <artifactId>NotesAPIBundle</artifactId>
+        <version>8.5.2</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <build>

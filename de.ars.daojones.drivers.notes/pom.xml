@@ -17,7 +17,7 @@
     </dependency>
     <dependency>
       <groupId>com.ibm.lotus.domino</groupId>
-      <artifactId>NotesAPI</artifactId>
+      <artifactId>NotesAPIBundle</artifactId>
     </dependency>
   </dependencies>
   <build>
