@@ -24,7 +24,7 @@ import org.gradle.api.tasks.TaskExecutionException;
 import de.ars.daojones.internal.runtime.tools.ScanBeanModel;
 
 /**
- * Implementation for <tt>scanBeanModel> task.
+ * Implementation for <tt>scanBeanModel</tt> task.
  *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2016
  * @since 2.0
