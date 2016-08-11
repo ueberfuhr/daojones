@@ -23,7 +23,7 @@ import de.ars.daojones.runtime.configuration.context.ConnectionModelImpl;
 /**
  * Reads the connection configuration from a connection configuration XML
  * resource.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2012
  * @since 2.0
  */
@@ -38,7 +38,7 @@ public class XmlConnectionConfigurationSource extends XmlConfigurationSource<Con
 
   /**
    * Creates an instance.
-   * 
+   *
    * @param application
    *          the application
    * @param resourceURL
@@ -84,13 +84,14 @@ public class XmlConnectionConfigurationSource extends XmlConfigurationSource<Con
   /**
    * Reads out all imports from the given configuration and eliminates them by
    * loading the referenced configurations
-   * 
+   *
    * @param configuration
    *          the configuration that contains the imports
    * @throws ConfigurationException
    * @throws IOException
    */
-  protected void loadImported( final ConnectionConfiguration configuration ) throws ConfigurationException, IOException {
+  protected void loadImported( final ConnectionConfiguration configuration )
+          throws ConfigurationException, IOException {
     final List<ImportDeclaration> imports = configuration.getImports();
     // resolve imports
     try {
@@ -104,18 +105,22 @@ public class XmlConnectionConfigurationSource extends XmlConfigurationSource<Con
             handledURLsOnThisWayCopy.add( importIOProvider );
             final XmlConnectionConfigurationSource p = new XmlConnectionConfigurationSource( getApplication(),
                     importIOProvider, handledURLs, new HashSet<Object>( handledURLsOnThisWay ) );
-            final ConnectionConfiguration importedConfiguration = p.readRootElement();
-            // recursive !!!! -> do not resolve here!
-            loadImported( importedConfiguration );
-            configuration.getCredentials().addAll( importedConfiguration.getCredentials() );
-            configuration.getConnections().addAll( importedConfiguration.getConnections() );
-            handledURLsOnThisWay.add( importIOProvider );
+            try {
+              final ConnectionConfiguration importedConfiguration = p.readRootElement();
+              // recursive !!!! -> do not resolve here!
+              loadImported( importedConfiguration );
+              configuration.getCredentials().addAll( importedConfiguration.getCredentials() );
+              configuration.getConnections().addAll( importedConfiguration.getConnections() );
+              handledURLsOnThisWay.add( importIOProvider );
+            } finally {
+              p.close();
+            }
           } else {
             // do not load again, no cycle, just imported twice
           }
         } else {
-          throw new ConfigurationException( XmlConnectionConfigurationSource.bundle.get( "error.cycle",
-                  importIOProvider ) );
+          throw new ConfigurationException(
+                  XmlConnectionConfigurationSource.bundle.get( "error.cycle", importIOProvider ) );
         }
       }
     } catch ( final MalformedURLException e ) {
@@ -144,7 +149,7 @@ public class XmlConnectionConfigurationSource extends XmlConfigurationSource<Con
    * </ol>
    * After executing this method, the configuration does not contain any imports
    * and credential references.
-   * 
+   *
    * @param configuration
    *          the configuration
    * @throws ConfigurationException
@@ -177,8 +182,8 @@ public class XmlConnectionConfigurationSource extends XmlConfigurationSource<Con
         if ( null != credential ) {
           connection.setCredential( credential );
         } else {
-          throw new ConfigurationException( XmlConnectionConfigurationSource.bundle.get( "error.credential.notfound",
-                  credentialReference ) );
+          throw new ConfigurationException(
+                  XmlConnectionConfigurationSource.bundle.get( "error.credential.notfound", credentialReference ) );
         }
       }
     }

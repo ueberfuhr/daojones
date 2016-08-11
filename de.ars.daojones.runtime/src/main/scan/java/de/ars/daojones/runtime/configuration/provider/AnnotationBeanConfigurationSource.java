@@ -24,7 +24,7 @@ import de.ars.daojones.runtime.configuration.context.GlobalConverterModelImpl;
 
 /**
  * A beans configuration source that scans the classpath for annotated types.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2012
  * @since 2.0
  */
@@ -54,7 +54,7 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
    * and archives that contain a
    * <tt>{@value AnnotationBeanConfigurationSource#DEFAULT_CONFIG_FILE}</tt>
    * file.
-   * 
+   *
    * @param application
    *          the application (if <tt>null</tt>, use #)
    */
@@ -65,7 +65,7 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
   /**
    * Creates an instance with a given set of resource bases and a class loader
    * that resolves all dependencies.
-   * 
+   *
    * @param application
    *          the application
    * @param dependenciesClassLoader
@@ -91,7 +91,7 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
   /**
    * Creates an instance with a given set of resource bases. Dependencies are
    * resolved by the context classloader.
-   * 
+   *
    * @param application
    *          the application
    * @param resourceBases
@@ -106,7 +106,7 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
    * The classpath is scanned for all modules that contain such a config file.
    * Modules that do not contain at least one of the config files are excluded
    * from annotation scanning.
-   * 
+   *
    * @param application
    *          the application
    * @param dependenciesClassLoader
@@ -118,7 +118,8 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
    */
   public AnnotationBeanConfigurationSource( final String application, final ClassLoader dependenciesClassLoader,
           final ClassLoader scanningClassLoader, final String... beanConfigFiles ) {
-    this( application, dependenciesClassLoader, ClasspathHelper.findURLsToScan( beanConfigFiles, scanningClassLoader ) );
+    this( application, dependenciesClassLoader,
+            ClasspathHelper.findURLsToScan( beanConfigFiles, scanningClassLoader ) );
   }
 
   /**
@@ -126,7 +127,7 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
    * The classpath is scanned for all modules that contain such a config file.
    * Modules that do not contain at least one of the config files are excluded
    * from annotation scanning.
-   * 
+   *
    * @param application
    *          the application
    * @param beanConfigFiles
@@ -141,7 +142,7 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
    * Returns <tt>true</tt>, if an alternative model file should be used,
    * otherwise <tt>false</tt>. (Default is <tt>true</tt>.)<br/>
    * The path to the alternate model file is {@value #ALTERNATE_CONFIG_FILE}
-   * 
+   *
    * @return <tt>true</tt>, if an alternative model file should be used,
    *         otherwise <tt>false</tt>
    */
@@ -151,9 +152,10 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
 
   /**
    * Sets the flag to search for an alternative model file. If <tt>false</tt>,
-   * an existing model file would be ignored and the bytecode is scanned anyway.<br/>
+   * an existing model file would be ignored and the bytecode is scanned anyway.
+   * <br/>
    * The path to the alternate model file is {@value #ALTERNATE_CONFIG_FILE}
-   * 
+   *
    * @param useAlternativeConfiguration
    *          the flag to search for an alternative model file
    */
@@ -171,7 +173,7 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
 
   /**
    * Returns the bean configuration.
-   * 
+   *
    * @return the bean configuration
    * @throws ConfigurationException
    * @throws IOException
@@ -198,8 +200,8 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
       final URLClassLoader cl = new URLClassLoader( resourceBases );
       try {
         try {
-          alternativeResources = AnnotationBeanConfigurationSource.toArray( cl
-                  .getResources( AnnotationBeanConfigurationSource.ALTERNATE_CONFIG_FILE ) );
+          alternativeResources = AnnotationBeanConfigurationSource
+                  .toArray( cl.getResources( AnnotationBeanConfigurationSource.ALTERNATE_CONFIG_FILE ) );
         } catch ( final IOException e ) {
           throw new ConfigurationException( e );
         }
@@ -215,9 +217,13 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
     for ( final URL url : alternativeResources ) {
       if ( doubledEntries.add( url.toExternalForm() ) ) {
         final XmlBeanConfigurationSource xbcp = new XmlBeanConfigurationSource( getApplication(), url );
-        final BeanConfiguration alternativeConfig = xbcp.readRootElement();
-        result.getConverters().addAll( alternativeConfig.getConverters() );
-        result.getBeans().addAll( alternativeConfig.getBeans() );
+        try {
+          final BeanConfiguration alternativeConfig = xbcp.readRootElement();
+          result.getConverters().addAll( alternativeConfig.getConverters() );
+          result.getBeans().addAll( alternativeConfig.getBeans() );
+        } finally {
+          xbcp.close();
+        }
       }
     }
     // Load by annotation scanning - only those without alternative XML file
@@ -241,8 +247,8 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
   }
 
   private URL[] findNonAlternatives( final URL[] alternativeResources ) {
-    final URL[] alternativeURLs = ClasspathUrlFinder.toResourceBases(
-            AnnotationBeanConfigurationSource.ALTERNATE_CONFIG_FILE, alternativeResources );
+    final URL[] alternativeURLs = ClasspathUrlFinder
+            .toResourceBases( AnnotationBeanConfigurationSource.ALTERNATE_CONFIG_FILE, alternativeResources );
     // Comparing URLs by their equals and hashcode method is not performant -> use external form
     final Map<String, URL> allURLs = new HashMap<String, URL>();
     for ( final URL resourceBase : resourceBases ) {
