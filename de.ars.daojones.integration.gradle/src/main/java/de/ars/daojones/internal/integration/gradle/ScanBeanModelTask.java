@@ -3,6 +3,8 @@ package de.ars.daojones.internal.integration.gradle;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.Collection;
 
 import org.gradle.api.DefaultTask;
@@ -94,8 +96,15 @@ public class ScanBeanModelTask extends DefaultTask {
         idx++;
       }
       getLogger().debug( ScanBeanModelTask.bundle.get( "debug.classpath", sbDebug.toString() ) );
-      try ( final URLClassLoader dependenciesClassLoader = new URLClassLoader( classpathElementUrls,
-              ScanBeanModelTask.class.getClassLoader() ) ) {
+      try ( final URLClassLoader dependenciesClassLoader = AccessController
+              .doPrivileged( new PrivilegedAction<URLClassLoader>() {
+
+                @Override
+                public URLClassLoader run() {
+                  return new URLClassLoader( classpathElementUrls, ScanBeanModelTask.class.getClassLoader() );
+                }
+
+              } ); ) {
         command.setDependenciesClassLoader( dependenciesClassLoader );
         command.execute();
       }
