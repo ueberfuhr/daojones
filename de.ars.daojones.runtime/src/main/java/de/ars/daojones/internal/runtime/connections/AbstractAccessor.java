@@ -187,7 +187,7 @@ public abstract class AbstractAccessor<T> extends DataAccessEventProvider<T> imp
     if ( null != entry ) {
       try {
         final Class<? extends T> type = getBeanClass( entry.getBeanModel() );
-        final T result = null != entry ? convert( entry, type ) : null;
+        final T result = convert( entry, type );
         return result;
       } catch ( final ClassNotFoundException e ) {
         throw new DataAccessException( e );

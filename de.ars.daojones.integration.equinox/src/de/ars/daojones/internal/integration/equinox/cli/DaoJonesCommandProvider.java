@@ -2,7 +2,9 @@ package de.ars.daojones.internal.integration.equinox.cli;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
 
 import org.eclipse.osgi.framework.console.CommandInterpreter;
 import org.eclipse.osgi.framework.console.CommandProvider;
@@ -17,7 +19,7 @@ import de.ars.daojones.runtime.cli.PrintWriterCommandContext;
 /**
  * A service component that provides commands to handle connections over the
  * OSGi console.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH
  * @since 2.0.0
  */
@@ -29,7 +31,7 @@ public class DaoJonesCommandProvider implements CommandProvider {
 
   /**
    * Displays all connections to the console.
-   * 
+   *
    * @param ci
    *          the {@link CommandInterpreter}
    * @throws CommandExecutionException
@@ -40,7 +42,7 @@ public class DaoJonesCommandProvider implements CommandProvider {
 
   /**
    * Displays the help information to the console.
-   * 
+   *
    * @param ci
    *          the {@link CommandInterpreter}
    * @throws CommandExecutionException
@@ -51,7 +53,7 @@ public class DaoJonesCommandProvider implements CommandProvider {
 
   /**
    * Tests a connection file.
-   * 
+   *
    * @param ci
    *          the {@link CommandInterpreter}
    * @throws CommandExecutionException
@@ -76,9 +78,10 @@ public class DaoJonesCommandProvider implements CommandProvider {
 
   @Override
   public String getHelp() {
+    final Charset cs = Charset.defaultCharset();
     final ByteArrayOutputStream bout = new ByteArrayOutputStream();
     try {
-      final PrintWriter out = new PrintWriter( bout );
+      final PrintWriter out = new PrintWriter( new OutputStreamWriter( bout, cs ) );
       try {
         final CommandContext ctx = new PrintWriterCommandContext( DaoJonesPlugin.getDaoJonesContext(),
                 CommandExecutorManager.HELP_COMMAND_NAME, new String[0], out ) {
@@ -92,7 +95,7 @@ public class DaoJonesCommandProvider implements CommandProvider {
         } catch ( final CommandExecutionException e ) {
           e.printStackTrace( out );
         }
-        return new String( bout.toByteArray() );
+        return new String( bout.toByteArray(), cs );
       } finally {
         out.close();
       }

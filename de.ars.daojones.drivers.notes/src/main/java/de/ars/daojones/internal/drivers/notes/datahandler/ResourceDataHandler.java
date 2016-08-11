@@ -10,15 +10,6 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import lotus.domino.Document;
-import lotus.domino.EmbeddedObject;
-import lotus.domino.Item;
-import lotus.domino.MIMEEntity;
-import lotus.domino.MIMEHeader;
-import lotus.domino.NotesException;
-import lotus.domino.RichTextItem;
-import lotus.domino.Session;
-import lotus.domino.Stream;
 import de.ars.daojones.drivers.notes.DataHandlerException;
 import de.ars.daojones.drivers.notes.NotesDriverConfiguration;
 import de.ars.daojones.drivers.notes.annotations.MIMEEntityType;
@@ -31,6 +22,15 @@ import de.ars.daojones.runtime.configuration.beans.DatabaseFieldMapping.UpdatePo
 import de.ars.daojones.runtime.configuration.beans.Property;
 import de.ars.daojones.runtime.connections.DataAccessException;
 import de.ars.daojones.runtime.spi.beans.fields.FieldContext;
+import lotus.domino.Document;
+import lotus.domino.EmbeddedObject;
+import lotus.domino.Item;
+import lotus.domino.MIMEEntity;
+import lotus.domino.MIMEHeader;
+import lotus.domino.NotesException;
+import lotus.domino.RichTextItem;
+import lotus.domino.Session;
+import lotus.domino.Stream;
 
 public class ResourceDataHandler extends InternalAbstractDataHandler<Resource, Object> {
 
@@ -66,17 +66,17 @@ public class ResourceDataHandler extends InternalAbstractDataHandler<Resource, O
       final File tmp = File.createTempFile( "attachment", "" );
       try {
         if ( !tmp.delete() ) {
-          throw new IOException( ResourceDataHandler.bundle.get( "error.tmpfile.delete", tmp.getAbsolutePath() ) );
+          throw new IOException( ResourceDataHandler.bundle.get( "error.file.delete", tmp.getAbsolutePath() ) );
         }
       } catch ( final SecurityException e ) {
-        throw new IOException( ResourceDataHandler.bundle.get( "error.tmpfile.delete", tmp.getAbsolutePath() ), e );
+        throw new IOException( ResourceDataHandler.bundle.get( "error.file.delete", tmp.getAbsolutePath() ), e );
       }
       try {
         if ( !tmp.mkdir() ) {
-          throw new IOException( ResourceDataHandler.bundle.get( "error.tmpfile.mkdir", tmp.getAbsolutePath() ) );
+          throw new IOException( ResourceDataHandler.bundle.get( "error.file.mkdir", tmp.getAbsolutePath() ) );
         }
       } catch ( final SecurityException e ) {
-        throw new IOException( ResourceDataHandler.bundle.get( "error.tmpfile.mkdir", tmp.getAbsolutePath() ), e );
+        throw new IOException( ResourceDataHandler.bundle.get( "error.file.mkdir", tmp.getAbsolutePath() ), e );
       }
       try {
         final File tmpFile = new File( tmp, attachmentName );
@@ -97,12 +97,18 @@ public class ResourceDataHandler extends InternalAbstractDataHandler<Resource, O
           item.embedObject( EmbeddedObject.EMBED_ATTACHMENT, "", tmpFile.getAbsolutePath(), tmpFile.getName() );
         } finally {
           // Delete temporary file
-          tmpFile.delete();
+          ResourceDataHandler.tryToDelete( tmpFile );
         }
       } finally {
         // Delete temporary directory
-        tmp.delete();
+        ResourceDataHandler.tryToDelete( tmp );
       }
+    }
+  }
+
+  private static void tryToDelete( final File file ) {
+    if ( file.exists() && !file.delete() ) {
+      ResourceDataHandler.bundle.log( Level.WARNING, "error.file.delete", file.getAbsolutePath() );
     }
   }
 
@@ -114,28 +120,30 @@ public class ResourceDataHandler extends InternalAbstractDataHandler<Resource, O
   }
 
   @Override
-  protected boolean isRichText( final DataHandlerContext<Document> context, final FieldContext<Resource> fieldContext ) {
+  protected boolean isRichText( final DataHandlerContext<Document> context,
+          final FieldContext<Resource> fieldContext ) {
     return !isMIMEEntity( context, fieldContext ); // use rich text by default
   }
 
   /**
    * Decides whether to create a MIME entity or an embedded object.
-   * 
+   *
    * @param context
    *          the context
    * @param fieldContext
    *          the field context
    * @return <tt>true</tt> if the resource is stored as MIME entity
    */
-  protected boolean isMIMEEntity( final DataHandlerContext<Document> context, final FieldContext<Resource> fieldContext ) {
-    return NotesDriverConfiguration.MODEL_PROPERTY_MIME_ENTITY.equals( Properties.getFieldType( fieldContext
-            .getMetadata() ) );
+  protected boolean isMIMEEntity( final DataHandlerContext<Document> context,
+          final FieldContext<Resource> fieldContext ) {
+    return NotesDriverConfiguration.MODEL_PROPERTY_MIME_ENTITY
+            .equals( Properties.getFieldType( fieldContext.getMetadata() ) );
   }
 
   /**
    * Returns the MIME entity type. If no type is specified,
    * {@link MIMEEntityType#ATTACHMENT} is returned as default value.
-   * 
+   *
    * @param context
    *          the context
    * @param fieldContext
@@ -155,8 +163,8 @@ public class ResourceDataHandler extends InternalAbstractDataHandler<Resource, O
         try {
           result = MIMEEntityType.valueOf( value.toUpperCase() );
         } catch ( final IllegalArgumentException e ) {
-          throw new DataHandlerException( this, ResourceDataHandler.bundle.get( "mime.entity.type.invalid",
-                  value.toUpperCase() ) );
+          throw new DataHandlerException( this,
+                  ResourceDataHandler.bundle.get( "mime.entity.type.invalid", value.toUpperCase() ) );
         }
       }
     }
@@ -229,7 +237,7 @@ public class ResourceDataHandler extends InternalAbstractDataHandler<Resource, O
           }
           try {
             MIMEEntity root = doc.getMIMEEntity( fieldName );
-            // delete field, if 
+            // delete field, if
             if ( null != root && UpdatePolicy.REPLACE == updatePolicy ) {
               doc.removeItem( fieldName );
               root = null;
@@ -357,8 +365,8 @@ public class ResourceDataHandler extends InternalAbstractDataHandler<Resource, O
       } else {
         childEntity = field.createChildEntity();
       }
-      childEntity.createHeader( MIMEEntityResource.CONTENT_DISPOSITION_HEADER ).setHeaderVal(
-              "attachment;filename=\"" + getValue().getName() + "\"" );
+      childEntity.createHeader( MIMEEntityResource.CONTENT_DISPOSITION_HEADER )
+              .setHeaderVal( "attachment;filename=\"" + getValue().getName() + "\"" );
       return childEntity;
     }
 
@@ -366,14 +374,13 @@ public class ResourceDataHandler extends InternalAbstractDataHandler<Resource, O
 
   private class MIMEEntityInlineWriter extends MIMEEntityWriter {
 
-    public MIMEEntityInlineWriter(
-            final de.ars.daojones.drivers.notes.DataHandler.DataHandlerContext<Document> context,
+    public MIMEEntityInlineWriter( final de.ars.daojones.drivers.notes.DataHandler.DataHandlerContext<Document> context,
             final FieldContext<Resource> fieldContext, final Resource value ) {
       super( context, fieldContext, value );
       final UpdatePolicy updatePolicy = getFieldContext().getUpdatePolicy();
       if ( UpdatePolicy.INSERT == updatePolicy ) {
-        throw new UnsupportedOperationException( ResourceDataHandler.bundle.get( "inline.entity.policy.invalid",
-                updatePolicy ) );
+        throw new UnsupportedOperationException(
+                ResourceDataHandler.bundle.get( "inline.entity.policy.invalid", updatePolicy ) );
       }
     }
 

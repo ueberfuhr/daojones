@@ -1,12 +1,10 @@
 package de.ars.daojones.integration.eclipse;
 
-import org.eclipse.jface.window.Window;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.IWorkbench;
 
 /**
  * The wizard to create or edit a database path.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH
  * @since 2.0
  */
@@ -18,7 +16,7 @@ public final class DatabasePathWizard {
 
   /**
    * Opens the wizard to create or edit the path.
-   * 
+   *
    * @param workbench
    *          the workbench
    * @param driver
@@ -31,12 +29,13 @@ public final class DatabasePathWizard {
   public static String open( final IWorkbench workbench, final String driver, final String path ) {
 
     // TODO get wizard, use default one
-    final AbstractDatabasePathWizard wizard = null;
-    wizard.init( workbench, path );
-    final WizardDialog dialog = new WizardDialog( workbench.getActiveWorkbenchWindow().getShell(), wizard );
-    dialog.create();
-    dialog.setBlockOnOpen( true );
-    return dialog.open() == Window.OK ? wizard.createPath() : null;
+    return null;
+    //    final AbstractDatabasePathWizard wizard = null;
+    //    wizard.init( workbench, path );
+    //    final WizardDialog dialog = new WizardDialog( workbench.getActiveWorkbenchWindow().getShell(), wizard );
+    //    dialog.create();
+    //    dialog.setBlockOnOpen( true );
+    //    return dialog.open() == Window.OK ? wizard.createPath() : null;
   }
 
 }

@@ -10,7 +10,7 @@ import lotus.domino.Base;
 
 /**
  * An abstract reference providing common functionality.
- * 
+ *
  * @author <a href="mailto:ralf.zahn@ars.de">Ralf Zahn</a>
  * @param <T>
  */
@@ -21,21 +21,8 @@ abstract class CallbackReference<T> implements Reference<T> {
   private final Set<T> allReferences = new HashSet<T>();
 
   /**
-   * Creates a reference to an object.
-   * 
-   * @param creator
-   *          a command object that is able to find the object initially.
-   * @param t
-   *          the object, if already existing
-   */
-  public CallbackReference( final Callable<T> creator, final T t ) {
-    this( creator );
-    setT( t );
-  }
-
-  /**
    * Creates a reference to a {@link Base} object.
-   * 
+   *
    * @param creator
    *          a command object that is able to create the base object.
    */
@@ -46,7 +33,7 @@ abstract class CallbackReference<T> implements Reference<T> {
 
   /**
    * Sets the value for the base object.
-   * 
+   *
    * @param t
    *          the base object
    */
@@ -54,7 +41,7 @@ abstract class CallbackReference<T> implements Reference<T> {
 
   /**
    * Returns the value for the base object.
-   * 
+   *
    * @return the base object
    */
   protected abstract T getT();
@@ -63,7 +50,7 @@ abstract class CallbackReference<T> implements Reference<T> {
    * Checks if the object is a valid result for the method {@link #get()}. If
    * this method returns false, the creator's method
    * {@link SerializableCallable#call()} is called.
-   * 
+   *
    * @param t
    *          the object
    * @return true, if the object is a valid result for the method {@link #get()}
@@ -74,7 +61,7 @@ abstract class CallbackReference<T> implements Reference<T> {
 
   /**
    * Returns the referenced object.
-   * 
+   *
    * @return the referenced object
    * @throws Exception
    */
@@ -91,7 +78,7 @@ abstract class CallbackReference<T> implements Reference<T> {
 
   /**
    * Returns all referenced object that were created before.
-   * 
+   *
    * @return all referenced objects
    */
   public Collection<T> getAll() {

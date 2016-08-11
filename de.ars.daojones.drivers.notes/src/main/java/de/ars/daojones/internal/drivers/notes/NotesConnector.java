@@ -3,10 +3,6 @@ package de.ars.daojones.internal.drivers.notes;
 import java.io.Serializable;
 import java.util.logging.Level;
 
-import lotus.domino.Database;
-import lotus.domino.Document;
-import lotus.domino.NotesException;
-import lotus.domino.Session;
 import de.ars.daojones.drivers.notes.NotesDatabasePath;
 import de.ars.daojones.drivers.notes.NotesDatabasePath.PathType;
 import de.ars.daojones.drivers.notes.security.ServerCredential;
@@ -16,6 +12,10 @@ import de.ars.daojones.runtime.connections.DataAccessException;
 import de.ars.daojones.runtime.spi.database.CredentialVault;
 import de.ars.daojones.runtime.spi.database.CredentialVault.Scope;
 import de.ars.daojones.runtime.spi.database.CredentialVaultException;
+import lotus.domino.Database;
+import lotus.domino.Document;
+import lotus.domino.NotesException;
+import lotus.domino.Session;
 
 public final class NotesConnector {
 
@@ -23,10 +23,10 @@ public final class NotesConnector {
    * CONNECTIONS CAN BE BUILT USING
    *  - a host and a database file name
    *  - a version parameter (for later issues) "?version=1.1"
-   *  
+   *
    * Examples:
    * =========
-   * 
+   *
    * This URL opens the database ARS/kontakt.nsf on server MIRACULIX:
    *  notes://MIRACULIX/ARS/kontakt.nsf?version=1.1
    * This URL opens the database ARS/kontakt.nsf using the local Notes client:
@@ -116,7 +116,7 @@ public final class NotesConnector {
    * and the database does not allow to open deleted documents. <b>Use this
    * method instead of {@link Document#isDeleted()} because it avoids CORBA
    * calls.</b>
-   * 
+   *
    * @param doc
    *          the document
    * @return <tt>true</tt>, if the document is not deleted.
@@ -137,9 +137,9 @@ public final class NotesConnector {
    * does allow to open deleted documents. <b>Use this method before the
    * invocation of {@link Document#isDeleted()} because it avoids CORBA
    * calls.</b>
-   * 
+   *
    * the document
-   * 
+   *
    * @return <tt>true</tt>, if a document can be opened, no matter if it is
    *         deleted or not.
    * @throws DataAccessException
@@ -215,9 +215,9 @@ public final class NotesConnector {
         NotesConnector.bundle.log( NotesConnector.DB_EVENT_LEVEL, "open.null", path );
       } else {
         final String server = db.getServer();
-        NotesConnector.bundle.log( NotesConnector.DB_EVENT_LEVEL, "open."
-                + ( server == null || server.length() == 0 ? "local" : "remote" ) + ".success", db.getFilePath(),
-                server );
+        NotesConnector.bundle.log( NotesConnector.DB_EVENT_LEVEL,
+                "open." + ( server == null || server.length() == 0 ? "local" : "remote" ) + ".success",
+                db.getFilePath(), server );
       }
     }
     return db;
@@ -245,7 +245,7 @@ public final class NotesConnector {
 
   /**
    * Returns the database. The database must be open.
-   * 
+   *
    * @return the open database
    */
   Database getDatabase() throws NotesException, DataAccessException {
@@ -263,7 +263,7 @@ public final class NotesConnector {
     return database;
   }
 
-  private void destroy() throws NotesException, DataAccessException {
+  private synchronized void destroy() throws NotesException, DataAccessException {
     try {
       if ( null != database ) {
         database.recycle();
@@ -281,7 +281,7 @@ public final class NotesConnector {
 
   /**
    * Returns a session to the database.
-   * 
+   *
    * @return a session to the database
    * @throws DataAccessException
    */
@@ -292,7 +292,7 @@ public final class NotesConnector {
   /**
    * Destroys the connection to the database. After calling this method, you can
    * call getSession() and getDatabase() again to rebuild the connection.
-   * 
+   *
    * @throws DataAccessException
    */
   public void close() throws DataAccessException {
@@ -305,7 +305,7 @@ public final class NotesConnector {
 
   /**
    * Automatically destroys the session.
-   * 
+   *
    * @see java.lang.Object#finalize()
    */
   @Override

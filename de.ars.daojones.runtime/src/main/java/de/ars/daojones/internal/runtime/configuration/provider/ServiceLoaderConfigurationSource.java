@@ -1,5 +1,6 @@
 package de.ars.daojones.internal.runtime.configuration.provider;
 
+import java.util.Arrays;
 import java.util.ServiceLoader;
 
 import de.ars.daojones.runtime.configuration.context.ApplicationModel;
@@ -31,8 +32,8 @@ public class ServiceLoaderConfigurationSource implements ConfigurationSource {
 
   }
 
-  public static final Class<?>[] serviceClasses = { //
-  CacheFactoryModel.class, //
+  public static final Iterable<Class<?>> serviceClasses = Arrays.asList( new Class<?>[] { //
+      CacheFactoryModel.class, //
       ConnectionFactoryModel.class, //
       CallbackHandlerFactoryModel.class, //
       ApplicationModel.class, //
@@ -40,7 +41,7 @@ public class ServiceLoaderConfigurationSource implements ConfigurationSource {
       GlobalConverterModel.class, //
       ConnectionModel.class, //
       ConnectionEventListener.class //
-  };
+  } );
 
   @Override
   public ConfigurationProvider<ConnectionFactoryModel> getConnectionFactoryModelConfigurationProvider() {

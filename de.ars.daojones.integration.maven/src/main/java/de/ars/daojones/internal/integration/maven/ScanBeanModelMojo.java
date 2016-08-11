@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,7 +22,7 @@ import de.ars.daojones.internal.runtime.tools.ScanBeanModel;
 /**
  * Goal which scans the project's classes for bean annotations and writes the
  * model into an XML file. This prevents annotation scanning during runtime.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2014
  * @since 2.0
  */
@@ -56,8 +58,14 @@ public class ScanBeanModelMojo extends AbstractMojo {
       final List<String> classpathElements = project.getCompileClasspathElements();
       getLog().debug( ScanBeanModelMojo.bundle.get( "debug.classpath", classpathElements ) );
       final URL[] classpathElementUrls = ScanBeanModelMojo.toURLs( classpathElements );
-      final URLClassLoader dependenciesClassLoader = new URLClassLoader( classpathElementUrls,
-              ScanBeanModelMojo.class.getClassLoader() );
+      final URLClassLoader dependenciesClassLoader = AccessController
+              .doPrivileged( new PrivilegedAction<URLClassLoader>() {
+
+                @Override
+                public URLClassLoader run() {
+                  return new URLClassLoader( classpathElementUrls, ScanBeanModelMojo.class.getClassLoader() );
+                }
+              } );
       command.setDependenciesClassLoader( dependenciesClassLoader );
       try {
         command.execute();

@@ -4,7 +4,7 @@ import java.util.concurrent.Callable;
 
 /**
  * A reference managing objects per thread.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2013
  * @since 2.0
  * @param <T>
@@ -16,19 +16,7 @@ class ThreadReference<T> extends CallbackReference<T> {
 
   /**
    * Creates a reference to an object.
-   * 
-   * @param creator
-   *          a command object that is able to create the object.
-   * @param t
-   *          the object, if already existing
-   */
-  public ThreadReference( final Callable<T> creator, final T t ) {
-    super( creator, t );
-  }
-
-  /**
-   * Creates a reference to an object.
-   * 
+   *
    * @param creator
    *          a command object that is able to create the object.
    */

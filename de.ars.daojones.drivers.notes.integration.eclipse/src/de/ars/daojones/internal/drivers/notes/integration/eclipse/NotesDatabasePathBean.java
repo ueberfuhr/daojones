@@ -21,56 +21,56 @@ class NotesDatabasePathBean {
   }
 
   public void addPropertyChangeListener( final PropertyChangeListener listener ) {
-    this.pcs.addPropertyChangeListener( listener );
+    pcs.addPropertyChangeListener( listener );
   }
 
   public void removePropertyChangeListener( final PropertyChangeListener listener ) {
-    this.pcs.removePropertyChangeListener( listener );
+    pcs.removePropertyChangeListener( listener );
   }
 
   public PathType getType() {
-    return this.db.getType();
+    return db.getType();
   }
 
   public void setType( final PathType type ) {
-    final PathType oldValue = this.db.getType();
-    this.db.setType( type );
-    this.pcs.firePropertyChange( NotesDatabasePathBean.PROPERTY_TYPE, oldValue, type );
+    final PathType oldValue = db.getType();
+    db.setType( type );
+    pcs.firePropertyChange( NotesDatabasePathBean.PROPERTY_TYPE, oldValue, type );
   }
 
   public String getAuthority() {
-    return this.db.getAuthority();
+    return db.getAuthority();
   }
 
   public void setAuthority( final String authority ) {
-    final String oldValue = this.db.getAuthority();
-    this.db.setAuthority( authority );
-    this.pcs.firePropertyChange( NotesDatabasePathBean.PROPERTY_AUTHORITY, oldValue, authority );
+    final String oldValue = db.getAuthority();
+    db.setAuthority( authority );
+    pcs.firePropertyChange( NotesDatabasePathBean.PROPERTY_AUTHORITY, oldValue, authority );
   }
 
   public String getDatabase() {
-    return this.db.getDatabase();
+    return db.getDatabase();
   }
 
   public void setDatabase( final String database ) {
-    final String oldValue = this.db.getDatabase();
-    this.db.setDatabase( database );
-    this.pcs.firePropertyChange( NotesDatabasePathBean.PROPERTY_DATABASE, oldValue, database );
+    final String oldValue = db.getDatabase();
+    db.setDatabase( database );
+    pcs.firePropertyChange( NotesDatabasePathBean.PROPERTY_DATABASE, oldValue, database );
   }
 
   @Override
   public int hashCode() {
-    return this.db.hashCode();
+    return db.hashCode();
   }
 
   @Override
   public boolean equals( final Object obj ) {
-    return this.db.equals( obj );
+    return obj instanceof NotesDatabasePathBean && db.equals( ( ( NotesDatabasePathBean ) obj ).db );
   }
 
   @Override
   public String toString() {
-    return this.db.toString();
+    return db.toString();
   }
 
 }

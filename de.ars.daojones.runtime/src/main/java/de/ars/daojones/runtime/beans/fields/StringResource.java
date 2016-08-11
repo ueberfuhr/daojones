@@ -5,7 +5,7 @@ import java.nio.charset.Charset;
 
 /**
  * A resource that provides a string.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2013
  * @since 2.0
  */
@@ -22,7 +22,7 @@ public class StringResource extends ByteArrayResource {
   /**
    * Constructor. The string is encoded into a sequence of bytes using the
    * platform's default charset
-   * 
+   *
    * @param content
    *          the content
    * @param name
@@ -41,7 +41,7 @@ public class StringResource extends ByteArrayResource {
 
   /**
    * Constructor.
-   * 
+   *
    * @param content
    *          the content
    * @param name
@@ -58,7 +58,7 @@ public class StringResource extends ByteArrayResource {
   /**
    * Constructor. The string is encoded into a sequence of bytes using the
    * platform's default charset.
-   * 
+   *
    * @param content
    *          the content
    * @param name
@@ -67,13 +67,13 @@ public class StringResource extends ByteArrayResource {
    *          the content type
    */
   public StringResource( final String content, final String name, final String contentType ) {
-    super( null != content ? content.getBytes() : null, name, contentType );
+    this( content, name, contentType, Charset.defaultCharset() );
   }
 
   /**
    * Constructor for a string resource with the default content type. The string
    * is encoded into a sequence of bytes using the platform's default charset.
-   * 
+   *
    * @param content
    *          the content
    * @param name
@@ -87,7 +87,7 @@ public class StringResource extends ByteArrayResource {
   /**
    * Constructor for a string resource with the default content type. The string
    * is encoded into a sequence of bytes using the platform's default charset.
-   * 
+   *
    * @param content
    *          the content
    * @param name
