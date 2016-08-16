@@ -36,6 +36,15 @@
           <url>http://buildart.ars.de:8081/artifactory/ars-int-release-local
           </url>
           <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>ars-int-snapshot-local</id>
+          <name>ars-int-snapshot-local</name>
+          <url>http://buildart.ars.de:8081/artifactory/ars-int-snapshot-local
+          </url>
+          <snapshots>
             <enabled>true</enabled>
             <updatePolicy>daily</updatePolicy>
           </snapshots>
