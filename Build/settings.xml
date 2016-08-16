@@ -13,6 +13,11 @@
       <password>password</password>
     </server>
     <server>
+      <id>ars-int-snapshot-local</id>
+      <username>deployer</username>
+      <password>password</password>
+    </server>
+    <server>
       <id>ars-ext-release-local</id>
       <username>deployer</username>
       <password>password</password>
