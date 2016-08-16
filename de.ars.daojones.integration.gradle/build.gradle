@@ -19,6 +19,9 @@ repositories {
 		url "http://buildart.ars.de:8081/artifactory/ars-int-release-local"
 	}
 	maven {
+		url "http://buildart.ars.de:8081/artifactory/ars-int-snapshot-local"
+	}
+	maven {
 		url "http://buildart.ars.de:8081/artifactory/repo1"
 	}
 	maven {
@@ -75,6 +78,14 @@ publishing {
 				password = "password"
 			}
 			name = "ars-int-release-local"
+		}
+		maven {
+			url "http://buildart.ars.de:8081/artifactory/ars-int-snapshot-local"
+			credentials {
+				username = "deployer"
+				password = "password"
+			}
+			name = "ars-int-snapshot-local"
 		}
 	}
 }
