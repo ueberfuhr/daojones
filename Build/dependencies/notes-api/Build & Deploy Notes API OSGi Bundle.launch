@@ -8,7 +8,7 @@
 <listAttribute key="M2_PROPERTIES">
 <listEntry value="altDeploymentRepository=ars-ext-release-local::default::http://buildart.ars.de:8081/artifactory/ars-ext-release-local"/>
 </listAttribute>
-<stringAttribute key="M2_RUNTIME" value="C:\Program Files (x86)\Java\apache-maven-3.1.1"/>
+<stringAttribute key="M2_RUNTIME" value="Maven 3"/>
 <booleanAttribute key="M2_SKIP_TESTS" value="false"/>
 <intAttribute key="M2_THREADS" value="1"/>
 <booleanAttribute key="M2_UPDATE_SNAPSHOTS" value="false"/>
