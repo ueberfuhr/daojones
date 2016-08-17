@@ -130,6 +130,43 @@ public class AnnotationBeanConfigurationSource extends ApplicationConfigurationS
    *
    * @param application
    *          the application
+   * @param dependenciesClassLoader
+   *          the classLoader that resolves all dependencies
+   * @param scanningClassLoader
+   *          the classloader whose classpath should be scanned
+   */
+  public AnnotationBeanConfigurationSource( final String application, final ClassLoader dependenciesClassLoader,
+          final ClassLoader scanningClassLoader ) {
+    this( application, dependenciesClassLoader, scanningClassLoader,
+            AnnotationBeanConfigurationSource.DEFAULT_CONFIG_FILE );
+  }
+
+  /**
+   * Creates an instance with a given set of allowed bean configuration files.
+   * The classpath is scanned for all modules that contain such a config file.
+   * Modules that do not contain at least one of the config files are excluded
+   * from annotation scanning.
+   *
+   * @param application
+   *          the application
+   * @param classLoader
+   *          the classloader whose classpath should be scanned and that
+   *          resolves all dependencies
+   * @param beanConfigFiles
+   *          the bean configuration file names within the module
+   */
+  public AnnotationBeanConfigurationSource( final String application, final ClassLoader classLoader ) {
+    this( application, classLoader, classLoader, AnnotationBeanConfigurationSource.DEFAULT_CONFIG_FILE );
+  }
+
+  /**
+   * Creates an instance with a given set of allowed bean configuration files.
+   * The classpath is scanned for all modules that contain such a config file.
+   * Modules that do not contain at least one of the config files are excluded
+   * from annotation scanning.
+   *
+   * @param application
+   *          the application
    * @param beanConfigFiles
    *          the bean configuration file names within the module
    */
