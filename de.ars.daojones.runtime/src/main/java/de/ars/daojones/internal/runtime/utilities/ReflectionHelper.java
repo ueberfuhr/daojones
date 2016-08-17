@@ -105,8 +105,8 @@ public final class ReflectionHelper {
   public static Class<?> toArrayType( final Class<?> c ) throws ClassNotFoundException {
     // Only for reference types
     final String arrayTypeName = "[L" + c.getName() + ";";
-    final Class<?> result = c.isPrimitive() ? ReflectionHelper.primitiveArrays.get( c ) : Class.forName( arrayTypeName,
-            false, c.getClassLoader() );
+    final Class<?> result = c.isPrimitive() ? ReflectionHelper.primitiveArrays.get( c )
+            : Class.forName( arrayTypeName, false, c.getClassLoader() );
     if ( null == result ) {
       throw new ClassNotFoundException( arrayTypeName );
     } else {
@@ -196,7 +196,8 @@ public final class ReflectionHelper {
     return c.getDeclaredConstructor( paramTypes );
   }
 
-  private static <T> T newInstanceInternal( final Class<T> c, final Parameter... params ) throws InstantiationException {
+  private static <T> T newInstanceInternal( final Class<T> c, final Parameter... params )
+          throws InstantiationException {
     final Class<?>[] types = new Class<?>[params.length];
     final Object[] values = new Object[params.length];
     for ( int i = 0; i < params.length; i++ ) {
