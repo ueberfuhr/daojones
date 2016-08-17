@@ -13,7 +13,7 @@ import de.ars.daojones.runtime.connections.DataAccessException;
 /**
  * Default bean identificator that uses the field, that is marked as id, to read
  * and store the id of the bean within the database.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2013
  * @since 2.0
  */
@@ -21,7 +21,7 @@ public class DefaultBeanIdentificator implements BeanIdentificator {
 
   private static final Messages logger = Messages.create( "beans.identificator.Default" );
 
-  // We use this search for the type to handle classes loaded by different classloaders. 
+  // We use this search for the type to handle classes loaded by different classloaders.
   private static Class<?> findAncestorClass( final Class<?> c, final String name ) {
     final ThreadLocal<Class<?>> result = new ThreadLocal<Class<?>>();
     new TypeHierarchyVisitor() {
@@ -41,7 +41,7 @@ public class DefaultBeanIdentificator implements BeanIdentificator {
 
   /**
    * Finds the field that contains the id.
-   * 
+   *
    * @param model
    *          the bean model
    * @param bean
@@ -52,8 +52,8 @@ public class DefaultBeanIdentificator implements BeanIdentificator {
    * @throws ConfigurationException
    *           if the bean model is not configured correctly
    */
-  protected Field findIdField( final BeanModel model, final Object bean ) throws DataAccessException,
-          ConfigurationException {
+  protected Field findIdField( final BeanModel model, final Object bean )
+          throws DataAccessException, ConfigurationException {
     Field result = null;
     final IdField idField = model.getBean().getIdField();
     if ( null != idField ) {
@@ -70,9 +70,9 @@ public class DefaultBeanIdentificator implements BeanIdentificator {
         result = declaringClass.getDeclaredField( fieldName );
         if ( !result.getType().isAssignableFrom( Identificator.class )
                 && !String.class.isAssignableFrom( result.getType() ) ) {
-          throw new ConfigurationException( DefaultBeanIdentificator.logger.get( "error.invalidFieldType",
-                  declaringBeanType, fieldName, beanClass.getName(), Identificator.class.getName(),
-                  String.class.getName() ) );
+          throw new ConfigurationException(
+                  DefaultBeanIdentificator.logger.get( "error.invalidFieldType", declaringBeanType, fieldName,
+                          beanClass.getName(), Identificator.class.getName(), String.class.getName() ) );
         }
       } catch ( final SecurityException e ) {
         throw new DataAccessException( DefaultBeanIdentificator.logger.get( "error.security.field", declaringBeanType,
@@ -87,7 +87,7 @@ public class DefaultBeanIdentificator implements BeanIdentificator {
 
   /**
    * Reads the application dependent identificator from the field.
-   * 
+   *
    * @param field
    *          the field
    * @param bean
@@ -132,7 +132,7 @@ public class DefaultBeanIdentificator implements BeanIdentificator {
   /**
    * Reads the identificator string from the field. This method is used when the
    * identificator field is of type {@link String}.
-   * 
+   *
    * @param field
    *          the field
    * @param bean
@@ -169,7 +169,7 @@ public class DefaultBeanIdentificator implements BeanIdentificator {
   /**
    * Sets the identificator string to the field. This method is used when the
    * identificator field is of type {@link String}.
-   * 
+   *
    * @param field
    *          the field
    * @param bean
@@ -204,14 +204,14 @@ public class DefaultBeanIdentificator implements BeanIdentificator {
   }
 
   @Override
-  public Identificator getIdentificator( final BeanModel model, final Object bean ) throws DataAccessException,
-          ConfigurationException {
+  public Identificator getIdentificator( final BeanModel model, final Object bean )
+          throws DataAccessException, ConfigurationException {
     final Field field = findIdField( model, bean );
     final String application = model.getId().getApplicationId();
     if ( null != field ) {
       if ( String.class.isAssignableFrom( field.getType() ) ) {
         final String result = getIdentificatorAsString( field, bean );
-        return new StringIdentificator( result );
+        return null != result ? new StringIdentificator( result ) : null;
       } else {
         final ApplicationDependentIdentificator id = getIdentificator( field, bean, false );
         if ( null != id ) {
@@ -233,8 +233,8 @@ public class DefaultBeanIdentificator implements BeanIdentificator {
     final String application = model.getId().getApplicationId();
     if ( null != field ) {
       if ( String.class.isAssignableFrom( field.getType() ) ) {
-        setIdentificatorAsString( field, bean,
-                null != identificator ? DefaultBeanIdentificator.toString( identificator.getId( application ) ) : null );
+        setIdentificatorAsString( field, bean, null != identificator
+                ? DefaultBeanIdentificator.toString( identificator.getId( application ) ) : null );
       } else {
         final ApplicationDependentIdentificator id = getIdentificator( field, bean, true );
         id.set( application, identificator );
