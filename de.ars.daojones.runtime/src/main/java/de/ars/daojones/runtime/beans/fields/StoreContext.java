@@ -15,7 +15,7 @@ import de.ars.daojones.runtime.spi.beans.fields.FieldContext;
 /**
  * A transfer object providing context information for a converter invocation
  * while storing a bean.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2013
  * @since 2.0
  */
@@ -26,7 +26,7 @@ public class StoreContext extends ConverterContext {
 
   /**
    * Constructor.
-   * 
+   *
    * @param beanAccessorProvider
    *          the bean accessor provider
    * @param beanAccessorContext
@@ -49,30 +49,32 @@ public class StoreContext extends ConverterContext {
 
       @Override
       public <E> void storeToDatabase( final String field, final Class<E> type, final E value,
-              final UpdatePolicy updatePolicy, final Property... metadata ) throws DataAccessException,
-              UnsupportedFieldTypeException {
-        db.setFieldValue( new FieldContext<E>() {
+              final UpdatePolicy updatePolicy, final Property... metadata )
+              throws DataAccessException, UnsupportedFieldTypeException {
+        if ( updatePolicy != UpdatePolicy.NEVER ) {
+          db.setFieldValue( new FieldContext<E>() {
 
-          @Override
-          public String getName() {
-            return field;
-          }
+            @Override
+            public String getName() {
+              return field;
+            }
 
-          @Override
-          public Class<? extends E> getType() {
-            return type;
-          }
+            @Override
+            public Class<? extends E> getType() {
+              return type;
+            }
 
-          @Override
-          public List<Property> getMetadata() {
-            return Arrays.asList( metadata );
-          }
+            @Override
+            public List<Property> getMetadata() {
+              return Arrays.asList( metadata );
+            }
 
-          @Override
-          public UpdatePolicy getUpdatePolicy() {
-            return updatePolicy;
-          }
-        }, value );
+            @Override
+            public UpdatePolicy getUpdatePolicy() {
+              return updatePolicy;
+            }
+          }, value );
+        }
       }
 
     };
@@ -80,7 +82,7 @@ public class StoreContext extends ConverterContext {
 
   /**
    * Returns the bean accessor provider.
-   * 
+   *
    * @return the bean accessor provider
    */
   protected BeanAccessorProvider getBeanAccessorProvider() {
@@ -89,7 +91,7 @@ public class StoreContext extends ConverterContext {
 
   /**
    * Returns the reader.
-   * 
+   *
    * @return the reader
    */
   public Writer getWriter() {
@@ -99,7 +101,7 @@ public class StoreContext extends ConverterContext {
   /**
    * A writer is an object that is used to write a field value during
    * conversion.
-   * 
+   *
    * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2013
    * @since 2.0
    */
@@ -108,7 +110,7 @@ public class StoreContext extends ConverterContext {
     /**
      * Stores the converted value to the database. It is allowed to store
      * multiple values to fields.
-     * 
+     *
      * @param <E>
      *          the field type
      * @param field

@@ -101,13 +101,13 @@ public class DatabaseAccessorImpl implements Closeable, DatabaseAccessor {
                   final String[] elements = elements$.split( "((\\" + ELEMENT_END + "\\" + ELEMENT_START + "))" );
                   final Object result = Array.newInstance( componentType, elements.length );
                   for ( int i = 0; i < elements.length; i++ ) {
-                    final Object convertedValue = componentTypeHandler.convertRead( new FieldContextWrapper<Object>(
-                            ( FieldContext ) context ) {
-                      @Override
-                      public Class<? extends Object> getType() {
-                        return componentType;
-                      }
-                    }, index, elements[i] );
+                    final Object convertedValue = componentTypeHandler
+                            .convertRead( new FieldContextWrapper<Object>( ( FieldContext ) context ) {
+                              @Override
+                              public Class<? extends Object> getType() {
+                                return componentType;
+                              }
+                            }, index, elements[i] );
                     Array.set( result, i, convertedValue );
                   }
                   return ( E ) result;
@@ -122,7 +122,8 @@ public class DatabaseAccessorImpl implements Closeable, DatabaseAccessor {
                     throw new ParseException( elements$, 0 );
                   }
                 } catch ( final ParseException e ) {
-                  throw new DataAccessException( DatabaseAccessorImpl.bundle.get( "error.parse", context.getName() ), e );
+                  throw new DataAccessException( DatabaseAccessorImpl.bundle.get( "error.parse", context.getName() ),
+                          e );
                 }
               }
             }
@@ -139,13 +140,13 @@ public class DatabaseAccessorImpl implements Closeable, DatabaseAccessor {
               final StringBuffer sb = new StringBuffer();
               for ( int i = 0; i < length; i++ ) {
                 final Object val = Array.get( value, i );
-                final String convertedValue = componentTypeHandler.convertWrite( new FieldContextWrapper<Object>(
-                        ( FieldContext ) context ) {
-                  @Override
-                  public Class<? extends Object> getType() {
-                    return componentType;
-                  }
-                }, index, val );
+                final String convertedValue = componentTypeHandler
+                        .convertWrite( new FieldContextWrapper<Object>( ( FieldContext ) context ) {
+                          @Override
+                          public Class<? extends Object> getType() {
+                            return componentType;
+                          }
+                        }, index, val );
                 sb.append( ELEMENT_START ).append( convertedValue ).append( ELEMENT_END );
               }
               return sb.toString();
@@ -168,7 +169,8 @@ public class DatabaseAccessorImpl implements Closeable, DatabaseAccessor {
 
   @SuppressWarnings( "unchecked" )
   @Override
-  public <E> E getFieldValue( final FieldContext<E> context ) throws DataAccessException, UnsupportedFieldTypeException {
+  public <E> E getFieldValue( final FieldContext<E> context )
+          throws DataAccessException, UnsupportedFieldTypeException {
     final Property property = getProperty( context.getName(), false );
     E result = null;
     if ( null != property ) {
@@ -183,48 +185,50 @@ public class DatabaseAccessorImpl implements Closeable, DatabaseAccessor {
   }
 
   @Override
-  public <E> void setFieldValue( final FieldContext<E> context, final E value ) throws DataAccessException,
-          UnsupportedFieldTypeException {
+  public <E> void setFieldValue( final FieldContext<E> context, final E value )
+          throws DataAccessException, UnsupportedFieldTypeException {
     final UpdatePolicy updatePolicy = context.getUpdatePolicy();
-    final Property property = getProperty( context.getName(), true );
-    final String pValue;
-    if ( null != value ) {
-      pValue = DatabaseAccessorImpl.getDataHandler( context ).convertWrite( context, index, value );
-    } else {
-      pValue = null;
-    }
-    final String newValue;
-    switch ( updatePolicy ) {
-    case APPEND: {
-      final StringBuffer sbValue = new StringBuffer();
-      final Object currentValue = property.getValue();
-      if ( null != currentValue ) {
-        sbValue.append( currentValue.toString() );
+    if ( updatePolicy != UpdatePolicy.NEVER ) {
+      final Property property = getProperty( context.getName(), true );
+      final String pValue;
+      if ( null != value ) {
+        pValue = DatabaseAccessorImpl.getDataHandler( context ).convertWrite( context, index, value );
+      } else {
+        pValue = null;
       }
-      if ( null != pValue ) {
-        sbValue.append( pValue );
+      final String newValue;
+      switch ( updatePolicy ) {
+      case APPEND: {
+        final StringBuffer sbValue = new StringBuffer();
+        final Object currentValue = property.getValue();
+        if ( null != currentValue ) {
+          sbValue.append( currentValue.toString() );
+        }
+        if ( null != pValue ) {
+          sbValue.append( pValue );
+        }
+        newValue = null != pValue || null != currentValue ? sbValue.toString() : null;
+        break;
       }
-      newValue = null != pValue || null != currentValue ? sbValue.toString() : null;
-      break;
-    }
-    case INSERT: {
-      final StringBuffer sbValue = new StringBuffer();
-      if ( null != pValue ) {
-        sbValue.append( pValue );
+      case INSERT: {
+        final StringBuffer sbValue = new StringBuffer();
+        if ( null != pValue ) {
+          sbValue.append( pValue );
+        }
+        final Object currentValue = property.getValue();
+        if ( null != currentValue ) {
+          sbValue.append( currentValue.toString() );
+        }
+        newValue = null != pValue || null != currentValue ? sbValue.toString() : null;
+        break;
       }
-      final Object currentValue = property.getValue();
-      if ( null != currentValue ) {
-        sbValue.append( currentValue.toString() );
+      default:
+        // replace
+        newValue = pValue;
+        break;
       }
-      newValue = null != pValue || null != currentValue ? sbValue.toString() : null;
-      break;
+      property.setValue( newValue );
     }
-    default:
-      // replace
-      newValue = pValue;
-      break;
-    }
-    property.setValue( newValue );
   }
 
   @Override
