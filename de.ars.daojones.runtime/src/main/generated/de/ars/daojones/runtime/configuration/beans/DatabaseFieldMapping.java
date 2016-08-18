@@ -45,6 +45,7 @@ import de.ars.daojones.internal.runtime.utilities.StringTrimAdapter;
  *             &lt;enumeration value="replace"/>
  *             &lt;enumeration value="insert"/>
  *             &lt;enumeration value="append"/>
+ *             &lt;enumeration value="never"/>
  *           &lt;/restriction>
  *         &lt;/simpleType>
  *       &lt;/attribute>
@@ -220,6 +221,7 @@ public class DatabaseFieldMapping
      *     &lt;enumeration value="replace"/>
      *     &lt;enumeration value="insert"/>
      *     &lt;enumeration value="append"/>
+     *     &lt;enumeration value="never"/>
      *   &lt;/restriction>
      * &lt;/simpleType>
      * </pre>
@@ -234,7 +236,9 @@ public class DatabaseFieldMapping
         @XmlEnumValue("insert")
         INSERT("insert"),
         @XmlEnumValue("append")
-        APPEND("append");
+        APPEND("append"),
+        @XmlEnumValue("never")
+        NEVER("never");
         private final String value;
 
         UpdatePolicy(String v) {

@@ -50,7 +50,7 @@ import de.ars.daojones.runtime.context.ApplicationContext;
 
 /**
  * Default implementation that uses Java Reflection.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2013
  * @since 2.0
  */
@@ -59,16 +59,16 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
   private static final Messages logger = Messages.create( "spi.beans.fields.Accessor" );
 
   @Override
-  public Object getValue( final Object bean, final DatabaseFieldMappedElement fieldModel ) throws FieldAccessException,
-          ConfigurationException {
+  public Object getValue( final Object bean, final DatabaseFieldMappedElement fieldModel )
+          throws FieldAccessException, ConfigurationException {
     final ThreadLocal<Object> result = new ThreadLocal<Object>();
     try {
       new ModelElementHandler() {
 
         @Override
         protected void handle( final MethodParameter model ) throws ConfigurationException {
-          throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.read.parameter", model
-                  .getFieldMapping().getName(), model.getDeclaringBean().getType() ) );
+          throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.read.parameter",
+                  model.getFieldMapping().getName(), model.getDeclaringBean().getType() ) );
         }
 
         @Override
@@ -78,19 +78,19 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
           final Invocable invocable = model.getInvocable();
           final Method methodModel = ( Method ) invocable;
           if ( !invocable.getParameters().isEmpty() ) {
-            throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.read.method.parameters", model
-                    .getFieldMapping().getName(), model.getDeclaringBean().getType(), methodModel.getName() ) );
+            throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.read.method.parameters",
+                    model.getFieldMapping().getName(), model.getDeclaringBean().getType(), methodModel.getName() ) );
           }
           // find method (Reflection API)
-          final Class<?> declaringClass = ReflectionHelper.findClass( bean.getClass(), methodModel.getDeclaringBean()
-                  .getType() );
+          final Class<?> declaringClass = ReflectionHelper.findClass( bean.getClass(),
+                  methodModel.getDeclaringBean().getType() );
           if ( null == declaringClass ) {
             throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.read.method.invalidBeanType",
                     model.getFieldMapping().getName(), model.getDeclaringBean().getType(), methodModel.getName() ) );
           }
           try {
             final java.lang.reflect.Method method = BeanModelHelper.findMethod( declaringClass, methodModel );
-            final Object methodResult = method.invoke( bean /*, args - currently not allowed*/);
+            final Object methodResult = method.invoke( bean /*, args - currently not allowed*/ );
             result.set( methodResult );
           } catch ( final SecurityException e ) {
             throw new ConfigurationException( e );
@@ -110,11 +110,11 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
         @Override
         protected void handle( final Field model ) throws ConfigurationException {
           // find field (Reflection API)
-          final Class<?> declaringClass = ReflectionHelper.findClass( bean.getClass(), model.getDeclaringBean()
-                  .getType() );
+          final Class<?> declaringClass = ReflectionHelper.findClass( bean.getClass(),
+                  model.getDeclaringBean().getType() );
           if ( null == declaringClass ) {
-            throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.field.invalidBeanType", model
-                    .getFieldMapping().getName(), model.getDeclaringBean().getType(), model.getName() ) );
+            throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.field.invalidBeanType",
+                    model.getFieldMapping().getName(), model.getDeclaringBean().getType(), model.getName() ) );
           }
           try {
             final java.lang.reflect.Field field = declaringClass.getDeclaredField( model.getName() );
@@ -144,8 +144,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
         }
       }.handle( fieldModel );
     } catch ( final ModelElementHandlingException e ) {
-      throw new FieldAccessException( DefaultBeanAccessor.logger.get( "error.fieldaccess" ), fieldModel
-              .getFieldMapping().getName(), e.getCause() );
+      throw new FieldAccessException( DefaultBeanAccessor.logger.get( "error.fieldaccess" ),
+              fieldModel.getFieldMapping().getName(), e.getCause() );
     }
     return result.get();
   }
@@ -157,21 +157,21 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
       new ModelElementHandler() {
 
         @Override
-        protected void handle( final MethodParameter model ) throws ConfigurationException,
-                ModelElementHandlingException {
+        protected void handle( final MethodParameter model )
+                throws ConfigurationException, ModelElementHandlingException {
           final Invocable invocable = model.getInvocable();
           if ( invocable instanceof Constructor ) {
-            throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.write.method.constructor", model
-                    .getFieldMapping().getName(), model.getDeclaringBean().getType() ) );
+            throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.write.method.constructor",
+                    model.getFieldMapping().getName(), model.getDeclaringBean().getType() ) );
           }
           final Method methodModel = ( Method ) invocable;
           if ( invocable.getParameters().size() != 1 ) {
-            throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.write.method.parameters", model
-                    .getFieldMapping().getName(), model.getDeclaringBean().getType(), methodModel.getName() ) );
+            throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.write.method.parameters",
+                    model.getFieldMapping().getName(), model.getDeclaringBean().getType(), methodModel.getName() ) );
           }
           // find method (Reflection API)
-          final Class<?> declaringClass = ReflectionHelper.findClass( bean.getClass(), methodModel.getDeclaringBean()
-                  .getType() );
+          final Class<?> declaringClass = ReflectionHelper.findClass( bean.getClass(),
+                  methodModel.getDeclaringBean().getType() );
           if ( null == declaringClass ) {
             throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.write.method.invalidBeanType",
                     model.getFieldMapping().getName(), model.getDeclaringBean().getType(), methodModel.getName() ) );
@@ -183,7 +183,7 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
               method.setAccessible( true );
             }
             try {
-              method.invoke( bean, value /*, further args - currently not allowed*/);
+              method.invoke( bean, value /*, further args - currently not allowed*/ );
             } finally {
               if ( !accessible ) {
                 method.setAccessible( false );
@@ -208,15 +208,15 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
         protected void handle( final MethodResult model ) throws ConfigurationException {
           final Invocable invocable = model.getInvocable();
           final Method methodModel = ( Method ) invocable;
-          throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.write.methodResult", model
-                  .getFieldMapping().getName(), model.getDeclaringBean().getType(), methodModel.getName() ) );
+          throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.write.methodResult",
+                  model.getFieldMapping().getName(), model.getDeclaringBean().getType(), methodModel.getName() ) );
         }
 
         @Override
         protected void handle( final Field model ) throws ConfigurationException {
           // find field (Reflection API)
-          final Class<?> declaringClass = ReflectionHelper.findClass( bean.getClass(), model.getDeclaringBean()
-                  .getType() );
+          final Class<?> declaringClass = ReflectionHelper.findClass( bean.getClass(),
+                  model.getDeclaringBean().getType() );
           if ( null == declaringClass ) {
             throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.write.field.invalidBeanType",
                     model.getFieldMapping().getName(), model.getDeclaringBean().getType(), model.getName() ) );
@@ -224,8 +224,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
           try {
             final java.lang.reflect.Field field = declaringClass.getDeclaredField( model.getName() );
             if ( Modifier.isFinal( field.getModifiers() ) ) {
-              throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.write.field.final", model
-                      .getFieldMapping().getName(), model.getDeclaringBean().getType(), model.getName() ) );
+              throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.write.field.final",
+                      model.getFieldMapping().getName(), model.getDeclaringBean().getType(), model.getName() ) );
             }
             final boolean accessible = field.isAccessible();
             synchronized ( field ) {
@@ -252,14 +252,14 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
         }
       }.handle( fieldModel );
     } catch ( final ModelElementHandlingException e ) {
-      throw new FieldAccessException( DefaultBeanAccessor.logger.get( "error.fieldaccess" ), fieldModel
-              .getFieldMapping().getName(), e.getCause() );
+      throw new FieldAccessException( DefaultBeanAccessor.logger.get( "error.fieldaccess" ),
+              fieldModel.getFieldMapping().getName(), e.getCause() );
     }
   }
 
   /**
    * Reads all values for method parameters from the database.
-   * 
+   *
    * @param context
    *          the field accessor context
    * @param parameters
@@ -274,8 +274,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
    *           if converting the field value occured an error
    */
   protected Object[] getParameterValues( final BeanAccessorContext<?> context,
-          final Collection<MethodParameter> parameters, final Object bean ) throws DataAccessException,
-          ConfigurationException, FieldAccessException {
+          final Collection<MethodParameter> parameters, final Object bean )
+          throws DataAccessException, ConfigurationException, FieldAccessException {
     try {
       final Object[] result = new Object[parameters.size()];
       int idx = 0;
@@ -293,7 +293,7 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
 
   /**
    * Reads a single database field mapping.
-   * 
+   *
    * @param <T>
    *          the field type
    * @param context
@@ -314,8 +314,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
    */
   @SuppressWarnings( "unchecked" )
   protected <T> T readDatabaseFieldMappingRaw( final BeanAccessorContext<?> context, final Class<T> fieldType,
-          final Object beanObject, final DatabaseFieldMappedElement element ) throws DataAccessException,
-          ConfigurationException, FieldAccessException {
+          final Object beanObject, final DatabaseFieldMappedElement element )
+          throws DataAccessException, ConfigurationException, FieldAccessException {
     final Bean declaringBean = element.getDeclaringBean();
     T result = null;
     final DatabaseFieldMapping mapping = element.getFieldMapping();
@@ -337,7 +337,7 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
 
   /**
    * Reads a single database field mapping.
-   * 
+   *
    * @param <T>
    *          the field type
    * @param context
@@ -376,7 +376,7 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
    * Reads the bean model from the context. If the bean model is <tt>null</tt>
    * and the mandatory flag is set to <tt>true</tt>, a
    * {@link ConfigurationException} is thrown.
-   * 
+   *
    * @param context
    *          the context
    * @param mandatory
@@ -392,14 +392,14 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
     if ( null != result || !mandatory ) {
       return result;
     } else {
-      throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.nobeanmodel", context.getBeanType()
-              .getName() ) );
+      throw new ConfigurationException(
+              DefaultBeanAccessor.logger.get( "error.nobeanmodel", context.getBeanType().getName() ) );
     }
   }
 
   /**
    * Finds the bean model for a bean.
-   * 
+   *
    * @param ctx
    *          the application context
    * @param bean
@@ -416,7 +416,7 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
 
   /**
    * Creates the converter instance for a given field.
-   * 
+   *
    * @param <T>
    *          the field type
    * @param context
@@ -437,8 +437,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
     final BeanModel beanModel = getBeanModel( context, true );
     final String application = beanModel.getId().getApplicationId();
     final LocalConverter localConverter = mapping.getConverter();
-    if ( null != localConverter
-            && !DefaultConverter.class.getName().equals( localConverter.getInstanceProvider().getInstanceClassName() ) ) {
+    if ( null != localConverter && !DefaultConverter.class.getName()
+            .equals( localConverter.getInstanceProvider().getInstanceClassName() ) ) {
       // field specific converter
       result = getProvidedInstance( context, localConverter );
     } else {
@@ -478,7 +478,7 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
 
   /**
    * Reads the database id.
-   * 
+   *
    * @param <T>
    *          the field type
    * @param context
@@ -523,8 +523,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
 
   @SuppressWarnings( "unchecked" )
   @Override
-  public <T> T createBeanInstance( final BeanAccessorContext<T> context ) throws FieldAccessException,
-          ConfigurationException, DataAccessException {
+  public <T> T createBeanInstance( final BeanAccessorContext<T> context )
+          throws FieldAccessException, ConfigurationException, DataAccessException {
     try {
       try {
         final Identificator identificator = context.getDb().getIdentificator();
@@ -538,8 +538,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
           // Constructor injection
           final Constructor constructor = beanModel.getBean().getConstructor();
           if ( null != constructor ) {
-            final java.lang.reflect.Constructor<? extends T> c = BeanModelHelper
-                    .findConstructor( beanType, constructor );
+            final java.lang.reflect.Constructor<? extends T> c = BeanModelHelper.findConstructor( beanType,
+                    constructor );
             final Object[] params = getParameterValues( context, constructor.getParameters(), null );
             result = c.newInstance( params );
           } else {
@@ -599,14 +599,15 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
 
   @SuppressWarnings( "unchecked" )
   protected <T> T readDatabaseFieldMapping( final BeanAccessorContext<?> context, final Class<T> fieldType,
-          final Object beanObject, final DatabaseFieldMappedElement model ) throws DataAccessException,
-          ConfigurationException, FieldAccessException {
+          final Object beanObject, final DatabaseFieldMappedElement model )
+          throws DataAccessException, ConfigurationException, FieldAccessException {
     final DatabaseFieldMapping fieldMapping = model.getFieldMapping();
     if ( null != fieldMapping ) {
       final UpdatePolicy updatePolicy = fieldMapping.getUpdatePolicy();
       Object value;
       switch ( updatePolicy ) {
       case REPLACE:
+      case NEVER:
         value = readDatabaseFieldMappingRaw( context, fieldType, beanObject, model );
         break;
       case APPEND:
@@ -638,7 +639,7 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
 
   /**
    * Assigns a value to a Java bean's field.
-   * 
+   *
    * @param model
    *          the field model
    * @param bean
@@ -678,7 +679,7 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
 
   /**
    * Reads a value from a Java bean's field.
-   * 
+   *
    * @param model
    *          the field model
    * @param bean
@@ -713,7 +714,7 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
 
   /**
    * Assigns a value to a Java bean's field.
-   * 
+   *
    * @param model
    *          the field model
    * @param bean
@@ -774,8 +775,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
         try {
           final Object[] params = getParameterValues( context, method.getParameters(), bean );
           final Object result = reflMethod.invoke( bean, params );
-          storeDatabaseFieldMapping( context, ( Class<Object> ) reflMethod.getReturnType(), context.getModel()
-                  .getBean(), bean, methodResult, result );
+          storeDatabaseFieldMapping( context, ( Class<Object> ) reflMethod.getReturnType(),
+                  context.getModel().getBean(), bean, methodResult, result );
         } finally {
           if ( !accessible ) {
             reflMethod.setAccessible( false );
@@ -922,8 +923,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
   }
 
   private <T> InjectionKey getInjectionKey( final BeanAccessorContext<T> context, final T bean,
-          final Identificator identificator ) throws AlreadyInjectingException, DataAccessException,
-          ConfigurationException {
+          final Identificator identificator )
+          throws AlreadyInjectingException, DataAccessException, ConfigurationException {
     final BeanModel beanModel = getBeanModel( context, true );
     // Check for cycle
     Map<InjectionKey, Object> beans = DefaultBeanAccessor.alreadyInjectedBeans.get();
@@ -945,8 +946,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
   }
 
   @Override
-  public <T> void inject( final BeanAccessorContext<T> context, final T bean ) throws FieldAccessException,
-          DataAccessException, ConfigurationException, AlreadyInjectingException {
+  public <T> void inject( final BeanAccessorContext<T> context, final T bean )
+          throws FieldAccessException, DataAccessException, ConfigurationException, AlreadyInjectingException {
     final Identificator identificator = context.getDb().getIdentificator();
     final InjectionKey injectionKey = getInjectionKey( context, bean, identificator );
     try {
@@ -957,8 +958,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
   }
 
   @Override
-  public <T> void reinjectAfterStore( final BeanAccessorContext<T> context, final T bean ) throws FieldAccessException,
-          DataAccessException, ConfigurationException, AlreadyInjectingException {
+  public <T> void reinjectAfterStore( final BeanAccessorContext<T> context, final T bean )
+          throws FieldAccessException, DataAccessException, ConfigurationException, AlreadyInjectingException {
     final Identificator identificator = context.getDb().getIdentificator();
     final InjectionKey injectionKey = getInjectionKey( context, bean, identificator );
     try {
@@ -989,6 +990,7 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
           doInjection = true;
           break;
         case REPLACE:
+        case NEVER:
           // nothing to do
           break;
         }
@@ -1006,18 +1008,22 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
   }
 
   @Override
-  public <T> void store( final BeanAccessorContext<T> context, final T bean ) throws FieldAccessException,
-          DataAccessException, ConfigurationException {
+  public <T> void store( final BeanAccessorContext<T> context, final T bean )
+          throws FieldAccessException, DataAccessException, ConfigurationException {
     final BeanModel beanModel = getBeanModel( context, true );
     // Check for cycle
     final Bean model = beanModel.getBean();
     // store further fields
     for ( final Field field : model.getFields() ) {
-      storeField( context, bean, field );
+      if ( field.getFieldMapping().getUpdatePolicy() != UpdatePolicy.NEVER ) {
+        storeField( context, bean, field );
+      }
     }
     // store method parameters
     for ( final Method method : model.getMethods() ) {
-      storeMethod( context, bean, method );
+      if ( method.getResult().getFieldMapping().getUpdatePolicy() != UpdatePolicy.NEVER ) {
+        storeMethod( context, bean, method );
+      }
     }
   }
 
@@ -1034,8 +1040,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
     }
 
     @Override
-    public <E> void setFieldValue( final FieldContext<E> context, final E value ) throws DataAccessException,
-            UnsupportedFieldTypeException {
+    public <E> void setFieldValue( final FieldContext<E> context, final E value )
+            throws DataAccessException, UnsupportedFieldTypeException {
       setFieldValue( context.getName(), value );
     }
 
@@ -1047,15 +1053,15 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
 
     @SuppressWarnings( "unchecked" )
     @Override
-    public <E> E getFieldValue( final FieldContext<E> context ) throws DataAccessException,
-            UnsupportedFieldTypeException {
+    public <E> E getFieldValue( final FieldContext<E> context )
+            throws DataAccessException, UnsupportedFieldTypeException {
       return ( E ) fieldValues.get( context.getName() );
     }
 
   }
 
-  protected DatabaseFieldMappedElement findFieldModel( final BeanModel beanModel, final Object bean, final String field )
-          throws ConfigurationException {
+  protected DatabaseFieldMappedElement findFieldModel( final BeanModel beanModel, final Object bean,
+          final String field ) throws ConfigurationException {
     final DatabaseFieldMappedElement fieldModel;
     if ( bean instanceof SelfDescribing ) {
       fieldModel = ( ( SelfDescribing ) bean ).findFieldModel( field, false );
@@ -1063,8 +1069,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
       fieldModel = BeanModelHelper.findFieldModel( beanModel.getBean(), field, false );
     }
     if ( null == fieldModel ) {
-      throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.nofieldmodel", beanModel.getId()
-              .getApplicationId(), bean.getClass().getName(), field ) );
+      throw new ConfigurationException( DefaultBeanAccessor.logger.get( "error.nofieldmodel",
+              beanModel.getId().getApplicationId(), bean.getClass().getName(), field ) );
     }
     return fieldModel;
   }
@@ -1109,8 +1115,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
       if ( handled ) {
         return db.getFieldValue( fieldModel.getFieldMapping().getName() );
       } else {
-        throw new FieldAccessException( DefaultBeanAccessor.logger.get( "error.fieldaccess" ), fieldModel
-                .getFieldMapping().getName() );
+        throw new FieldAccessException( DefaultBeanAccessor.logger.get( "error.fieldaccess" ),
+                fieldModel.getFieldMapping().getName() );
       }
     } catch ( final DataAccessException e ) {
       throw new FieldAccessException( fieldModel.getFieldMapping().getName(), e );
@@ -1135,8 +1141,8 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
   }
 
   @Override
-  public Identificator getIdentificator( final BeanModel model, final Object bean ) throws DataAccessException,
-          ConfigurationException {
+  public Identificator getIdentificator( final BeanModel model, final Object bean )
+          throws DataAccessException, ConfigurationException {
     return getBeanIdentificator( model.getBean(), bean.getClass() ).getIdentificator( model, bean );
   }
 

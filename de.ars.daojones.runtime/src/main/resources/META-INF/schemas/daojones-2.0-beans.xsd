@@ -157,25 +157,20 @@
         <documentation>
           The kind of field update that has to be done when storing a
           bean.
+          <br />
           REPLACE: The field has to be fully replaced by the value
           that is given by
           the bean. This is the default type.
+          <br />
           INSERT: The
           value, that is given by the bean, is inserted into the field
           at the top position.
           <br />
-          <br />
-          <b>Please note:</b>
-          To avoid inserting or appending field values multiple
-          times,
-          the framework does not inject bean member values with this
-          policy.
-          After storing a bean, fields with this policy are
-          cleaned, if
-          possible.
           APPEND: The value, that is given by the
           bean, is appended at the field at
           the bottom position.
+          <br />
+          NEVER: The value is not written to the database. It is read-only.
           <br />
           <br />
           <b>Please note:</b>
@@ -193,6 +188,7 @@
           <enumeration value="replace"></enumeration>
           <enumeration value="insert"></enumeration>
           <enumeration value="append"></enumeration>
+          <enumeration value="never"></enumeration>
         </restriction>
       </simpleType>
     </attribute>
