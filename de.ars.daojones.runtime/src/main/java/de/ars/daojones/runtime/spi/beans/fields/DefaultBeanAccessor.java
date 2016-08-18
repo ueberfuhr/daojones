@@ -580,12 +580,14 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
   @SuppressWarnings( "unchecked" )
   protected <T> void storeField( final BeanAccessorContext<T> context, final T bean, final Field field )
           throws FieldAccessException, DataAccessException, ConfigurationException {
-    // Find field type
-    final java.lang.reflect.Field reflField = findField( context, field.getDeclaringBean(), field.getName() );
-    // Read the value from the field
-    final Object value = readValueFromField( context, reflField, bean );
-    storeDatabaseFieldMapping( context, ( Class<Object> ) reflField.getType(), field.getDeclaringBean(), bean, field,
-            value );
+    if ( field.getFieldMapping().getUpdatePolicy() != UpdatePolicy.NEVER ) {
+      // Find field type
+      final java.lang.reflect.Field reflField = findField( context, field.getDeclaringBean(), field.getName() );
+      // Read the value from the field
+      final Object value = readValueFromField( context, reflField, bean );
+      storeDatabaseFieldMapping( context, ( Class<Object> ) reflField.getType(), field.getDeclaringBean(), bean, field,
+              value );
+    }
   }
 
   protected <T> void injectField( final BeanAccessorContext<T> context, final T bean, final Field field )
@@ -767,19 +769,21 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
     try {
       final MethodResult methodResult = method.getResult();
       if ( null != methodResult ) {
-        final java.lang.reflect.Method reflMethod = findMethod( context, method );
-        final boolean accessible = reflMethod.isAccessible();
-        if ( !accessible ) {
-          reflMethod.setAccessible( true );
-        }
-        try {
-          final Object[] params = getParameterValues( context, method.getParameters(), bean );
-          final Object result = reflMethod.invoke( bean, params );
-          storeDatabaseFieldMapping( context, ( Class<Object> ) reflMethod.getReturnType(),
-                  context.getModel().getBean(), bean, methodResult, result );
-        } finally {
+        if ( methodResult.getFieldMapping().getUpdatePolicy() != UpdatePolicy.NEVER ) {
+          final java.lang.reflect.Method reflMethod = findMethod( context, method );
+          final boolean accessible = reflMethod.isAccessible();
           if ( !accessible ) {
-            reflMethod.setAccessible( false );
+            reflMethod.setAccessible( true );
+          }
+          try {
+            final Object[] params = getParameterValues( context, method.getParameters(), bean );
+            final Object result = reflMethod.invoke( bean, params );
+            storeDatabaseFieldMapping( context, ( Class<Object> ) reflMethod.getReturnType(),
+                    context.getModel().getBean(), bean, methodResult, result );
+          } finally {
+            if ( !accessible ) {
+              reflMethod.setAccessible( false );
+            }
           }
         }
       }
@@ -1015,15 +1019,11 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
     final Bean model = beanModel.getBean();
     // store further fields
     for ( final Field field : model.getFields() ) {
-      if ( field.getFieldMapping().getUpdatePolicy() != UpdatePolicy.NEVER ) {
-        storeField( context, bean, field );
-      }
+      storeField( context, bean, field );
     }
     // store method parameters
     for ( final Method method : model.getMethods() ) {
-      if ( method.getResult().getFieldMapping().getUpdatePolicy() != UpdatePolicy.NEVER ) {
-        storeMethod( context, bean, method );
-      }
+      storeMethod( context, bean, method );
     }
   }
 
