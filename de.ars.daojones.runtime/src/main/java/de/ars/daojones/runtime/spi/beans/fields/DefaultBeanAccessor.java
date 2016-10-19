@@ -771,20 +771,23 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
       if ( null != methodResult ) {
         if ( methodResult.getFieldMapping().getUpdatePolicy() != UpdatePolicy.NEVER ) {
           final java.lang.reflect.Method reflMethod = findMethod( context, method );
+          final Object[] params = getParameterValues( context, method.getParameters(), bean );
           final boolean accessible = reflMethod.isAccessible();
-          if ( !accessible ) {
-            reflMethod.setAccessible( true );
-          }
-          try {
-            final Object[] params = getParameterValues( context, method.getParameters(), bean );
-            final Object result = reflMethod.invoke( bean, params );
-            storeDatabaseFieldMapping( context, ( Class<Object> ) reflMethod.getReturnType(),
-                    context.getModel().getBean(), bean, methodResult, result );
-          } finally {
+          final Object result;
+          synchronized ( reflMethod ) {
             if ( !accessible ) {
-              reflMethod.setAccessible( false );
+              reflMethod.setAccessible( true );
+            }
+            try {
+              result = reflMethod.invoke( bean, params );
+            } finally {
+              if ( !accessible ) {
+                reflMethod.setAccessible( false );
+              }
             }
           }
+          storeDatabaseFieldMapping( context, ( Class<Object> ) reflMethod.getReturnType(),
+                  context.getModel().getBean(), bean, methodResult, result );
         }
       }
     } catch ( final IllegalArgumentException e ) {
@@ -814,15 +817,17 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
       final List<MethodParameter> parameters = method.getParameters();
       if ( isParametersForInjection( parameters ) ) {
         final Object[] params = getParameterValues( context, parameters, bean );
-        final boolean accessible = reflMethod.isAccessible();
-        if ( !accessible ) {
-          reflMethod.setAccessible( true );
-        }
-        try {
-          reflMethod.invoke( bean, params );
-        } finally {
+        synchronized ( reflMethod ) {
+          final boolean accessible = reflMethod.isAccessible();
           if ( !accessible ) {
-            reflMethod.setAccessible( false );
+            reflMethod.setAccessible( true );
+          }
+          try {
+            reflMethod.invoke( bean, params );
+          } finally {
+            if ( !accessible ) {
+              reflMethod.setAccessible( false );
+            }
           }
         }
       }
