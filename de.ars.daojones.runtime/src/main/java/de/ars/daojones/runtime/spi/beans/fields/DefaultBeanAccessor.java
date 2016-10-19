@@ -814,7 +814,17 @@ public class DefaultBeanAccessor implements BeanAccessor, BeanAccessorProvider {
       final List<MethodParameter> parameters = method.getParameters();
       if ( isParametersForInjection( parameters ) ) {
         final Object[] params = getParameterValues( context, parameters, bean );
-        reflMethod.invoke( bean, params );
+        final boolean accessible = reflMethod.isAccessible();
+        if ( !accessible ) {
+          reflMethod.setAccessible( true );
+        }
+        try {
+          reflMethod.invoke( bean, params );
+        } finally {
+          if ( !accessible ) {
+            reflMethod.setAccessible( false );
+          }
+        }
       }
     } catch ( final IllegalArgumentException e ) {
       throw new ConfigurationException( e );
