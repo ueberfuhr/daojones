@@ -105,6 +105,7 @@ public class ScanBeanModelTask extends DefaultTask {
                 }
 
               } ); ) {
+        getLogger().debug( ScanBeanModelTask.bundle.get( "debug.classloader", dependenciesClassLoader.toString() ) );
         command.setDependenciesClassLoader( dependenciesClassLoader );
         command.execute();
       }
