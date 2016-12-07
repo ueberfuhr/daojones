@@ -135,7 +135,7 @@ public class DaoJonesContextBuilder implements Closeable, TestModelResolver {
    *   T E S T   M O D E L   F I L E S   *
    ************************************* */
 
-  private static final String DEFAULT_DB_PATH = "{1}-model{0}.xml";
+  public static final String DEFAULT_DB_PATH = "{1}-model{0}.xml";
 
   private static final MessageFormat MODEL_FILE_APP = new MessageFormat( "-{0}" ); // NON-NLS-$1
 

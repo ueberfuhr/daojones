@@ -32,7 +32,8 @@ import de.ars.daojones.internal.drivers.notes.utilities.URIParser;
  * <br/>
  * <b>Examples:</b>
  * <ul>
- * <li>This URI opens the database company/employees.nsf on server acme.com:<br/>
+ * <li>This URI opens the database company/employees.nsf on server acme.com:
+ * <br/>
  * <code>notes://acme.com/company/employees.nsf?version=1.1</code></li>
  * <li>This URI opens the database company/employees.nsf using the local Notes
  * client: <br/>
@@ -45,7 +46,7 @@ import de.ars.daojones.internal.drivers.notes.utilities.URIParser;
  * <code>notes:///C1257421103A2141?version=1.1&type=replica&server=acme.com</code>
  * </li>
  * </ul>
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH
  * @since 1.1.0
  */
@@ -65,7 +66,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * The type of path that is specified.
-   * 
+   *
    * @author Ralf Zahn, ARS Computer und Consulting GmbH
    * @since 1.1.0
    */
@@ -88,7 +89,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * Returns the type of path.
-   * 
+   *
    * @return the type of path
    */
   public PathType getType() {
@@ -97,7 +98,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * Sets the type of path.
-   * 
+   *
    * @param type
    *          the type of path
    */
@@ -108,7 +109,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
   /**
    * Returns the authority. The authority is used for the kind of database
    * access.
-   * 
+   *
    * @return the authority
    */
   public String getAuthority() {
@@ -117,7 +118,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * Sets the authority. The authority is used for the kind of database access
-   * 
+   *
    * @param authority
    *          the authority
    */
@@ -127,7 +128,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * Returns true, if the path is a local path.
-   * 
+   *
    * @return true, if the path is a local path
    */
   public boolean isUseLocalClient() {
@@ -136,7 +137,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * Returns the server.
-   * 
+   *
    * @return the server or <code>null</code> for local access
    */
   public String getServer() {
@@ -145,7 +146,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * Sets the server.
-   * 
+   *
    * @param server
    *          the server or <code>null</code> for local access
    */
@@ -155,7 +156,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * Returns the database.
-   * 
+   *
    * @return the database
    */
   public String getDatabase() {
@@ -164,7 +165,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * Sets the database.
-   * 
+   *
    * @param database
    *          the database
    */
@@ -174,7 +175,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * Returns the version of this path.
-   * 
+   *
    * @return the version of this path
    */
   public String getVersion() {
@@ -183,7 +184,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * Sets the version of this path.
-   * 
+   *
    * @param version
    *          the version of this path
    */
@@ -303,9 +304,8 @@ public class NotesDatabasePath implements Serializable, Cloneable {
     while ( sb.length() > 0 && ( Character.isWhitespace( sb.charAt( 0 ) ) || trimChars.contains( sb.charAt( 0 ) ) ) ) {
       sb.deleteCharAt( 0 );
     }
-    while ( sb.length() > 0
-            && ( Character.isWhitespace( sb.charAt( sb.length() - 1 ) ) || trimChars
-                    .contains( sb.charAt( sb.length() - 1 ) ) ) ) {
+    while ( sb.length() > 0 && ( Character.isWhitespace( sb.charAt( sb.length() - 1 ) )
+            || trimChars.contains( sb.charAt( sb.length() - 1 ) ) ) ) {
       sb.deleteCharAt( sb.length() - 1 );
     }
     return sb.toString();
@@ -322,7 +322,7 @@ public class NotesDatabasePath implements Serializable, Cloneable {
 
   /**
    * Parses a path.
-   * 
+   *
    * @param path
    *          the path string
    * @return the {@link NotesDatabasePath} object
@@ -339,10 +339,11 @@ public class NotesDatabasePath implements Serializable, Cloneable {
     result.setAuthority( uri.getAuthority() );
     result.setDatabase( NotesDatabasePath.trim( uri.getPath(), '/', '\\' ) );
     result.setServer( params.getProperty( NotesDatabasePath.PROPERTY_SERVER_NAME ) );
-    result.setType( PathType.valueOf( params.getProperty( NotesDatabasePath.PROPERTY_TYPE_NAME,
-            NotesDatabasePath.PROPERTY_TYPE_DEFAULT.name() ).toUpperCase() ) );
-    result.setVersion( params.getProperty( NotesDatabasePath.PROPERTY_VERSION_NAME,
-            NotesDatabasePath.PROPERTY_VERSION_DEFAULT ) );
+    result.setType( PathType.valueOf(
+            params.getProperty( NotesDatabasePath.PROPERTY_TYPE_NAME, NotesDatabasePath.PROPERTY_TYPE_DEFAULT.name() )
+                    .toUpperCase() ) );
+    result.setVersion(
+            params.getProperty( NotesDatabasePath.PROPERTY_VERSION_NAME, NotesDatabasePath.PROPERTY_VERSION_DEFAULT ) );
     return result;
   }
 }

@@ -8,14 +8,14 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 
-import lotus.domino.NotesException;
-import lotus.domino.Session;
+import de.ars.daojones.drivers.notes.NotesDatabasePath;
 import de.ars.daojones.drivers.notes.NotesDriverConfiguration;
 import de.ars.daojones.drivers.notes.NotesDriverConfiguration.SessionScope;
-import de.ars.daojones.drivers.notes.NotesDatabasePath;
 import de.ars.daojones.drivers.notes.security.AuthorityCredential;
+import de.ars.daojones.drivers.notes.security.NotesDatabasePathCredential;
 import de.ars.daojones.drivers.notes.security.SessionFactoryCredential;
 import de.ars.daojones.internal.drivers.notes.security.NotesAuthorityCredentialRequest;
+import de.ars.daojones.internal.drivers.notes.security.NotesDatabasePathCredentialRequest;
 import de.ars.daojones.internal.drivers.notes.security.NotesSessionCredentialRequest;
 import de.ars.daojones.internal.drivers.notes.utilities.DriverSystem;
 import de.ars.daojones.internal.drivers.notes.utilities.Messages;
@@ -24,12 +24,14 @@ import de.ars.daojones.runtime.connections.DataAccessException;
 import de.ars.daojones.runtime.spi.database.CredentialVault;
 import de.ars.daojones.runtime.spi.database.CredentialVault.Scope;
 import de.ars.daojones.runtime.spi.database.CredentialVaultException;
+import lotus.domino.NotesException;
+import lotus.domino.Session;
 
 /**
  * A manager that holds session objects by their connection information. This
  * allows to share sessions between multiple connections that have the same
  * connection information.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2015
  * @since 2.0
  */
@@ -101,7 +103,7 @@ public class NotesSessionManager {
   /**
    * Adds a session listener that is notified when creating, refreshing or
    * destroying the session.
-   * 
+   *
    * @param l
    *          the session listener
    */
@@ -111,7 +113,7 @@ public class NotesSessionManager {
 
   /**
    * Removes a session listener.
-   * 
+   *
    * @param l
    *          the session listener
    */
@@ -121,22 +123,31 @@ public class NotesSessionManager {
 
   /**
    * Returns an array containing all registered session listeners.
-   * 
+   *
    * @return an array containing all registered session listeners
    */
   public SessionListener[] getSessionListeners() {
     return listeners.toArray( new SessionListener[] {} );
   }
 
-  private Session refreshSession( final Session oldSession, final NotesConnectionModel model ) throws NotesException,
-          DataAccessException {
+  private Session refreshSession( final Session oldSession, final NotesConnectionModel model )
+          throws NotesException, DataAccessException {
     final CredentialVault vault = model.getCredentialVault();
-    final NotesDatabasePath path = model.getPath();
+    // request NotesDatabase Path
+    final NotesDatabasePath path;
+    try {
+      final NotesDatabasePathCredential cred = vault.requestCredential( NotesDatabasePathCredential.class,
+              Scope.CONNECTION, new NotesDatabasePathCredentialRequest( model.getPath().clone() ) );
+      path = cred.getDatabasePath();
+    } catch ( final CredentialVaultException e ) {
+      throw new DataAccessException( e );
+    }
     // request notes authority credential (scope: CONNECTION)
     final AuthorityCredential authorityCredential;
     try {
       authorityCredential = vault.requestCredential( AuthorityCredential.class, Scope.CONNECTION,
-              new NotesAuthorityCredentialRequest( model.getPath().getAuthority() ) );
+              new NotesAuthorityCredentialRequest( path.getAuthority() ) );
+      path.setAuthority( authorityCredential.getAuthority() );
     } catch ( final CredentialVaultException e ) {
       throw new DataAccessException( e );
     }
@@ -153,12 +164,13 @@ public class NotesSessionManager {
       throw new DataAccessException( e );
     }
     try {
-      final String authority = authorityCredential.getAuthority();
+      final String authority = path.getAuthority();
       final boolean local = ( null == authority );
-      final String hostName = NotesSessionManager.bundle.get( "host.name." + ( local ? "local" : "remote" ), authority );
+      final String hostName = NotesSessionManager.bundle.get( "host.name." + ( local ? "local" : "remote" ),
+              authority );
 
-      NotesSessionManager.bundle.log( NotesSessionManager.SESSION_EVENT_LEVEL, "create.start", hostName, Thread
-              .currentThread().getName(), path.getVersion() );
+      NotesSessionManager.bundle.log( NotesSessionManager.SESSION_EVENT_LEVEL, "create.start", hostName,
+              Thread.currentThread().getName(), path.getVersion() );
       // create session
       final Session session = sessionCredential.login( authorityCredential );
       session.setConvertMIME( false );
@@ -199,7 +211,7 @@ public class NotesSessionManager {
 
   /**
    * Destroys all current sessions.
-   * 
+   *
    * @param inScope
    *          if <tt>true</tt>, only destroys sessions within the current scope,
    *          otherwise all sessions
@@ -227,7 +239,7 @@ public class NotesSessionManager {
 
   /**
    * Destroys a session.
-   * 
+   *
    * @param the
    *          session
    * @throws NotesException
@@ -236,8 +248,8 @@ public class NotesSessionManager {
    */
   public void destroy( final Session session ) throws DataAccessException {
     try {
-      NotesSessionManager.bundle.log( NotesSessionManager.SESSION_EVENT_LEVEL, "destroy.start", Thread.currentThread()
-              .getName() );
+      NotesSessionManager.bundle.log( NotesSessionManager.SESSION_EVENT_LEVEL, "destroy.start",
+              Thread.currentThread().getName() );
       try {
         if ( null != session && session.isValid() ) {
           session.recycle();
@@ -247,8 +259,8 @@ public class NotesSessionManager {
           listener.sessionDestroyed( session );
         }
       }
-      NotesSessionManager.bundle.log( NotesSessionManager.SESSION_EVENT_LEVEL, "destroy.finished", Thread
-              .currentThread().getName() );
+      NotesSessionManager.bundle.log( NotesSessionManager.SESSION_EVENT_LEVEL, "destroy.finished",
+              Thread.currentThread().getName() );
     } catch ( final NotesException e ) {
       throw new DataAccessException( e );
     }
