@@ -2,5 +2,13 @@
 <configuration xmlns="http://www.ars.de/daojones/2.0/connections">
 
   <!-- your connections here -->
+  <connection default="true" name="Sample Database" type="de.ars.daojones.drivers.notes">
+  <!-- see de.ars.daojones.drivers.notes.NotesDatabasePath for details -->
+    <database><![CDATA[notes://_server_/_replicaId_?version=1.1&type=replica]]></database>
+    <credential type="static">
+      <property name="username" value="username"/>
+      <property name="password" value="password"/>
+    </credential>
+  </connection>
 
 </configuration>
