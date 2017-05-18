@@ -262,7 +262,7 @@
 
     <dependency>
       <groupId>de.ars.daojones.maven.archetypes</groupId>
-      <artifactId>daojones-java-archetype</artifactId>
+      <artifactId>daojones-java-simple</artifactId>
       <version>${daojones.version}</version>
       <type>pom</type>
       <!-- <type>maven-archetype</type> -->
@@ -270,7 +270,7 @@
     </dependency>
     <dependency>
       <groupId>de.ars.daojones.maven.archetypes</groupId>
-      <artifactId>daojones-java-archetype</artifactId>
+      <artifactId>daojones-java-simple</artifactId>
       <version>${daojones.version}</version>
       <type>jar</type>
       <!-- <type>maven-archetype</type> -->
