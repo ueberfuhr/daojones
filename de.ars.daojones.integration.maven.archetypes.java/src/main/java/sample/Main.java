@@ -12,29 +12,25 @@ import de.ars.daojones.runtime.context.DaoJonesContextFactory;
 public class Main {
 
   private static final String APP = "main-app";
+  private static final String CONNECTIONS_CONFIGURATION = "/META-INF/daojones-connections.xml";
 
   public static void main( final String[] args ) throws ConfigurationException, DataAccessException {
     final DaoJonesContextFactory dcf = new DaoJonesContextFactory();
     dcf.setConfigurationSources( // to configure:
-            new AnnotationBeanConfigurationSource( Main.APP ), // scan annotations for bean model
             // scan annotations for bean model
-            new XmlConnectionConfigurationSource( Main.APP, Main.class
-                    .getResource( "/META-INF/daojones-connections.xml" ) ) );
-    final DaoJonesContext ctx = dcf.createContext();
-    try {
+            new AnnotationBeanConfigurationSource( Main.APP ),
+            // scan annotations for bean model
+            new XmlConnectionConfigurationSource( Main.APP,
+                    Main.class.getResource( Main.CONNECTIONS_CONFIGURATION ) ) );
+    try ( final DaoJonesContext ctx = dcf.createContext() ) {
       final ConnectionProvider cp = ctx.getApplication( Main.APP );
       final MemoController controller = new MemoController( cp );
       // find all memos whose subject starts with "IMPORTANT"
-      final SearchResult<Memo> importantMemos = controller.getImportantMemos();
-      try {
+      try ( final SearchResult<Memo> importantMemos = controller.getImportantMemos() ) {
         for ( final Memo memo : importantMemos ) {
           System.out.println( memo );
         }
-      } finally {
-        importantMemos.close();
       }
-    } finally {
-      ctx.close();
     }
   }
 

@@ -1,11 +1,12 @@
 package sample;
 
+import static de.ars.daojones.runtime.query.SearchCriterionBuilder.field;
+
 import de.ars.daojones.runtime.connections.Accessor.SearchResult;
 import de.ars.daojones.runtime.connections.Connection;
 import de.ars.daojones.runtime.connections.ConnectionProvider;
 import de.ars.daojones.runtime.connections.DataAccessException;
 import de.ars.daojones.runtime.query.Query;
-import de.ars.daojones.runtime.query.SearchCriterionBuilder;
 
 public class MemoController {
 
@@ -17,13 +18,9 @@ public class MemoController {
   };
 
   public SearchResult<Memo> getImportantMemos() throws DataAccessException {
-    final Connection<Memo> con = connectionProvider.getConnection( Memo.class );
-    try {
+    try ( final Connection<Memo> con = connectionProvider.getConnection( Memo.class ) ) {
       // find all memos whose subject starts with "IMPORTANT"
-      return con.findAll( Query.create().only(
-              SearchCriterionBuilder.field( Memo.SUBJECT ).asString().startsWith( "IMPORTANT" ) ) );
-    } finally {
-      con.close();
+      return con.findAll( Query.create().only( field( Memo.SUBJECT ).asString().startsWith( "IMPORTANT" ) ) );
     }
   }
 
