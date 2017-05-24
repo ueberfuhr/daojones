@@ -65,7 +65,7 @@ public class NotesSessionCredentialRequest implements CredentialRequest<SessionF
       final NameCallback nameCallback = new NameCallback(
               NotesSessionCredentialRequest.callbackBundle.get( locale, "NameCallback.prompt" ) );
       final PasswordCallback passwordCallback = new PasswordCallback(
-              NotesSessionCredentialRequest.callbackBundle.get( locale, ".PasswordCallback.prompt" ), false );
+              NotesSessionCredentialRequest.callbackBundle.get( locale, "PasswordCallback.prompt" ), false );
       NotesSessionCredentialRequest.tryCallbacksAndReturnUnsupported( callbackHandler, nameCallback, passwordCallback );
       final UsernamePasswordCredential upc = new UsernamePasswordCredential();
       upc.setUsername( nameCallback.getName() );
