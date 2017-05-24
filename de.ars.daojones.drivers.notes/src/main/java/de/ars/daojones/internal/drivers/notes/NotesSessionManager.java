@@ -155,7 +155,7 @@ public class NotesSessionManager {
     final SessionFactoryCredential sessionCredential;
     try {
       sessionCredential = vault.requestCredential( SessionFactoryCredential.class, Scope.CREDENTIAL,
-              new NotesSessionCredentialRequest( path ) );
+              new NotesSessionCredentialRequest() );
       if ( null == sessionCredential ) {
         // cancelled by user
         return null;

@@ -11,7 +11,7 @@ Before you can access the database, you need to set up your environment.
 1. **Connection Configuration**: It is recommended to do this using an XML file. See the example below. The XML file should be in the application's classpath.
 {{xml}}<wikbook:include href="content/database_access_basics/connectionmodel.xml"/>{{/xml}}
 {{note}}
-The example shows a static kind of credential, where username and password are placed into the XML. If you need any dynamic way of finding a credential (e.g. to use a token or to request the user to input the credentials), implement a custom ##javax.security.auth.callback.CallbackHandler## and use it as shown in the example below.
+The example shows a static kind of credential, where username and password are placed into the XML. If you need any dynamic way of finding a credential (e.g. to use a token or to request the user to input the credentials), implement a custom ##javax.security.auth.callback.CallbackHandler## and use it as shown in the example below. See Section [["JAAS Integration using the Notes Driver">>#notes_jaas_callbackhandler]] for detailed information.
 {{xml}}<wikbook:include href="content/database_access_basics/connectionmodel-generic.xml"/>{{/xml}}
 {{/note}}
 

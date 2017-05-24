@@ -23,7 +23,7 @@ To use the Notes driver,
 
 {{xml}}<wikbook:include href="content/drivers/notes/connectionmodel.xml"/>{{/xml}}
 
-==== Notes Database Path
+==== Notes Database Path ====
 
 The database path specified within the connection model need to follow the rules of the notes driver.  
 The Notes Database Path is an URI that consists of
@@ -45,6 +45,27 @@ __Examples:__
   ##notes:///C1257421103A2141?version=1.1&type=replica&server=acme.com ##
 
 {{note}}Parsing or creating the path is implemented by the public class ##de.ars.daojones.drivers.notes.NotesDatabasePath##.{{/note}}
+
+==== JAAS Integration {{anchor id=notes_jaas_callbackhandler /}} ====
+
+The example below shows the possibility to use a custom ##javax.security.auth.callback.CallbackHandler## to allow dynamic log-ins.
+{{xml}}<wikbook:include href="content/database_access_basics/connectionmodel-generic.xml"/>{{/xml}}
+
+The Notes driver requests the following callbacks in the order listed below:
+
+1. **Initialization**: Requesting the complete database path
+11. ##de.ars.daojones.drivers.notes.security.NotesDatabasePathCallback##
+1. **Connection Setup**: Requesting the authority (local client or remote connection)
+11. ##de.ars.daojones.drivers.notes.security.AuthorityCallback##
+1. **Authentication Setup (silent)**: Requesting a token for token-based authentication
+11. ##de.ars.daojones.drivers.notes.security.TokenCallback##
+1. **User Interaction Setup**: If a token is not available - because a user interaction is required, requesting the user's language.
+11. ##javax.security.auth.callback.LanguageCallback##
+1. **Authentication Setup (UI)**: Requesting username and password.
+11. ##javax.security.auth.callback.NameCallback##
+11. ##javax.security.auth.callback.PasswordCallback##
+
+{{note}}To modify the messages for the name and password callbacks, create a resource bundle ##de.ars.daojones.drivers.notes.security.CallbackMessages## with the keys ##NameCallback.prompt## and ##PasswordCallback.prompt##.{{/note}}
 
 ==== Type Mapping ====
 
