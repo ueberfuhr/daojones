@@ -130,18 +130,30 @@ public class NotesSessionManager {
     return listeners.toArray( new SessionListener[] {} );
   }
 
+  /**
+   * Requests the database path from the model using the credential vault.
+   * 
+   * @param model
+   *          the model
+   * @return the database path
+   * @throws DataAccessException
+   */
+  public NotesDatabasePath requestNotesDatabasePath( final NotesConnectionModel model ) throws DataAccessException {
+    final CredentialVault vault = model.getCredentialVault();
+    try {
+      final NotesDatabasePathCredential cred = vault.requestCredential( NotesDatabasePathCredential.class,
+              Scope.CONNECTION, new NotesDatabasePathCredentialRequest( model.getPath().clone() ) );
+      return cred.getDatabasePath();
+    } catch ( final CredentialVaultException e ) {
+      throw new DataAccessException( e );
+    }
+  }
+
   private Session refreshSession( final Session oldSession, final NotesConnectionModel model )
           throws NotesException, DataAccessException {
     final CredentialVault vault = model.getCredentialVault();
     // request NotesDatabase Path
-    final NotesDatabasePath path;
-    try {
-      final NotesDatabasePathCredential cred = vault.requestCredential( NotesDatabasePathCredential.class,
-              Scope.CONNECTION, new NotesDatabasePathCredentialRequest( model.getPath().clone() ) );
-      path = cred.getDatabasePath();
-    } catch ( final CredentialVaultException e ) {
-      throw new DataAccessException( e );
-    }
+    final NotesDatabasePath path = requestNotesDatabasePath( model );
     // request notes authority credential (scope: CONNECTION)
     final AuthorityCredential authorityCredential;
     try {

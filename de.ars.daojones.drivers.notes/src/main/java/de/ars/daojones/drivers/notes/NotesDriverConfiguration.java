@@ -11,7 +11,7 @@ import de.ars.daojones.internal.drivers.notes.utilities.Messages;
  * A class that provides the system-wide configuration of the driver. The
  * configuration is read from the classpath resource &quot;{@value #CONFIG_FILE}
  * &quot;.
- * 
+ *
  * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2013
  * @since 2.0
  */
@@ -24,42 +24,42 @@ public abstract class NotesDriverConfiguration {
 
   /**
    * The name of the soft deletion property.
-   * 
+   *
    * @see #DELETE_SOFT
    */
   public static final String PROPERTY_DELETE_SOFT = "daojones.notes.delete.soft"; //$NON-NLS-1$
 
   /**
    * The name of the force delete property.
-   * 
+   *
    * @see #DELETE_FORCE
    */
   public static final String PROPERTY_DELETE_FORCE = "daojones.notes.delete.force"; //$NON-NLS-1$
 
   /**
    * The name of the mark read property.
-   * 
+   *
    * @see #SAVE_MARK_READ
    */
   public static final String PROPERTY_SAVE_MARKREAD = "daojones.notes.save.markread"; //$NON-NLS-1$
 
   /**
    * The name of the create response property.
-   * 
+   *
    * @see #SAVE_CREATE_RESPONSE
    */
   public static final String PROPERTY_SAVE_CREATERESPONSE = "daojones.notes.save.createresponse"; //$NON-NLS-1$
 
   /**
    * The name of the force property.
-   * 
+   *
    * @see #SAVE_FORCE
    */
   public static final String PROPERTY_SAVE_FORCE = "daojones.notes.save.force"; //$NON-NLS-1$
 
   /**
    * The name of the session scope property.
-   * 
+   *
    * @see #SESSION_SCOPE
    */
   public static final String PROPERTY_SESSION_SCOPE = "daojones.notes.session.scope"; //$NON-NLS-1$
@@ -68,13 +68,14 @@ public abstract class NotesDriverConfiguration {
 
   /**
    * The scope of a Notes session.
-   * 
+   *
    * @author Ralf Zahn, ARS Computer und Consulting GmbH, 2013
    * @since 2.0
    */
   public static enum SessionScope {
     /**
-     * A single Notes Session (per host and user) for the whole application.<br/>
+     * A single Notes Session (per host and user) for the whole application.
+     * <br/>
      * <i>This is the default.</i>
      */
     APPLICATION,
@@ -149,18 +150,19 @@ public abstract class NotesDriverConfiguration {
       NotesDriverConfiguration.bundle.log( Level.WARNING, e, "error.readconfig", NotesDriverConfiguration.CONFIG_FILE ); //$NON-NLS-1$
     }
     // Read properties
-    SESSION_SCOPE = SessionScope.valueOf( NotesDriverConfiguration.getProperty( p,
-            NotesDriverConfiguration.PROPERTY_SESSION_SCOPE, SessionScope.APPLICATION.name() ).toUpperCase() );
-    SAVE_FORCE = Boolean.valueOf( NotesDriverConfiguration.getProperty( p,
-            NotesDriverConfiguration.PROPERTY_SAVE_FORCE, "true" ) ); //$NON-NLS-1$
-    SAVE_CREATE_RESPONSE = Boolean.valueOf( NotesDriverConfiguration.getProperty( p,
-            NotesDriverConfiguration.PROPERTY_SAVE_CREATERESPONSE, "false" ) );
-    SAVE_MARK_READ = Boolean.valueOf( NotesDriverConfiguration.getProperty( p,
-            NotesDriverConfiguration.PROPERTY_SAVE_MARKREAD, "false" ) ); //$NON-NLS-1$
-    DELETE_FORCE = Boolean.valueOf( NotesDriverConfiguration.getProperty( p,
-            NotesDriverConfiguration.PROPERTY_DELETE_FORCE, "true" ) ); //$NON-NLS-1$
-    DELETE_SOFT = Boolean.valueOf( NotesDriverConfiguration.getProperty( p,
-            NotesDriverConfiguration.PROPERTY_DELETE_SOFT, "false" ) ); //$NON-NLS-1$
+    SESSION_SCOPE = SessionScope.valueOf( NotesDriverConfiguration
+            .getProperty( p, NotesDriverConfiguration.PROPERTY_SESSION_SCOPE, SessionScope.APPLICATION.name() )
+            .toUpperCase() );
+    SAVE_FORCE = Boolean
+            .valueOf( NotesDriverConfiguration.getProperty( p, NotesDriverConfiguration.PROPERTY_SAVE_FORCE, "true" ) ); //$NON-NLS-1$
+    SAVE_CREATE_RESPONSE = Boolean.valueOf(
+            NotesDriverConfiguration.getProperty( p, NotesDriverConfiguration.PROPERTY_SAVE_CREATERESPONSE, "false" ) );
+    SAVE_MARK_READ = Boolean.valueOf(
+            NotesDriverConfiguration.getProperty( p, NotesDriverConfiguration.PROPERTY_SAVE_MARKREAD, "false" ) ); //$NON-NLS-1$
+    DELETE_FORCE = Boolean.valueOf(
+            NotesDriverConfiguration.getProperty( p, NotesDriverConfiguration.PROPERTY_DELETE_FORCE, "true" ) ); //$NON-NLS-1$
+    DELETE_SOFT = Boolean.valueOf(
+            NotesDriverConfiguration.getProperty( p, NotesDriverConfiguration.PROPERTY_DELETE_SOFT, "false" ) ); //$NON-NLS-1$
 
   }
 
@@ -201,5 +203,9 @@ public abstract class NotesDriverConfiguration {
    * The value of the property that sets the field type to DOCUMENT MAPPED.
    */
   public static final String MODEL_PROPERTY_DOCUMENT_MAPPED = "document-mapped"; //$NON-NLS-1$
+  /**
+   * The value of the property that sets the field type to a local time field.
+   */
+  public static final String MODEL_PROPERTY_LOCALTIME = "local-time"; //$NON-NLS-1$
 
 }

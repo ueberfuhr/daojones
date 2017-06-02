@@ -2,12 +2,12 @@ package de.ars.daojones.internal.drivers.notes.datahandler;
 
 import java.io.IOException;
 
+import de.ars.daojones.drivers.notes.DataHandlerException;
+import de.ars.daojones.runtime.spi.beans.fields.FieldContext;
 import lotus.domino.Document;
 import lotus.domino.Item;
 import lotus.domino.NotesException;
 import lotus.domino.RichTextItem;
-import de.ars.daojones.drivers.notes.DataHandlerException;
-import de.ars.daojones.runtime.spi.beans.fields.FieldContext;
 
 public class StringDataHandler extends InternalAbstractDataHandler<String, String> {
 
@@ -23,15 +23,15 @@ public class StringDataHandler extends InternalAbstractDataHandler<String, Strin
   }
 
   @Override
-  protected Object readDocumentItem( final DataHandlerContext<Document> context, final FieldContext<String> fieldContext )
-          throws NotesException, IOException {
+  protected Object readDocumentItem( final DataHandlerContext<Document> context,
+          final FieldContext<String> fieldContext ) throws NotesException, IOException {
     final boolean isRichText = isRichText( context, fieldContext );
     final Document doc = context.getSource();
     final Item item = doc.getFirstItem( fieldContext.getName() );
     if ( isRichText && null != item && Item.RICHTEXT == item.getType() ) {
       return readFromRichText( context, fieldContext, ( RichTextItem ) item );
     } else {
-      return context.getSource().getItemValueString( fieldContext.getName() );
+      return doc.getItemValueString( fieldContext.getName() );
     }
   }
 

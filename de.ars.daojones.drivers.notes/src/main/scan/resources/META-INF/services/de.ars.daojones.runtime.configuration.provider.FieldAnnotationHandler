@@ -2,3 +2,4 @@ de.ars.daojones.internal.drivers.notes.annotations.AuthorsAndReadersAnnotationHa
 de.ars.daojones.internal.drivers.notes.annotations.RichTextAnnotationHandler
 de.ars.daojones.internal.drivers.notes.annotations.MIMEEntityAnnotationHandler
 de.ars.daojones.internal.drivers.notes.annotations.DocumentMappedAnnotationHandler
+de.ars.daojones.internal.drivers.notes.annotations.LocalTimeAnnotationHandler

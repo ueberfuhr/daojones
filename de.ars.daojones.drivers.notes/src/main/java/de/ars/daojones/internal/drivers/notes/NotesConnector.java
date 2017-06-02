@@ -164,8 +164,7 @@ public final class NotesConnector {
     // open database
     final Session session = getSessionObject();
     if ( null != session ) {
-      final CredentialVault credentialVault = getModel().getCredentialVault();
-      final NotesDatabasePath path = getModel().getPath();
+      final NotesDatabasePath path = this.getSessionManager().requestNotesDatabasePath( getModel() );
       // get database file name
       final StringBuffer sbDatabase = new StringBuffer( path.getDatabase() );
       while ( sbDatabase.charAt( 0 ) == '/' ) {
@@ -189,6 +188,7 @@ public final class NotesConnector {
         String server;
         if ( local ) {
           try {
+            final CredentialVault credentialVault = getModel().getCredentialVault();
             final ServerCredential serverCredential = credentialVault.requestCredential( ServerCredential.class,
                     Scope.CONNECTION, new NotesServerCredentialRequest( path.getServer() ) );
             server = serverCredential.getServer();
