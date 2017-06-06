@@ -40,7 +40,7 @@ public class DateDataHandler extends InternalAbstractDataHandler<Date, Object> {
           cal.setTime( result );
           final String localTime = dt.getLocalTime(); // hh:mm:ss
           final String[] parts = localTime.split( ":" ); // should be array of length 3
-          cal.set( Calendar.HOUR, Integer.parseInt( parts[0] ) );
+          cal.set( Calendar.HOUR_OF_DAY, Integer.parseInt( parts[0] ) );
           if ( parts.length > 1 ) {
             cal.set( Calendar.MINUTE, Integer.parseInt( parts[1] ) );
           }
